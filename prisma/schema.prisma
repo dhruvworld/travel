@@ -62,6 +62,15 @@ model Photo {
   updatedAt   DateTime @updatedAt
 }
 
+model Image {
+  id        String   @id @default(cuid())
+  url       String
+  publicId  String
+  category  String   // e.g., 'gallery', 'destinations', 'hero'
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 enum Role {
   ADMIN
   SUPER_ADMIN
