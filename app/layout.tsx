@@ -22,15 +22,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Providers>
-          <div className="min-h-screen flex flex-col">
-            <Navbar />
-            <main className="flex-grow">
-              {children}
-            </main>
-            <Footer />
-          </div>
+          <Navbar />
+          <Toaster />
+          <main>{children}</main>
+          <Footer />
         </Providers>
-        <Toaster position="bottom-right" />
       </body>
     </html>
   );
