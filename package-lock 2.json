@@ -9,9 +9,7 @@
       "version": "0.1.0",
       "hasInstallScript": true,
       "dependencies": {
-        "@auth/core": "^0.34.2",
         "@heroicons/react": "^2.2.0",
-        "@next-auth/prisma-adapter": "^0.4.4-canary.81",
         "@prisma/client": "^5.10.0",
         "@tailwindcss/postcss": "^4.0.17",
         "bcryptjs": "^3.0.2",
@@ -19,7 +17,7 @@
         "framer-motion": "^12.6.2",
         "jsonwebtoken": "^9.0.2",
         "next": "^14.0.0",
-        "next-auth": "^4.22.1",
+        "next-auth": "^4.24.11",
         "next-cloudinary": "^6.16.0",
         "react": "^18.2.0",
         "react-datepicker": "^8.2.1",
@@ -55,46 +53,6 @@
       },
       "funding": {
         "url": "https://github.com/sponsors/sindresorhus"
-      }
-    },
-    "node_modules/@auth/core": {
-      "version": "0.34.2",
-      "resolved": "https://registry.npmjs.org/@auth/core/-/core-0.34.2.tgz",
-      "integrity": "sha512-KywHKRgLiF3l7PLyL73fjLSIBe1YNcA6sMeew4yMP6cfCWGXZrkkXd32AjRi1hlJ9nvovUBGZHvbn+LijO6ZeQ==",
-      "license": "ISC",
-      "dependencies": {
-        "@panva/hkdf": "^1.1.1",
-        "@types/cookie": "0.6.0",
-        "cookie": "0.6.0",
-        "jose": "^5.1.3",
-        "oauth4webapi": "^2.10.4",
-        "preact": "10.11.3",
-        "preact-render-to-string": "5.2.3"
-      },
-      "peerDependencies": {
-        "@simplewebauthn/browser": "^9.0.1",
-        "@simplewebauthn/server": "^9.0.2",
-        "nodemailer": "^6.8.0"
-      },
-      "peerDependenciesMeta": {
-        "@simplewebauthn/browser": {
-          "optional": true
-        },
-        "@simplewebauthn/server": {
-          "optional": true
-        },
-        "nodemailer": {
-          "optional": true
-        }
-      }
-    },
-    "node_modules/@auth/core/node_modules/cookie": {
-      "version": "0.6.0",
-      "resolved": "https://registry.npmjs.org/cookie/-/cookie-0.6.0.tgz",
-      "integrity": "sha512-U71cyTamuh1CRNCfpGY6to28lxvNwPG4Guz/EVjgf3Jmzv0vlDp1atT9eS5dDjMYHucpHbWns6Lwf3BKz6svdw==",
-      "license": "MIT",
-      "engines": {
-        "node": ">= 0.6"
       }
     },
     "node_modules/@babel/runtime": {
@@ -258,16 +216,6 @@
       "dependencies": {
         "@jridgewell/resolve-uri": "^3.0.3",
         "@jridgewell/sourcemap-codec": "^1.4.10"
-      }
-    },
-    "node_modules/@next-auth/prisma-adapter": {
-      "version": "0.4.4-canary.81",
-      "resolved": "https://registry.npmjs.org/@next-auth/prisma-adapter/-/prisma-adapter-0.4.4-canary.81.tgz",
-      "integrity": "sha512-RXdjrRkK4A3ksMdGXIyDmYBcgdpmbVqSGDoaH2X7P/MLBngh3/GO8TFGpiLwiUt1o4+Py81KICZYvBgatRP+Ew==",
-      "license": "ISC",
-      "peerDependencies": {
-        "@prisma/client": ">=2.16.0",
-        "next-auth": ">=3.19.2"
       }
     },
     "node_modules/@next/env": {
@@ -773,16 +721,10 @@
       "dev": true,
       "license": "MIT"
     },
-    "node_modules/@types/cookie": {
-      "version": "0.6.0",
-      "resolved": "https://registry.npmjs.org/@types/cookie/-/cookie-0.6.0.tgz",
-      "integrity": "sha512-4Kh9a6B2bQciAhf7FSuMRRkUWecJgJu9nPnx3yzpsfXX/c50REIqpHY4C82bXP90qrLtXtkDxTZosYO3UpOwlA==",
-      "license": "MIT"
-    },
     "node_modules/@types/node": {
-      "version": "20.17.28",
-      "resolved": "https://registry.npmjs.org/@types/node/-/node-20.17.28.tgz",
-      "integrity": "sha512-DHlH/fNL6Mho38jTy7/JT7sn2wnXI+wULR6PV4gy4VHLVvnrV/d3pHAMQHhc4gjdLmK2ZiPoMxzp6B3yRajLSQ==",
+      "version": "20.17.27",
+      "resolved": "https://registry.npmjs.org/@types/node/-/node-20.17.27.tgz",
+      "integrity": "sha512-U58sbKhDrthHlxHRJw7ZLiLDZGmAUOZUbpw0S6nL27sYUdhvgBLCRu/keSd6qcTsfArd1sRFCCBxzWATGr/0UA==",
       "dev": true,
       "license": "MIT",
       "dependencies": {
@@ -1179,9 +1121,9 @@
       }
     },
     "node_modules/jose": {
-      "version": "5.10.0",
-      "resolved": "https://registry.npmjs.org/jose/-/jose-5.10.0.tgz",
-      "integrity": "sha512-s+3Al/p9g32Iq+oqXxkW//7jk2Vig6FF1CFqzVXoTUXt2qz89YWbL+OwS17NFYEvxC35n0FKeGO2LGYSxeM2Gg==",
+      "version": "4.15.9",
+      "resolved": "https://registry.npmjs.org/jose/-/jose-4.15.9.tgz",
+      "integrity": "sha512-1vUQX+IdDMVPj4k8kOxgUqlcK518yluMuGZwqlr44FS1ppZB/5GWh4rZG89erpOBOJjU/OBsnCVFfapsRz6nEA==",
       "license": "MIT",
       "funding": {
         "url": "https://github.com/sponsors/panva"
@@ -1664,15 +1606,6 @@
         }
       }
     },
-    "node_modules/next-auth/node_modules/jose": {
-      "version": "4.15.9",
-      "resolved": "https://registry.npmjs.org/jose/-/jose-4.15.9.tgz",
-      "integrity": "sha512-1vUQX+IdDMVPj4k8kOxgUqlcK518yluMuGZwqlr44FS1ppZB/5GWh4rZG89erpOBOJjU/OBsnCVFfapsRz6nEA==",
-      "license": "MIT",
-      "funding": {
-        "url": "https://github.com/sponsors/panva"
-      }
-    },
     "node_modules/next-cloudinary": {
       "version": "6.16.0",
       "resolved": "https://registry.npmjs.org/next-cloudinary/-/next-cloudinary-6.16.0.tgz",
@@ -1739,15 +1672,6 @@
       "integrity": "sha512-a5ERWK1kh38ExDEfoO6qUHJb32rd7aYmPHuyCu3Fta/cnICvYmgd2uhuKXvPD+PXB+gCEYYEaQdIRAjCOwAKNA==",
       "license": "MIT"
     },
-    "node_modules/oauth4webapi": {
-      "version": "2.17.0",
-      "resolved": "https://registry.npmjs.org/oauth4webapi/-/oauth4webapi-2.17.0.tgz",
-      "integrity": "sha512-lbC0Z7uzAFNFyzEYRIC+pkSVvDHJTbEW+dYlSBAlCYDe6RxUkJ26bClhk8ocBZip1wfI9uKTe0fm4Ib4RHn6uQ==",
-      "license": "MIT",
-      "funding": {
-        "url": "https://github.com/sponsors/panva"
-      }
-    },
     "node_modules/object-assign": {
       "version": "4.1.1",
       "resolved": "https://registry.npmjs.org/object-assign/-/object-assign-4.1.1.tgz",
@@ -1786,15 +1710,6 @@
         "object-hash": "^2.2.0",
         "oidc-token-hash": "^5.0.3"
       },
-      "funding": {
-        "url": "https://github.com/sponsors/panva"
-      }
-    },
-    "node_modules/openid-client/node_modules/jose": {
-      "version": "4.15.9",
-      "resolved": "https://registry.npmjs.org/jose/-/jose-4.15.9.tgz",
-      "integrity": "sha512-1vUQX+IdDMVPj4k8kOxgUqlcK518yluMuGZwqlr44FS1ppZB/5GWh4rZG89erpOBOJjU/OBsnCVFfapsRz6nEA==",
-      "license": "MIT",
       "funding": {
         "url": "https://github.com/sponsors/panva"
       }
@@ -1841,9 +1756,9 @@
       "license": "MIT"
     },
     "node_modules/preact": {
-      "version": "10.11.3",
-      "resolved": "https://registry.npmjs.org/preact/-/preact-10.11.3.tgz",
-      "integrity": "sha512-eY93IVpod/zG3uMF22Unl8h9KkrcKIRs2EGar8hwLZZDU1lkjph303V9HZBwufh2s736U6VXuhD109LYqPoffg==",
+      "version": "10.26.4",
+      "resolved": "https://registry.npmjs.org/preact/-/preact-10.26.4.tgz",
+      "integrity": "sha512-KJhO7LBFTjP71d83trW+Ilnjbo+ySsaAgCfXOXUlmGzJ4ygYPWmysm77yg4emwfmoz3b22yvH5IsVFHbhUaH5w==",
       "license": "MIT",
       "funding": {
         "type": "opencollective",
@@ -1851,9 +1766,9 @@
       }
     },
     "node_modules/preact-render-to-string": {
-      "version": "5.2.3",
-      "resolved": "https://registry.npmjs.org/preact-render-to-string/-/preact-render-to-string-5.2.3.tgz",
-      "integrity": "sha512-aPDxUn5o3GhWdtJtW0svRC2SS/l8D9MAgo2+AWml+BhDImb27ALf04Q2d+AHqUUOc6RdSXFIBVa2gxzgMKgtZA==",
+      "version": "5.2.6",
+      "resolved": "https://registry.npmjs.org/preact-render-to-string/-/preact-render-to-string-5.2.6.tgz",
+      "integrity": "sha512-JyhErpYOvBV1hEPwIxc/fHWXPfnEGdRKxc8gFdAZ7XV4tlzyzG847XAyEZqoDnynP88akM4eaHcSOzNcLWFguw==",
       "license": "MIT",
       "dependencies": {
         "pretty-format": "^3.8.0"
