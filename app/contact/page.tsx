@@ -58,10 +58,6 @@ export default function ContactPage() {
                   <div className="ml-3 text-base text-gray-500">
                     <p>Jayendra Patel</p>
                     <p>Phone: +91 97379 90335</p>
-                    <p>Alt. Phone: +91 63519 40406</p>
-                    <br />
-                    <p>Hardik Patel</p>
-                    <p>Phone: +91 81412 89733</p>
                   </div>
                 </div>
                 <div className="mt-6 flex">
@@ -170,4 +166,4 @@ export default function ContactPage() {
       </div>
     </div>
   );
-} 
+}
