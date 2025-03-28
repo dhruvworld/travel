@@ -5,7 +5,7 @@ import Providers from './providers';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import { Toaster } from 'react-hot-toast';
-import { authOptions } from "./api/auth/[...nextauth]/route";
+import { authOptions } from "@/config/auth";  // Updated import path
 
 const inter = Inter({ subsets: ['latin'] });
 
