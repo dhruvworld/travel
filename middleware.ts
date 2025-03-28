@@ -1,18 +1,13 @@
-import { NextResponse } from "next/server";
+// middleware.ts
 import { withAuth } from "next-auth/middleware";
-import { authOptions } from "./app/api/auth/[...nextauth]/route";
 
-export default withAuth(
-  function middleware(req) {
-    return NextResponse.next();
-  },
-  {
-    callbacks: {
-      authorized: ({ token }) => !!token,
-    },
-  }
-);
+export default withAuth({
+  // Authentication configuration here
+});
 
 export const config = {
-  matcher: ["/protected/:path*"],
+  matcher: [
+    '/admin/:path*',
+    '/profile/:path*',
+  ],
 };
