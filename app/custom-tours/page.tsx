@@ -1,73 +1,53 @@
 'use client';
 
 import { useState } from 'react';
-import Image from 'next/image';
+import { useForm } from 'react-hook-form';
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
+import { motion } from 'framer-motion';
+import { toast } from 'react-hot-toast';
 
-interface Destination {
-  id: number;
-  name: string;
-  state: string;
-  image: string;
-  description: string;
-  activities: string[];
-  duration: number;
-  pricePerDay: number;
-}
-
-const destinations: Destination[] = [
-  {
-    id: 1,
-    name: "Taj Mahal",
-    state: "Uttar Pradesh",
-    image: "/images/taj-mahal.jpg",
-    description: "One of the seven wonders of the world, symbol of eternal love.",
-    activities: ["Guided Tour", "Sunset View", "Photography Session"],
-    duration: 1,
-    pricePerDay: 5000
-  },
-  {
-    id: 2,
-    name: "Jaipur City Palace",
-    state: "Rajasthan",
-    image: "/images/jaipur-palace.jpg",
-    description: "Royal residence with stunning architecture and museums.",
-    activities: ["Palace Tour", "Cultural Show", "Shopping"],
-    duration: 2,
-    pricePerDay: 4000
-  },
-  {
-    id: 3,
-    name: "Kerala Backwaters",
-    state: "Kerala",
-    image: "/images/kerala-backwaters.jpg",
-    description: "Serene waterways, houseboats, and lush landscapes.",
-    activities: ["Houseboat Stay", "Village Tour", "Ayurvedic Spa"],
-    duration: 3,
-    pricePerDay: 6000
-  }
-];
+type FormData = {
+  fullName: string;
+  email: string;
+  phone: string;
+  destinations: string;
+  numTravelers: number;
+  travelOnly: boolean;
+  preferences: string;
+};
 
 export default function CustomToursPage() {
-  const [selectedDestinations, setSelectedDestinations] = useState<number[]>([]);
-  const [totalDays, setTotalDays] = useState(0);
-  const [totalPrice, setTotalPrice] = useState(0);
+  const [step, setStep] = useState(1);
+  const [startDate, setStartDate] = useState<Date | null>(null);
+  const [endDate, setEndDate] = useState<Date | null>(null);
 
-  const toggleDestination = (id: number) => {
-    setSelectedDestinations(prev => {
-      const newSelection = prev.includes(id)
-        ? prev.filter(destId => destId !== id)
-        : [...prev, id];
-      
-      // Calculate total days and price
-      const selectedDests = destinations.filter(dest => newSelection.includes(dest.id));
-      const days = selectedDests.reduce((sum, dest) => sum + dest.duration, 0);
-      const price = selectedDests.reduce((sum, dest) => sum + (dest.duration * dest.pricePerDay), 0);
-      
-      setTotalDays(days);
-      setTotalPrice(price);
-      
-      return newSelection;
-    });
+  const { register, handleSubmit, watch, formState: { errors } } = useForm<FormData>();
+  const travelOnly = watch('travelOnly');
+
+  const onSubmit = async (data: FormData) => {
+    try {
+      const response = await fetch('/api/custom-tours', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...data,
+          startDate,
+          endDate,
+        }),
+      });
+
+      if (response.ok) {
+        toast.success("Thank you! We will send your custom quote soon.");
+        // Reset form or redirect
+      } else {
+        toast.error("Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      toast.error("Failed to submit form. Please try again.");
+    }
   };
 
   return (
@@ -83,112 +63,184 @@ export default function CustomToursPage() {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-8">
-        {/* Instructions */}
-        <div className="bg-white p-6 rounded-lg shadow-sm mb-8">
-          <h2 className="text-2xl font-semibold mb-4">How It Works</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="text-center">
-              <div className="text-3xl mb-2">1️⃣</div>
-              <h3 className="font-semibold mb-2">Select Destinations</h3>
-              <p className="text-gray-600">Choose the places you want to visit</p>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl mb-2">2️⃣</div>
-              <h3 className="font-semibold mb-2">Review Package</h3>
-              <p className="text-gray-600">Check duration and total cost</p>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl mb-2">3️⃣</div>
-              <h3 className="font-semibold mb-2">Book Your Tour</h3>
-              <p className="text-gray-600">Confirm and customize details</p>
-            </div>
-          </div>
-        </div>
+      {/* Form Section */}
+      <div className="max-w-3xl mx-auto px-4 py-12">
+        <div className="bg-white rounded-xl shadow-lg p-6 md:p-8">
+          {step === 1 ? (
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <h2 className="text-2xl font-semibold mb-6">Step 1: Basic Information</h2>
+              <div className="space-y-6">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Full Name *
+                  </label>
+                  <input
+                    type="text"
+                    {...register('fullName', { required: 'Name is required' })}
+                    className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                  />
+                  {errors.fullName && (
+                    <p className="text-red-500 text-sm mt-1">{errors.fullName.message}</p>
+                  )}
+                </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Destinations Selection */}
-          <div className="lg:col-span-2">
-            <h2 className="text-2xl font-semibold mb-6">Select Your Destinations</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {destinations.map((dest) => (
-                <div
-                  key={dest.id}
-                  className={`bg-white rounded-lg shadow-md overflow-hidden cursor-pointer transition
-                    ${selectedDestinations.includes(dest.id) ? 'ring-2 ring-blue-500' : ''}`}
-                  onClick={() => toggleDestination(dest.id)}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Email *
+                  </label>
+                  <input
+                    type="email"
+                    {...register('email', { 
+                      required: 'Email is required',
+                      pattern: {
+                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                        message: 'Invalid email address'
+                      }
+                    })}
+                    className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                  />
+                  {errors.email && (
+                    <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
+                  )}
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Phone *
+                  </label>
+                  <input
+                    type="tel"
+                    {...register('phone', { required: 'Phone number is required' })}
+                    className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                  />
+                  {errors.phone && (
+                    <p className="text-red-500 text-sm mt-1">{errors.phone.message}</p>
+                  )}
+                </div>
+
+                <button
+                  onClick={() => setStep(2)}
+                  className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors"
                 >
-                  <div className="relative h-48">
-                    <Image
-                      src={dest.image}
-                      alt={dest.name}
-                      fill
-                      className="object-cover"
+                  Next Step
+                </button>
+              </div>
+            </motion.div>
+          ) : (
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <h2 className="text-2xl font-semibold mb-6">Step 2: Travel Details</h2>
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Destination(s) *
+                  </label>
+                  <textarea
+                    {...register('destinations', { required: 'Please enter your desired destinations' })}
+                    className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                    rows={3}
+                    placeholder="e.g., Delhi, Agra, Jaipur"
+                  />
+                  {errors.destinations && (
+                    <p className="text-red-500 text-sm mt-1">{errors.destinations.message}</p>
+                  )}
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Start Date *
+                    </label>
+                    <DatePicker
+                      selected={startDate}
+                      onChange={(date) => setStartDate(date)}
+                      className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                      minDate={new Date()}
+                      placeholderText="Select start date"
                     />
                   </div>
-                  <div className="p-4">
-                    <h3 className="text-xl font-semibold mb-2">{dest.name}</h3>
-                    <p className="text-gray-600 mb-3">{dest.description}</p>
-                    <div className="flex flex-wrap gap-2 mb-3">
-                      {dest.activities.map((activity, index) => (
-                        <span
-                          key={index}
-                          className="bg-gray-100 text-gray-600 px-2 py-1 rounded-full text-sm"
-                        >
-                          {activity}
-                        </span>
-                      ))}
-                    </div>
-                    <div className="flex justify-between items-center text-sm text-gray-500">
-                      <span>{dest.state}</span>
-                      <span>{dest.duration} day(s)</span>
-                    </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      End Date *
+                    </label>
+                    <DatePicker
+                      selected={endDate}
+                      onChange={(date) => setEndDate(date)}
+                      className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                      minDate={startDate || new Date()}
+                      placeholderText="Select end date"
+                    />
                   </div>
                 </div>
-              ))}
-            </div>
-          </div>
 
-          {/* Package Summary */}
-          <div className="lg:col-span-1">
-            <div className="bg-white rounded-lg shadow-md p-6 sticky top-24">
-              <h2 className="text-2xl font-semibold mb-6">Your Package Summary</h2>
-              
-              {selectedDestinations.length > 0 ? (
-                <>
-                  <div className="space-y-4 mb-6">
-                    {destinations
-                      .filter(dest => selectedDestinations.includes(dest.id))
-                      .map(dest => (
-                        <div key={dest.id} className="flex justify-between items-center">
-                          <span>{dest.name}</span>
-                          <span>₹{dest.pricePerDay * dest.duration}</span>
-                        </div>
-                      ))}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Number of Travelers *
+                  </label>
+                  <input
+                    type="number"
+                    {...register('numTravelers', { 
+                      required: 'Please enter number of travelers',
+                      min: { value: 1, message: 'Minimum 1 traveler required' }
+                    })}
+                    className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                    min="1"
+                  />
+                  {errors.numTravelers && (
+                    <p className="text-red-500 text-sm mt-1">{errors.numTravelers.message}</p>
+                  )}
+                </div>
+
+                <div className="flex items-center">
+                  <input
+                    type="checkbox"
+                    {...register('travelOnly')}
+                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                  />
+                  <label className="ml-2 block text-sm text-gray-700">
+                    I only want travel (no accommodation)
+                  </label>
+                </div>
+
+                {!travelOnly && (
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Preferences / Notes
+                    </label>
+                    <textarea
+                      {...register('preferences')}
+                      className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                      rows={4}
+                      placeholder="Any specific requirements for hotels, meals, or activities?"
+                    />
                   </div>
-                  
-                  <div className="border-t pt-4 mb-6">
-                    <div className="flex justify-between items-center mb-2">
-                      <span className="font-semibold">Total Duration:</span>
-                      <span>{totalDays} days</span>
-                    </div>
-                    <div className="flex justify-between items-center text-xl font-bold">
-                      <span>Total Price:</span>
-                      <span>₹{totalPrice}</span>
-                    </div>
-                  </div>
-                  
-                  <button className="w-full bg-blue-600 text-white py-3 rounded-md hover:bg-blue-700 transition">
-                    Proceed to Book
+                )}
+
+                <div className="flex gap-4">
+                  <button
+                    type="button"
+                    onClick={() => setStep(1)}
+                    className="w-full bg-gray-200 text-gray-800 py-3 rounded-lg hover:bg-gray-300 transition-colors"
+                  >
+                    Back
                   </button>
-                </>
-              ) : (
-                <p className="text-gray-500 text-center">
-                  Select destinations to create your package
-                </p>
-              )}
-            </div>
-          </div>
+                  <button
+                    type="submit"
+                    className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors"
+                  >
+                    Submit Request
+                  </button>
+                </div>
+              </form>
+            </motion.div>
+          )}
         </div>
       </div>
     </div>
