@@ -129,9 +129,6 @@ export default function AboutPage() {
                 Phone: +91 97379 90335<br />
                 Alt. Phone: +91 63519 40406<br />
                 <br />
-                Hardik Patel<br />
-                Phone: +91 81412 89733<br />
-                <br />
                 Email: info@shuhamtours.com
               </p>
             </div>
@@ -140,4 +137,4 @@ export default function AboutPage() {
       </div>
     </div>
   );
-} 
+}
