@@ -13,7 +13,8 @@ export const metadata: Metadata = {
   description: 'Experience the best of India with Shuham Tours & Travels. We offer curated tours, comfortable accommodations, and unforgettable experiences.',
 };
 
-export default function RootLayout({
+// Marked as async so you can use `await` inside if needed
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;

@@ -3,7 +3,7 @@ import { redirect } from 'next/navigation';
 import { authOptions } from '../api/auth/[...nextauth]/route';
 import AdminNavigation from './components/AdminNavigation';
 
-export default function AdminLayout({
+export default async function AdminLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -17,4 +17,4 @@ export default function AdminLayout({
       {children}
     </div>
   );
-} 
+}
