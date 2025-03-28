@@ -1,4 +1,4 @@
-import { AuthOptions } from "next-auth";
+import { AuthOptions, Session, User } from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import { JWT } from "next-auth/jwt";
@@ -15,14 +15,14 @@ export const authOptions: AuthOptions = {
     }),
   ],
   callbacks: {
-    async jwt({ token, user }: { token: JWT, user: any }) {
-      if (user) {
+    async jwt({ token, user }: { token: JWT, user: User }) {
+      if (user?.role) {
         token.role = user.role;
       }
       return token;
     },
-    async session({ session, token }: { session: any, token: JWT }) {
-      if (session.user) {
+    async session({ session, token }: { session: Session, token: JWT }): Promise<Session> {
+      if (session?.user) {
         session.user.role = token.role;
       }
       return session;
