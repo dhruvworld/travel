@@ -39,8 +39,8 @@ export default function Footer() {
               <li>Yogeshwar Twin Bauglo, 10</li>
               <li>New Ranip, Ahmedabad</li>
               <li>Gujarat 382481, India</li>
-              <li>Phone: +91 81412 89733</li>
-              <li>Contact Person: Hardik Patel</li>
+              <li>Phone: +91 97379 90335</li>
+              <li>Contact Person: Jayendra Patel</li>
             </ul>
           </div>
           <div>
@@ -79,4 +79,4 @@ export default function Footer() {
       </div>
     </footer>
   );
-} 
+}
