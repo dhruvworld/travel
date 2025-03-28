@@ -18,6 +18,7 @@ export default function PackagesPage() {
   const [packages, setPackages] = useState<Package[]>([]);
   const [loading, setLoading] = useState(true);
   const [showAddModal, setShowAddModal] = useState(false);
+  const [editingPackage, setEditingPackage] = useState<Package | null>(null);
 
   useEffect(() => {
     fetchPackages();
@@ -32,6 +33,20 @@ export default function PackagesPage() {
       console.error('Error fetching packages:', error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleEdit = (pkg: Package) => {
+    setEditingPackage(pkg);
+    // Add your edit logic here
+  };
+
+  const handleDelete = async (id: number) => {
+    try {
+      await fetch(`/api/packages/${id}`, { method: 'DELETE' });
+      setPackages((prevPackages) => prevPackages.filter((pkg) => pkg.id !== id));
+    } catch (error) {
+      console.error('Error deleting package:', error);
     }
   };
 
@@ -100,4 +115,4 @@ export default function PackagesPage() {
       {/* Add/Edit Modal will be implemented next */}
     </div>
   );
-} 
+}
