@@ -1,4 +1,3 @@
-// config.ts
 import { AuthOptions } from "next-auth";
 import GitHubProvider from "next-auth/providers/github";
 
