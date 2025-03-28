@@ -2,6 +2,7 @@ import { getServerSession } from 'next-auth';
 import { redirect } from 'next/navigation';
 import { authOptions } from '../api/auth/[...nextauth]/route';
 import AdminNavigation from './components/AdminNavigation';
+import './AdminPage.css';
 
 export default async function AdminLayout({
   children,
