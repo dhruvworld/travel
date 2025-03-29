@@ -1,6 +1,6 @@
 import { getServerSession } from 'next-auth';
 import { PrismaAdapter } from '@auth/prisma-adapter';
-import { prisma } from '@/app/lib/prisma';
+import prisma from './prismadb';
 import GoogleProvider from 'next-auth/providers/google';
 import type { NextAuthOptions, Session } from 'next-auth';
 import { JWT } from 'next-auth/jwt';
@@ -13,6 +13,7 @@ export const authOptions: NextAuthOptions = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     }),
   ],
+  secret: process.env.NEXTAUTH_SECRET,
   pages: {
     signIn: '/auth/signin',
   },
