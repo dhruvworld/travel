@@ -183,7 +183,7 @@ export default function Home() {
                     <span key={i}>⭐</span>
                   ))}
                 </div>
-                <p className="text-gray-600 italic mb-4">"{testimonial.text}"</p>
+                <p className="text-gray-600 italic mb-4">&quot;{testimonial.text}&quot;</p>
                 <div>
                   <h4 className="font-semibold">{testimonial.name}</h4>
                   <p className="text-sm text-gray-500">{testimonial.location}</p>

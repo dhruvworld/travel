@@ -16,7 +16,6 @@ interface Booking {
 }
 
 type SortField = 'date' | 'packageName' | 'customerName' | 'totalAmount';
-type SortOrder = 'asc' | 'desc';
 
 export default function BookingsPage() {
   const [bookings, setBookings] = useState<Booking[]>([]);
@@ -26,7 +25,7 @@ export default function BookingsPage() {
   const [currentBooking, setCurrentBooking] = useState<Booking | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [sortField, setSortField] = useState<SortField>('date');
-  const [sortOrder, setSortOrder] = useState<SortOrder>('desc');
+  const [sortOrder] = useState('desc');
   const [selectedPackage, setSelectedPackage] = useState<string>('all');
   const [dateRange, setDateRange] = useState({ start: '', end: '' });
 
@@ -354,4 +353,4 @@ export default function BookingsPage() {
       )}
     </div>
   );
-} 
+}

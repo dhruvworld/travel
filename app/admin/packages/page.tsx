@@ -36,9 +36,13 @@ export default function PackagesPage() {
     }
   };
 
+  const handleAddClick = () => {
+    setShowAddModal(true);
+  };
+
   const handleEdit = (pkg: Package) => {
     setEditingPackage(pkg);
-    // Add your edit logic here
+    setShowAddModal(true);
   };
 
   const handleDelete = async (id: number) => {
@@ -55,7 +59,7 @@ export default function PackagesPage() {
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">Tour Packages</h1>
         <button
-          onClick={() => setShowAddModal(true)}
+          onClick={handleAddClick}
           className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
         >
           Add New Package
