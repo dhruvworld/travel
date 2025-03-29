@@ -1,25 +1,30 @@
-import { AuthOptions } from "next-auth";
+// lib/auth.ts
+
+import { NextAuthOptions } from "next-auth";
+import { PrismaAdapter } from "@auth/prisma-adapter";
+import { prisma } from "../../lib/prisma";
 import GoogleProvider from "next-auth/providers/google";
-import { PrismaAdapter } from '@next-auth/prisma-adapter';
+import { getServerSession } from "next-auth/next"; // ✅ Make sure this is here
 
-
-export const authOptions: AuthOptions = {
+export const authOptions: NextAuthOptions = {
+  adapter: PrismaAdapter(prisma),
   providers: [
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID || "",
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
+      clientId: process.env.GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     }),
   ],
-  secret: process.env.NEXTAUTH_SECRET,
+  callbacks: {
+    session: async ({ session, user }) => {
+      if (session?.user) {
+        session.user.id = user.id;
+      }
+      return session;
+    },
+  },
   pages: {
     signIn: '/auth/signin',
   },
-  callbacks: {
-    async session({ session, token, user }) {
-      return session;
-    },
-    async jwt({ token, user, account, profile }) {
-      return token;
-    },
-  },
 };
+
+export const auth = () => getServerSession(authOptions); // ✅ This will now work
