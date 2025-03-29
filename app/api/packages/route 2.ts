@@ -7,7 +7,7 @@ export async function GET() {
     const response = await fetch(`${API_URL}/api/packages/`);
     const data = await response.json();
     return NextResponse.json(data);
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { error: 'Failed to fetch packages' },
       { status: 500 }
@@ -27,10 +27,10 @@ export async function POST(request: Request) {
     });
     const data = await response.json();
     return NextResponse.json(data);
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { error: 'Failed to create package' },
       { status: 500 }
     );
   }
-} 
+}
