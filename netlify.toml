@@ -1,6 +1,6 @@
 [build]
+  command = "npx prisma generate && CI=true next build"
   publish = ".next"
-  command = "CI=true next build"
 
 [build.environment]
   NODE_VERSION = "18"  # Using a more recent Node.js version
