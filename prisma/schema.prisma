@@ -87,6 +87,15 @@ model customTour {
   updatedAt     DateTime @updatedAt
 }
 
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  role      String?  @default("user")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 enum Role {
   ADMIN
   SUPER_ADMIN
