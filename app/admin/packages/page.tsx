@@ -17,8 +17,6 @@ interface Package {
 export default function PackagesPage() {
   const [packages, setPackages] = useState<Package[]>([]);
   const [loading, setLoading] = useState(true);
-  const [showAddModal, setShowAddModal] = useState(false);
-  const [editingPackage, setEditingPackage] = useState<Package | null>(null);
 
   useEffect(() => {
     fetchPackages();
@@ -37,12 +35,11 @@ export default function PackagesPage() {
   };
 
   const handleAddClick = () => {
-    setShowAddModal(true);
+    console.log('Add button clicked');
   };
 
   const handleEdit = (pkg: Package) => {
-    setEditingPackage(pkg);
-    setShowAddModal(true);
+    console.log('Edit button clicked for package:', pkg);
   };
 
   const handleDelete = async (id: number) => {
@@ -115,8 +112,6 @@ export default function PackagesPage() {
           ))}
         </div>
       )}
-
-      {/* Add/Edit Modal will be implemented next */}
     </div>
   );
 }

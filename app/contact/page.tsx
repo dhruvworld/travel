@@ -79,7 +79,7 @@ export default function ContactPage() {
             </h2>
             <div className="mt-3">
               <p className="text-lg text-gray-500">
-                Have a question or want to make a booking? Fill out the form below and we'll get back to you as soon as possible.
+                Have a question or want to make a booking? Fill out the form below and we&rsquo;ll get back to you as soon as possible.
               </p>
               <div className="mt-9">
                 <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-y-6">

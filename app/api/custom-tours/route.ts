@@ -1,19 +1,19 @@
-import { NextResponse } from 'next/server'
+import { NextResponse } from 'next/server';
+import prisma from '@/lib/prisma';
+import type { CustomTour } from '@prisma/client';
 
 export async function POST(request: Request) {
   try {
-    const data = await request.json()
-    
-    // Here you would typically:
-    // 1. Save to your database
-    // 2. Send email notification
-    // 3. Return success response
-
-    return NextResponse.json({ success: true })
+    const tourData: Partial<CustomTour> = await request.json();
+    const tour = await prisma.customTour.create({
+      data: tourData as CustomTour,
+    });
+    return NextResponse.json({ success: true, tour });
   } catch (error) {
+    console.error('Error creating tour:', error);
     return NextResponse.json(
-      { error: 'Failed to submit form' },
+      { success: false, error: 'Failed to create tour' },
       { status: 500 }
-    )
+    );
   }
-} 
+}
