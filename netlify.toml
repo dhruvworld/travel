@@ -1,10 +1,10 @@
 [build]
-  command = "npm install --legacy-peer-deps && npm run build"
   publish = ".next"
+  command = "CI=true next build"
 
 [build.environment]
+  NODE_VERSION = "18"  # Using a more recent Node.js version
   NEXT_USE_NETLIFY_EDGE = "true"
-  NODE_VERSION = "20"
   NEXT_TELEMETRY_DISABLED = "1"
   NODE_OPTIONS = "--max_old_space_size=4096"
   NPM_FLAGS = "--legacy-peer-deps --no-audit"
