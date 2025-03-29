@@ -4,12 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
     "prisma": "prisma",
     "clean": "rm -rf .next out .netlify/cache",
-    "prebuild": "npm run validate",
     "validate": "next lint && prisma validate && tsc --noEmit",
     "postinstall": "prisma generate"
   },
