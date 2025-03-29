@@ -1,19 +1,13 @@
 [build]
   command = "npm run build"
   publish = ".next"
-  environment = { NODE_VERSION = "18.17.0" }
+
+[functions]
+  node_bundler = "esbuild"
+  included_files = ["prisma/**"]
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
 
 [[plugins]]
   package = "@netlify/plugin-lighthouse"
-
-[functions]
-  included_files = ["prisma/**"]
-  node_bundler = "esbuild"
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
