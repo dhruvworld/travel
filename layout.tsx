@@ -2,11 +2,13 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import Providers from './providers';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
+import Providers from './app/providers'; // if needed
+
+import Navbar from '@/app/components/Navbar';
+import Footer from '@/app/components/Footer';
+
 import { Toaster } from 'react-hot-toast';
-import { auth } from '@/auth';
+import { auth } from '@/lib/auth'; // Updated import path
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -25,7 +27,8 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Providers>
+      <Providers session={session}>
+
           <Navbar />
           <Toaster />
           <main>{children}</main>

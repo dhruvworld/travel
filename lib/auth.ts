@@ -1,25 +1,29 @@
-// lib/auth.ts
-
-import { AuthOptions } from "next-auth";
+import { NextAuthOptions, getServerSession } from "next-auth";
+import { PrismaAdapter } from "@auth/prisma-adapter";
+import { prisma } from '@/lib/prisma'; // ✅ Ensure this file exists
 import GoogleProvider from "next-auth/providers/google";
 
-export const authOptions: AuthOptions = {
+export const authOptions: NextAuthOptions = {
+  adapter: PrismaAdapter(prisma),
   providers: [
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID || "",
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
+      clientId: process.env.GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     }),
   ],
-  secret: process.env.NEXTAUTH_SECRET,
-  pages: {
-    signIn: '/auth/signin',
-  },
   callbacks: {
-    async session({ session, token, user }) {
+    async session({ session, token }) {
+      if (session?.user && token?.id) {
+        session.user.id = token.id as string;
+        // Optional: session.user.role = token.role as string;
+      }
       return session;
     },
-    async jwt({ token, user, account, profile }) {
-      return token;
-    },
+  },
+  pages: {
+    signIn: "/auth/signin",
   },
 };
+
+// 👇 Server-side auth helper
+export const auth = () => getServerSession(authOptions);
