@@ -1,13 +1,21 @@
 [build]
-  command = "npm run build"
+  command = "npx prisma generate && npm run validate && next build"
   publish = ".next"
+
+[build.environment]
+  NEXT_USE_NETLIFY_EDGE = "true"
+  NODE_VERSION = "20"
+  NEXT_TELEMETRY_DISABLED = "1"
+  NEXT_SHARP_PATH = "/tmp/node_modules/sharp"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
 
-[build.environment]
-  NEXT_USE_NETLIFY_EDGE = "true"
-  NODE_VERSION = "18"
-
 [functions]
   included_files = ["prisma/**"]
+  node_bundler = "esbuild"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
