@@ -28,15 +28,6 @@ export default function PhotosPage() {
   const [previewUrl, setPreviewUrl] = useState('');
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const handleUpload = async (file: File) => {
-    // TODO: Implement file upload logic
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setPreviewUrl(reader.result as string);
-    };
-    reader.readAsDataURL(file);
-  };
-
   useEffect(() => {
     // TODO: Replace with actual API call
     setTimeout(() => {
