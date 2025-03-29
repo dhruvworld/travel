@@ -4,7 +4,9 @@
 ├── .env.local
 ├── .gitignore
 ├── .next
+│   ├── BUILD_ID
 │   ├── app-build-manifest.json
+│   ├── app-path-routes-manifest.json
 │   ├── build-manifest.json
 │   ├── cache
 │   │   ├── .tsbuildinfo
@@ -15,22 +17,45 @@
 │   │       ├── client-production
 │   │       │   ├── 0.pack
 │   │       │   ├── 1.pack
+│   │       │   ├── 10.pack
+│   │       │   ├── 11.pack
+│   │       │   ├── 12.pack
 │   │       │   ├── 2.pack
 │   │       │   ├── 3.pack
 │   │       │   ├── 4.pack
 │   │       │   ├── 5.pack
+│   │       │   ├── 6.pack
+│   │       │   ├── 7.pack
+│   │       │   ├── 8.pack
+│   │       │   ├── 9.pack
 │   │       │   ├── index.pack
 │   │       │   └── index.pack.old
 │   │       ├── edge-server-production
 │   │       │   ├── 0.pack
+│   │       │   ├── 1.pack
+│   │       │   ├── 2.pack
 │   │       │   ├── index.pack
 │   │       │   └── index.pack.old
 │   │       └── server-production
 │   │           ├── 0.pack
+│   │           ├── 1.pack
+│   │           ├── 2.pack
+│   │           ├── 3.pack
+│   │           ├── 4.pack
+│   │           ├── 5.pack
+│   │           ├── 6.pack
+│   │           ├── 7.pack
+│   │           ├── 8.pack
 │   │           ├── index.pack
 │   │           └── index.pack.old
+│   ├── export-marker.json
+│   ├── images-manifest.json
+│   ├── next-minimal-server.js.nft.json
+│   ├── next-server.js.nft.json
 │   ├── package.json
+│   ├── prerender-manifest.json
 │   ├── react-loadable-manifest.json
+│   ├── required-server-files.json
 │   ├── routes-manifest.json
 │   ├── server
 │   │   ├── app
@@ -110,6 +135,8 @@
 │   │   │   ├── favicon.ico
 │   │   │   │   ├── route.js
 │   │   │   │   └── route.js.nft.json
+│   │   │   ├── favicon.ico.body
+│   │   │   ├── favicon.ico.meta
 │   │   │   ├── hotels
 │   │   │   │   ├── page.js
 │   │   │   │   ├── page.js.nft.json
@@ -125,22 +152,22 @@
 │   │   │       ├── page.js
 │   │   │       ├── page.js.nft.json
 │   │   │       └── page_client-reference-manifest.js
-│   │   ├── app 2
 │   │   ├── app-paths-manifest.json
 │   │   ├── chunks
-│   │   │   ├── 165.js
 │   │   │   ├── 450.js
 │   │   │   ├── 481.js
 │   │   │   ├── 621.js
+│   │   │   ├── 634.js
 │   │   │   ├── 682.js
-│   │   │   ├── 688.js
 │   │   │   ├── 710.js
+│   │   │   ├── 744.js
 │   │   │   ├── 948.js
 │   │   │   ├── 972.js
 │   │   │   └── font-manifest.json
 │   │   ├── edge-runtime-webpack.js
 │   │   ├── edge-runtime-webpack.js.map
 │   │   ├── font-manifest.json
+│   │   ├── functions-config-manifest.json
 │   │   ├── interception-route-rewrite-manifest.js
 │   │   ├── middleware-build-manifest.js
 │   │   ├── middleware-manifest.json
@@ -150,6 +177,7 @@
 │   │   ├── next-font-manifest.js
 │   │   ├── next-font-manifest.json
 │   │   ├── pages
+│   │   │   ├── 500.html
 │   │   │   ├── _app.js
 │   │   │   ├── _app.js.nft.json
 │   │   │   ├── _document.js
@@ -160,8 +188,159 @@
 │   │   ├── server-reference-manifest.js
 │   │   ├── server-reference-manifest.json
 │   │   └── webpack-runtime.js
+│   ├── standalone
+│   │   ├── .env
+│   │   ├── .next
+│   │   │   ├── BUILD_ID
+│   │   │   ├── app-build-manifest.json
+│   │   │   ├── app-path-routes-manifest.json
+│   │   │   ├── build-manifest.json
+│   │   │   ├── package.json
+│   │   │   ├── prerender-manifest.json
+│   │   │   ├── react-loadable-manifest.json
+│   │   │   ├── required-server-files.json
+│   │   │   ├── routes-manifest.json
+│   │   │   └── server
+│   │   │       ├── app
+│   │   │       │   ├── _not-found
+│   │   │       │   │   ├── page.js
+│   │   │       │   │   ├── page.js.nft.json
+│   │   │       │   │   └── page_client-reference-manifest.js
+│   │   │       │   ├── about
+│   │   │       │   │   ├── page.js
+│   │   │       │   │   ├── page.js.nft.json
+│   │   │       │   │   └── page_client-reference-manifest.js
+│   │   │       │   ├── admin
+│   │   │       │   │   ├── bookings
+│   │   │       │   │   │   ├── page.js
+│   │   │       │   │   │   ├── page.js.nft.json
+│   │   │       │   │   │   └── page_client-reference-manifest.js
+│   │   │       │   │   ├── dashboard
+│   │   │       │   │   │   ├── page.js
+│   │   │       │   │   │   ├── page.js.nft.json
+│   │   │       │   │   │   └── page_client-reference-manifest.js
+│   │   │       │   │   ├── gallery
+│   │   │       │   │   │   ├── page.js
+│   │   │       │   │   │   ├── page.js.nft.json
+│   │   │       │   │   │   └── page_client-reference-manifest.js
+│   │   │       │   │   ├── login
+│   │   │       │   │   │   ├── page.js
+│   │   │       │   │   │   ├── page.js.nft.json
+│   │   │       │   │   │   └── page_client-reference-manifest.js
+│   │   │       │   │   ├── offers
+│   │   │       │   │   │   ├── page.js
+│   │   │       │   │   │   ├── page.js.nft.json
+│   │   │       │   │   │   └── page_client-reference-manifest.js
+│   │   │       │   │   ├── packages
+│   │   │       │   │   │   ├── page.js
+│   │   │       │   │   │   ├── page.js.nft.json
+│   │   │       │   │   │   └── page_client-reference-manifest.js
+│   │   │       │   │   ├── page.js
+│   │   │       │   │   ├── page.js.nft.json
+│   │   │       │   │   ├── page_client-reference-manifest.js
+│   │   │       │   │   ├── photos
+│   │   │       │   │   │   ├── page.js
+│   │   │       │   │   │   ├── page.js.nft.json
+│   │   │       │   │   │   └── page_client-reference-manifest.js
+│   │   │       │   │   └── upload
+│   │   │       │   │       ├── page.js
+│   │   │       │   │       ├── page.js.nft.json
+│   │   │       │   │       └── page_client-reference-manifest.js
+│   │   │       │   ├── api
+│   │   │       │   │   ├── admin
+│   │   │       │   │   │   └── images
+│   │   │       │   │   │       ├── route.js
+│   │   │       │   │   │       └── route.js.nft.json
+│   │   │       │   │   ├── contact
+│   │   │       │   │   │   ├── route.js
+│   │   │       │   │   │   └── route.js.nft.json
+│   │   │       │   │   ├── custom-tours
+│   │   │       │   │   │   ├── route.js
+│   │   │       │   │   │   └── route.js.nft.json
+│   │   │       │   │   ├── packages
+│   │   │       │   │   │   ├── route.js
+│   │   │       │   │   │   └── route.js.nft.json
+│   │   │       │   │   └── upload
+│   │   │       │   │       ├── route.js
+│   │   │       │   │       └── route.js.nft.json
+│   │   │       │   ├── car-rental
+│   │   │       │   │   ├── page.js
+│   │   │       │   │   ├── page.js.nft.json
+│   │   │       │   │   └── page_client-reference-manifest.js
+│   │   │       │   ├── contact
+│   │   │       │   │   ├── page.js
+│   │   │       │   │   ├── page.js.nft.json
+│   │   │       │   │   └── page_client-reference-manifest.js
+│   │   │       │   ├── custom-tours
+│   │   │       │   │   ├── page.js
+│   │   │       │   │   ├── page.js.nft.json
+│   │   │       │   │   └── page_client-reference-manifest.js
+│   │   │       │   ├── favicon.ico
+│   │   │       │   │   ├── route.js
+│   │   │       │   │   └── route.js.nft.json
+│   │   │       │   ├── favicon.ico.body
+│   │   │       │   ├── favicon.ico.meta
+│   │   │       │   ├── hotels
+│   │   │       │   │   ├── page.js
+│   │   │       │   │   ├── page.js.nft.json
+│   │   │       │   │   └── page_client-reference-manifest.js
+│   │   │       │   ├── packages
+│   │   │       │   │   ├── page.js
+│   │   │       │   │   ├── page.js.nft.json
+│   │   │       │   │   └── page_client-reference-manifest.js
+│   │   │       │   ├── page.js
+│   │   │       │   ├── page.js.nft.json
+│   │   │       │   ├── page_client-reference-manifest.js
+│   │   │       │   └── tours
+│   │   │       │       ├── page.js
+│   │   │       │       ├── page.js.nft.json
+│   │   │       │       └── page_client-reference-manifest.js
+│   │   │       ├── app-paths-manifest.json
+│   │   │       ├── chunks
+│   │   │       │   ├── 450.js
+│   │   │       │   ├── 481.js
+│   │   │       │   ├── 621.js
+│   │   │       │   ├── 634.js
+│   │   │       │   ├── 682.js
+│   │   │       │   ├── 710.js
+│   │   │       │   ├── 744.js
+│   │   │       │   ├── 948.js
+│   │   │       │   └── 972.js
+│   │   │       ├── edge-runtime-webpack.js
+│   │   │       ├── font-manifest.json
+│   │   │       ├── middleware-build-manifest.js
+│   │   │       ├── middleware-manifest.json
+│   │   │       ├── middleware-react-loadable-manifest.js
+│   │   │       ├── middleware.js
+│   │   │       ├── next-font-manifest.js
+│   │   │       ├── next-font-manifest.json
+│   │   │       ├── pages
+│   │   │       │   ├── 500.html
+│   │   │       │   ├── _app.js
+│   │   │       │   ├── _app.js.nft.json
+│   │   │       │   ├── _document.js
+│   │   │       │   ├── _document.js.nft.json
+│   │   │       │   ├── _error.js
+│   │   │       │   └── _error.js.nft.json
+│   │   │       ├── pages-manifest.json
+│   │   │       ├── server-reference-manifest.js
+│   │   │       ├── server-reference-manifest.json
+│   │   │       └── webpack-runtime.js
+│   │   ├── package.json
+│   │   ├── public
+│   │   │   ├── file.svg
+│   │   │   ├── globe.svg
+│   │   │   ├── images
+│   │   │   │   ├── hero-bg.svg
+│   │   │   │   ├── jaipur.svg
+│   │   │   │   ├── kerala.svg
+│   │   │   │   └── taj-mahal.svg
+│   │   │   ├── next.svg
+│   │   │   ├── vercel.svg
+│   │   │   └── window.svg
+│   │   └── server.js
 │   ├── static
-│   │   ├── aaTk29u_hk2UDVTSUInjU
+│   │   ├── YlapY9rRJR9K54wcrhnY-
 │   │   │   ├── _buildManifest.js
 │   │   │   └── _ssgManifest.js
 │   │   ├── css
@@ -1330,6 +1509,7 @@
 │   │   └── page.tsx
 │   ├── admin
 │   │   ├── AdminPage.css
+│   │   ├── AdminPage.tsx
 │   │   ├── bookings
 │   │   │   └── page.tsx
 │   │   ├── components
@@ -1387,7 +1567,8 @@
 │   │   └── page.tsx
 │   ├── layout.tsx
 │   ├── lib
-│   │   └── auth.ts
+│   │   ├── auth.ts
+│   │   └── prisma.ts
 │   ├── packages
 │   │   └── page.tsx
 │   ├── page.tsx
@@ -1405,7 +1586,9 @@
 ├── directory_structure.txt
 ├── layout.tsx
 ├── lib
-│   └── auth.ts
+│   ├── auth.config.ts
+│   ├── auth.ts
+│   └── prisma.ts
 ├── middleware.ts
 ├── netlify.toml
 ├── next-env.d.ts
@@ -1478,9 +1661,10 @@
 │   ├── urls.py
 │   └── views.py
 ├── tsconfig.json
+├── tsconfig.tsbuildinfo
 └── types
     ├── contact 2.ts
     ├── contact.ts
     └── next-auth.d.ts
 
-202 directories, 1282 files
+234 directories, 1434 files

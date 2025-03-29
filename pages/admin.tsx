@@ -1,11 +1,8 @@
-'use client';
+import type { GetServerSideProps } from 'next'
+import { useRouter } from 'next/router'
+import { getSession } from 'next-auth/react'
 
-export const dynamic = 'force-dynamic';
-
-import { useRouter, usePathname } from 'next/navigation';
-import './AdminPage.css';
-
-// Define menu items outside component to avoid recreating on each render
+// Define menu items outside component
 const MENU_ITEMS = [
   { path: '/admin/destinations', label: 'Manage Destinations', icon: '📍' },
   { path: '/admin/bookings', label: 'Manage Bookings', icon: '📅' },
@@ -13,9 +10,36 @@ const MENU_ITEMS = [
   { path: '/admin/settings', label: 'Settings', icon: '⚙️' }
 ] as const;
 
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const session = await getSession(context)
+  
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/auth/signin',
+        permanent: false,
+      },
+    }
+  }
+
+  // Optional: Check for admin role
+  if (session.user?.role !== 'admin') {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    }
+  }
+
+  return {
+    props: { session }
+  }
+}
+
 export default function AdminPage() {
-  const router = useRouter();
-  const pathname = usePathname();
+  const router = useRouter()
+  const pathname = router.pathname
 
   return (
     <div className="admin-container">
@@ -51,5 +75,5 @@ export default function AdminPage() {
         </div>
       </div>
     </div>
-  );
+  )
 }
