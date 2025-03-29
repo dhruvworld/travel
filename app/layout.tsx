@@ -2,7 +2,7 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { auth } from '@/lib/auth';
-import Providers from '@/app/components/providers';
+import Providers from './providers';
 
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';

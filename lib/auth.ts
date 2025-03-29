@@ -1,67 +1,30 @@
-import { PrismaAdapter } from "@auth/prisma-adapter";
-import { NextAuthOptions } from "next-auth";
-import CredentialsProvider from "next-auth/providers/credentials";
-import { prisma } from "@/app/lib/prisma"; // Change import to use named import
-import bcrypt from "bcryptjs";
-import { getServerSession } from "next-auth"; // Add this import
+import { getServerSession } from 'next-auth';
+import { PrismaAdapter } from '@auth/prisma-adapter';
+import { prisma } from '@/app/lib/prisma';
+import GoogleProvider from 'next-auth/providers/google';
+import type { NextAuthOptions, Session } from 'next-auth';
+import { JWT } from 'next-auth/jwt';
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
-    CredentialsProvider({
-      name: "Credentials",
-      credentials: {
-        email: { label: "Email", type: "email" },
-        password: { label: "Password", type: "password" }
-      },
-      async authorize(credentials) {
-        if (!credentials?.email || !credentials?.password) {
-          return null;
-        }
-
-        const admin = await prisma.admin.findUnique({
-          where: { email: credentials.email }
-        });
-
-        if (!admin) {
-          return null;
-        }
-
-        const passwordMatch = await bcrypt.compare(credentials.password, admin.password);
-
-        if (!passwordMatch) {
-          return null;
-        }
-
-        return {
-          id: admin.id,
-          email: admin.email,
-          name: admin.name,
-          role: admin.role
-        };
-      }
-    })
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+    }),
   ],
+  pages: {
+    signIn: '/auth/signin',
+  },
   callbacks: {
-    async jwt({ token, user }) {
-      if (user) {
-        token.role = user.role;
-      }
-      return token;
-    },
-    async session({ session, token }) {
-      if (session.user) {
-        session.user.role = token.role;
+    async session({ session, token }: { session: Session; token: JWT }) {
+      if (session?.user && token?.sub) {
+        session.user.id = token.sub;
+        session.user.role = token.role as string | null;
       }
       return session;
-    }
+    },
   },
-  session: {
-    strategy: "jwt"
-  },
-  pages: {
-    signIn: "/login"
-  }
 };
 
 // Add auth function export

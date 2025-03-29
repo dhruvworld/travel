@@ -1,19 +1,14 @@
 import React from 'react';
 import { useSession } from 'next-auth/react';
-import type { User } from '@prisma/client';
-
-interface CustomUser extends User {
-  role?: string;
-}
+import type { Session } from 'next-auth';
 
 export default function AdminPage() {
-  const { data: session } = useSession();
-  const user = session?.user as CustomUser;
+  const { data: session } = useSession() as { data: Session | null };
 
   return (
     <div>
-      <h1>Welcome, {user?.name}</h1>
-      <p>Your role: {user?.role || 'Guest'}</p>
+      <h1>Welcome, {session?.user?.name}</h1>
+      <p>Your role: {session?.user?.role || 'Guest'}</p>
     </div>
   );
 }

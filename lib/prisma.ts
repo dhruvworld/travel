@@ -1,6 +1,15 @@
 // lib/prisma.ts
 import { PrismaClient } from '@prisma/client'
 
-const prisma = new PrismaClient()
+// Add prisma to the globalThis type
+declare global {
+  // eslint-disable-next-line no-var
+  var prisma: PrismaClient | undefined
+}
 
-export default prisma
+// Create and export the singleton instance as a named export
+export const prisma = globalThis.prisma ?? new PrismaClient()
+
+if (process.env.NODE_ENV !== 'production') {
+  globalThis.prisma = prisma
+}

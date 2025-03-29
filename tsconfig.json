@@ -30,7 +30,7 @@
         "name": "next"
       }
     ],
-    "typeRoots": ["./types", "./node_modules/@types"],
+    "typeRoots": ["./node_modules/@types", "./app/types"],
     "types": ["next-auth"]
   },
   "include": [
@@ -38,7 +38,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "types/**/*.d.ts"
+    "app/types/**/*.d.ts"
   ],
   "exclude": [
     "node_modules"
