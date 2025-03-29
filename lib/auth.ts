@@ -1,47 +1,68 @@
 import { PrismaAdapter } from "@auth/prisma-adapter";
-import { AuthOptions } from "next-auth";
+import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { prisma } from "@/app/lib/prisma"; // Change import to use named import
 import bcrypt from "bcryptjs";
-import prisma from "./prisma";
+import { getServerSession } from "next-auth"; // Add this import
 
-export const authOptions: AuthOptions = {
+export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
     CredentialsProvider({
       name: "Credentials",
       credentials: {
         email: { label: "Email", type: "email" },
-        password: { label: "Password", type: "password" },
+        password: { label: "Password", type: "password" }
       },
       async authorize(credentials) {
-        if (!credentials?.email || !credentials?.password) return null;
+        if (!credentials?.email || !credentials?.password) {
+          return null;
+        }
 
-        const user = await prisma.admin.findUnique({
-          where: { email: credentials.email },
+        const admin = await prisma.admin.findUnique({
+          where: { email: credentials.email }
         });
 
-        if (!user || !user.password) return null;
+        if (!admin) {
+          return null;
+        }
 
-        const isPasswordValid = await bcrypt.compare(
-          credentials.password,
-          user.password
-        );
+        const passwordMatch = await bcrypt.compare(credentials.password, admin.password);
 
-        if (!isPasswordValid) return null;
+        if (!passwordMatch) {
+          return null;
+        }
 
         return {
-          id: user.id,
-          email: user.email,
-          name: user.name,
-          role: user.role,
+          id: admin.id,
+          email: admin.email,
+          name: admin.name,
+          role: admin.role
         };
-      },
-    }),
+      }
+    })
   ],
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.role = user.role;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      if (session.user) {
+        session.user.role = token.role;
+      }
+      return session;
+    }
+  },
   session: {
-    strategy: "jwt",
+    strategy: "jwt"
   },
   pages: {
-    signIn: "/admin/login",
-  },
+    signIn: "/login"
+  }
 };
+
+// Add auth function export
+export const auth = () => getServerSession(authOptions);
