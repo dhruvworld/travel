@@ -46,6 +46,7 @@ export default function CustomToursPage() {
         toast.error("Something went wrong. Please try again.");
       }
     } catch (error) {
+      console.error('Custom tour operation failed:', error);
       toast.error("Failed to submit form. Please try again.");
     }
   };
@@ -245,4 +246,4 @@ export default function CustomToursPage() {
       </div>
     </div>
   );
-} 
+}

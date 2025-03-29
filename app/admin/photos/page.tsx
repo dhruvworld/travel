@@ -25,9 +25,17 @@ export default function PhotosPage() {
     location: '',
     isActive: true
   });
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState('');
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleUpload = async (file: File) => {
+    // TODO: Implement file upload logic
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setPreviewUrl(reader.result as string);
+    };
+    reader.readAsDataURL(file);
+  };
 
   useEffect(() => {
     // TODO: Replace with actual API call
@@ -72,7 +80,6 @@ export default function PhotosPage() {
       isActive: true
     });
     setPreviewUrl('');
-    setSelectedFile(null);
     setShowModal(true);
   };
 
@@ -86,7 +93,6 @@ export default function PhotosPage() {
       isActive: photo.isActive
     });
     setPreviewUrl(photo.imageUrl);
-    setSelectedFile(null);
     setShowModal(true);
   };
 
@@ -100,7 +106,6 @@ export default function PhotosPage() {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      setSelectedFile(file);
       const reader = new FileReader();
       reader.onloadend = () => {
         setPreviewUrl(reader.result as string);
@@ -322,4 +327,4 @@ export default function PhotosPage() {
       )}
     </div>
   );
-} 
+}

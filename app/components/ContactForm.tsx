@@ -31,7 +31,8 @@ export default function ContactForm({ type, className = '' }: ContactFormProps) 
       } else {
         toast.error(result.error || 'Something went wrong');
       }
-    } catch (error) {
+    } catch (err) {
+      console.error('Form submission failed:', err);
       toast.error('Failed to submit form');
     } finally {
       setLoading(false);
