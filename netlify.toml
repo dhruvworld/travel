@@ -1,21 +1,23 @@
 [build]
-  command = "npx prisma generate && next build"
+  command = "npx prisma generate && npm run validate && next build"
   publish = ".next"
+  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF ./prisma/"
 
 [build.environment]
   NEXT_USE_NETLIFY_EDGE = "true"
   NODE_VERSION = "20"
   NEXT_TELEMETRY_DISABLED = "1"
   NEXT_SHARP_PATH = "/tmp/node_modules/sharp"
+  PRISMA_CLI_BINARY_TARGETS = "rhel-openssl-1.0.x"
+  NEXT_PUBLIC_RUNTIME_CONFIG = "true"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
 
 [functions]
-  included_files = ["prisma/**"]
+  included_files = ["prisma/**", "schema.prisma"]
   node_bundler = "esbuild"
+  external_node_modules = ["@prisma/client", "prisma"]
 
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+[build.processing]
+  skip_processing = false

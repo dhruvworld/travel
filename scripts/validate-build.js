@@ -1,32 +1,47 @@
+const { execSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 
-function validateDirectories() {
-  const pagesDir = path.join(process.cwd(), 'pages');
-  const appDir = path.join(process.cwd(), 'app');
-  
-  if (!fs.existsSync(appDir)) {
-    console.warn('⚠️ App directory is missing!');
-    return;
-  }
+function validateBuild() {
+  try {
+    // Check for required env vars
+    const requiredEnvVars = ['DATABASE_URL'];
+    const missingVars = requiredEnvVars.filter(v => !process.env[v]);
+    if (missingVars.length) {
+      throw new Error(`Missing required env vars: ${missingVars.join(', ')}`);
+    }
 
-  if (!fs.existsSync(pagesDir)) return;
+    // Validate Prisma schema
+    console.log('🔍 Validating Prisma schema...');
+    execSync('prisma validate', { stdio: 'inherit' });
 
-  const pagesFiles = fs.readdirSync(pagesDir, { recursive: true });
-  const appFiles = fs.readdirSync(appDir, { recursive: true });
+    // Type check
+    console.log('🔍 Running TypeScript checks...');
+    execSync('tsc --noEmit', { stdio: 'inherit' });
 
-  const conflicts = pagesFiles.filter(page => {
-    const pagePath = page.replace('.tsx', '').replace('.js', '');
-    return appFiles.some(appFile => 
-      appFile.includes(`${pagePath}/page.`) || appFile === `${pagePath}.`
-    );
-  });
+    // Lint
+    console.log('🔍 Running ESLint...');
+    execSync('next lint', { stdio: 'inherit' });
 
-  if (conflicts.length > 0) {
-    console.error('🚨 Detected conflicting routes in pages/ and app/ directories:');
-    conflicts.forEach(conflict => console.error(`- ${conflict}`));
+    // Check for presence of key config files
+    const requiredFiles = [
+      'next.config.js',
+      'prisma/schema.prisma',
+      'app/layout.tsx'
+    ];
+
+    requiredFiles.forEach(file => {
+      if (!fs.existsSync(path.resolve(process.cwd(), file))) {
+        throw new Error(`Required file missing: ${file}`);
+      }
+    });
+
+    console.log('✅ All validation checks passed!');
+    process.exit(0);
+  } catch (error) {
+    console.error('❌ Build validation failed:', error.message);
     process.exit(1);
   }
 }
 
-validateDirectories();
+validateBuild();
