@@ -1,20 +1,19 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'standalone',
-  
-  webpack: (config) => {
-    // Add build optimizations
-    config.optimization = {
-      ...config.optimization,
-      minimize: true,
-    }
-    return config
+  experimental: {
+    serverActions: true,
   },
-
-  // Production build settings  
-  productionBrowserSourceMaps: false,
-  poweredByHeader: false,
-  reactStrictMode: true
-};
+  outputFileTracing: true,
+  trailingSlash: false,
+  reactStrictMode: true,
+  images: {
+    domains: ['localhost'],
+    unoptimized: true
+  },
+  typescript: {
+    ignoreBuildErrors: false
+  }
+}
 
 module.exports = nextConfig;

@@ -1,52 +1,10 @@
 {
-  "name": "travel",
-  "version": "0.1.0",
-  "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "prisma generate && next build",
-    "start": "next start",
+    "build": "next build",
+    "postbuild": "next-sitemap",
+    "prebuild": "prisma generate",
     "lint": "next lint",
-    "create-admin": "node scripts/create-admin.js",
-    "postinstall": "prisma generate",
-    "prebuild": "node scripts/validate-build.js && prisma generate",
-    "validate": "node scripts/validate-build.js"
-  },
-  "dependencies": {
-    "@auth/core": "^0.34.2",
-    "@auth/prisma-adapter": "^2.8.0",
-    "@heroicons/react": "^2.2.0",
-    "@next-auth/prisma-adapter": "^0.4.4-canary.81",
-    "@prisma/client": "latest",
-    "@tailwindcss/postcss": "^4.0.17",
-    "bcryptjs": "^3.0.2",
-    "cloudinary": "^2.6.0",
-    "framer-motion": "^12.6.2",
-    "jsonwebtoken": "^9.0.2",
-    "next": "^14.0.0",
-    "next-auth": "^4.24.11",
-    "next-cloudinary": "^6.16.0",
-    "react": "^18.2.0",
-    "react-datepicker": "^8.2.1",
-    "react-dom": "^18.2.0",
-    "react-dropzone": "^14.3.8",
-    "react-hook-form": "^7.54.2",
-    "react-hot-toast": "^2.5.2",
-    "react-icons": "^5.5.0",
-    "react-router-dom": "^6.22.0"
-  },
-  "devDependencies": {
-    "@types/node": "^20.17.27",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "autoprefixer": "^10.4.21",
-    "postcss": "^8.5.3",
-    "prisma": "latest",
-    "tailwindcss": "^4.0.17",
-    "ts-node": "^10.9.2",
-    "typescript": "^5"
-  },
-  "engines": {
-    "node": ">=18.17.0"
+    "clean": "rm -rf .next out",
+    "clear-cache": "rm -rf .netlify/.cache"
   }
 }
