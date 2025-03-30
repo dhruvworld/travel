@@ -10,7 +10,8 @@
     "lint": "next lint",
     "postinstall": "prisma generate",
     "db:generate": "prisma generate",
-    "db:push": "prisma db push"
+    "db:push": "prisma db push",
+    "test-db": "node --loader ts-node/esm scripts/test-db.mts"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^1.6.0",
@@ -33,7 +34,7 @@
     "@types/autoprefixer": "^10.2.0",
     "@types/bcryptjs": "^2.4.6",
     "@types/next-auth": "^3.13.0",
-    "@types/node": "20.17.28",
+    "@types/node": "^20.0.0",
     "@types/postcss-import": "^14.0.3",
     "@types/react": "18.2.48",
     "@types/react-datepicker": "^4.19.6",
@@ -45,9 +46,10 @@
     "postcss": "^8.4.35",
     "postcss-import": "^16.0.1",
     "prisma": "5.22.0",
-    "typescript": "^5.3.3"
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2"
   },
   "engines": {
-    "node": "^18.17.0 || ^20.0.0"
+    "node": ">=18.17.0"
   }
 }

@@ -1,21 +1,15 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
-  provider      = "prisma-client-js"
-  binaryTargets = ["native", "debian-openssl-3.0.x"]
+  provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 model Admin {
-  id        String   @id @default(cuid())
+  id        String   @id @default(uuid())
   email     String   @unique
   password  String
   name      String
@@ -24,8 +18,31 @@ model Admin {
   updatedAt DateTime @updatedAt
 }
 
+model Image {
+  id        String   @id @default(uuid())
+  url       String
+  publicId  String
+  category  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Offer {
+  id          String   @id @default(uuid())
+  name        String
+  description String
+  discount    Float
+  startDate   DateTime
+  endDate     DateTime
+  isActive    Boolean  @default(true)
+  packageId   String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  Package     Package  @relation(fields: [packageId], references: [id])
+}
+
 model Package {
-  id          String   @id @default(cuid())
+  id          String   @id @default(uuid())
   name        String
   description String
   price       Float
@@ -35,25 +52,11 @@ model Package {
   isActive    Boolean  @default(true)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-  offers      Offer[]
-}
-
-model Offer {
-  id          String   @id @default(cuid())
-  name        String
-  description String
-  discount    Float
-  startDate   DateTime
-  endDate     DateTime
-  isActive    Boolean  @default(true)
-  package     Package  @relation(fields: [packageId], references: [id])
-  packageId   String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  Offer       Offer[]
 }
 
 model Photo {
-  id          String   @id @default(cuid())
+  id          String   @id @default(uuid())
   title       String
   description String?
   imageUrl    String
@@ -63,37 +66,28 @@ model Photo {
   updatedAt   DateTime @updatedAt
 }
 
-model Image {
-  id        String   @id @default(cuid())
-  url       String
-  publicId  String
-  category  String   // e.g., 'gallery', 'destinations', 'hero'
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model customTour {
-  id            String   @id @default(cuid())
-  fullName      String
-  email         String
-  phone         String
-  destinations  String
-  numTravelers  Int
-  travelOnly    Boolean  @default(false)
-  preferences   String?
-  startDate     DateTime
-  endDate       DateTime
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-}
-
 model User {
-  id        String   @id @default(cuid())
+  id        String   @id @default(uuid())
   email     String   @unique
   name      String?
   role      String?  @default("user")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model customTour {
+  id           String   @id @default(uuid())
+  fullName     String
+  email        String
+  phone        String
+  destinations String
+  numTravelers Int
+  travelOnly   Boolean  @default(false)
+  preferences  String?
+  startDate    DateTime
+  endDate      DateTime
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }
 
 enum Role {
