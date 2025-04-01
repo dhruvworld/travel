@@ -15,12 +15,23 @@ export async function GET() {
       return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
     }
 
-    const featuredPackages = await prisma.tourPackage.findMany({
-      where: { featured: true },
-      orderBy: { createdAt: 'desc' },
-    });
+    // Check if prisma is properly initialized
+    if (!prisma) {
+      console.error('[API /admin/featured-packages] Prisma client not initialized');
+      return NextResponse.json({ error: 'Database connection error' }, { status: 500 });
+    }
 
-    return NextResponse.json(featuredPackages);
+    try {
+      const featuredPackages = await prisma.tourPackage.findMany({
+        where: { featured: true },
+        orderBy: { createdAt: 'desc' },
+      });
+      
+      return NextResponse.json(featuredPackages);
+    } catch (dbError) {
+      console.error('[API /admin/featured-packages] Database error:', dbError);
+      return NextResponse.json({ error: 'Database query failed' }, { status: 500 });
+    }
   } catch (error) {
     console.error('[API /admin/featured-packages] Error:', error);
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });

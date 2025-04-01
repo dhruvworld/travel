@@ -1,25 +1,34 @@
 // lib/auth.ts
-import { PrismaAdapter } from '@auth/prisma-adapter';
 import { getServerSession } from 'next-auth';
-import type { NextAuthOptions } from 'next-auth';
-import GoogleProvider from 'next-auth/providers/google';
-import prisma from '@/lib/prisma'; // Fixed: changed from named to default import
+import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import type { Session } from 'next-auth';
+import { redirect } from 'next/navigation';
 
-export const authOptions: NextAuthOptions = {
-  adapter: PrismaAdapter(prisma), // ✅ PASS prisma here
-  providers: [
-    GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID!,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-    }),
-    // Add more providers here
-  ],
-  session: {
-    strategy: 'database',
-  },
-  pages: {
-    signIn: '/auth/signin',
-  },
-};
+// Export the authOptions for convenience
+export { authOptions };
 
-export const auth = () => getServerSession(authOptions);
+// Helper to get the session with better error handling
+export async function getSession(): Promise<Session | null> {
+  try {
+    return await getServerSession(authOptions);
+  } catch (error) {
+    console.error("Error getting session:", error);
+    return null;
+  }
+}
+
+// Require authentication or redirect
+export async function requireAuth() {
+  const session = await getSession();
+  if (!session) {
+    redirect('/auth/signin?callbackUrl=/dashboard');
+  }
+  return session;
+}
+
+// Check if user is authenticated without throwing
+export async function checkAuth() {
+  return await getSession();
+}
+
+export const auth = { getSession, requireAuth, checkAuth };

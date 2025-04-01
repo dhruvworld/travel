@@ -1,20 +1,11 @@
-import './globals.css';
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
+import { getServerSession } from "next-auth";
+import { authOptions } from "./api/auth/[...nextauth]/route";
+import "./globals.css";
+import { Providers } from "@/components/providers/Providers";
 
-import Providers from './providers';
-
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import { Toaster } from 'react-hot-toast';
-
-const inter = Inter({ subsets: ['latin'] });
-
-export const metadata: Metadata = {
-  title: 'Shuham Tours & Travels - Discover the Magic of India',
-  description: 'Experience the best of India with Shuham Tours & Travels. We offer curated tours, comfortable accommodations, and unforgettable experiences.',
+export const metadata = {
+  title: "Travel Adventures",
+  description: "Explore the world with custom travel packages",
 };
 
 export default async function RootLayout({
@@ -22,17 +13,20 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const session = await getServerSession(authOptions);
-
+  // Try to get the session but handle errors gracefully
+  let session = null;
+  try {
+    session = await getServerSession(authOptions);
+  } catch (error) {
+    console.error("Session error:", error);
+    // Continue without a session - this prevents the JWT decryption error from breaking the app
+  }
 
   return (
-    <html lang="en" className={inter.className}>
+    <html lang="en">
       <body>
-        <Providers session={session ?? undefined}>
-          <Navbar />
-          <Toaster />
+        <Providers session={session}>
           {children}
-          <Footer />
         </Providers>
       </body>
     </html>

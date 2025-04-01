@@ -14,6 +14,14 @@ process.on('unhandledRejection', (reason) => {
 
 async function main() {
   try {
+    // Attempt a simple query
+    const result = await prisma.$queryRaw`SELECT 1 as test`
+    console.log('✅ Database connection successful');
+    console.log('Result:', result);
+
+    // Check available models
+    console.log('Available models:', Object.keys(prisma).filter(key => !key.startsWith('_')));
+
     // Test database connection
     await prisma.$connect();
     console.log('✅ Database connection established');
@@ -32,19 +40,18 @@ async function main() {
     const users = await prisma.user.findMany();
     console.log('📊 Total users:', users.length);
 
+    return true;
   } catch (error) {
     console.error('❌ Error in main():', error);
-    throw error;
+    console.error('❌ Database connection failed:', error);
+    return false;
+  } finally {
+    console.log('🔌 Closing database connection...');
+    await prisma.$disconnect();
   }
 }
 
 // Proper promise chain with cleanup
-main()
-  .catch((error) => {
-    console.error('🔥 Fatal error:', error);
-    process.exit(1);
-  })
-  .finally(async () => {
-    console.log('🔌 Closing database connection...');
-    await prisma.$disconnect();
-  });
+main().then(success => {
+  process.exit(success ? 0 : 1);
+});
