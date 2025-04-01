@@ -2,6 +2,46 @@ import { getAllPackages } from '@/lib/prisma/packages';
 import Link from 'next/link';
 import Image from 'next/image';
 
+// Add proper type definition for the pkg parameter
+interface Package {
+  id: string;
+  name: string;
+  slug: string;
+  duration: number;
+  price: number;
+  description: string;
+  image: string;
+  highlights: string[];
+  featured: boolean;
+  published: boolean;
+  // Add any other properties your package has
+}
+
+function PackageCard(pkg: Package) {
+  return (
+    <div key={pkg.id} className="border rounded-lg overflow-hidden">
+      <Image 
+        src={pkg.image} 
+        alt={pkg.name} 
+        width={500} 
+        height={300} 
+        className="w-full h-48 object-cover"
+      />
+      <div className="p-4">
+        <h3 className="text-xl font-semibold">{pkg.name}</h3>
+        <p className="text-gray-600">{pkg.duration} Days</p>
+        <p className="text-lg font-bold mt-2">₹{pkg.price}</p>
+        <Link 
+          href={`/packages/${pkg.id}`}
+          className="mt-4 inline-block text-blue-600 hover:underline"
+        >
+          View Details →
+        </Link>
+      </div>
+    </div>
+  );
+}
+
 export default async function PackagesPage() {
   const packages = await getAllPackages();
 
@@ -10,26 +50,7 @@ export default async function PackagesPage() {
       <h1 className="text-4xl font-bold mb-8">All Tour Packages</h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {packages.map(pkg => (
-          <div key={pkg.id} className="border rounded-lg overflow-hidden">
-            <Image 
-              src={pkg.image} 
-              alt={pkg.name} 
-              width={500} 
-              height={300} 
-              className="w-full h-48 object-cover"
-            />
-            <div className="p-4">
-              <h3 className="text-xl font-semibold">{pkg.name}</h3>
-              <p className="text-gray-600">{pkg.duration} Days</p>
-              <p className="text-lg font-bold mt-2">₹{pkg.price}</p>
-              <Link 
-                href={`/packages/${pkg.id}`}
-                className="mt-4 inline-block text-blue-600 hover:underline"
-              >
-                View Details →
-              </Link>
-            </div>
-          </div>
+          <PackageCard key={pkg.id} {...pkg} />
         ))}
       </div>
     </div>
