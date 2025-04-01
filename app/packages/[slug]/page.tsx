@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation'
 import { getPackageById } from '@/lib/prisma/packages'
+import Image from 'next/image'
 
 export default async function PackageDetailPage({ 
   params: { slug } 
@@ -14,7 +15,13 @@ export default async function PackageDetailPage({
 
   return (
     <div className="py-12 max-w-4xl mx-auto">
-      <img src={pkg.image} alt={pkg.name} className="w-full h-96 object-cover rounded-lg"/>
+      <Image 
+        src={pkg.image} 
+        alt={pkg.name} 
+        width={500} 
+        height={300}
+        className="w-full h-96 object-cover rounded-lg"
+      />
       <h1 className="text-4xl font-bold mt-8">{pkg.name}</h1>
       <div className="flex gap-4 mt-4 text-lg">
         <p>{pkg.duration} Days</p>

@@ -1,17 +1,13 @@
 // lib/prisma.ts
 import { PrismaClient } from '@prisma/client'
 
-const prismaClientSingleton = () => {
-  return new PrismaClient({
-    errorFormat: 'minimal',
-  })
-}
-
+// Add prisma to the NodeJS global type
 declare global {
-  var prisma: undefined | ReturnType<typeof prismaClientSingleton>
+  var prisma: PrismaClient | undefined
 }
 
-const prisma = global.prisma ?? prismaClientSingleton()
+// Prevent multiple instances of Prisma Client in development
+const prisma = global.prisma || new PrismaClient()
 
 if (process.env.NODE_ENV !== 'production') global.prisma = prisma
 

@@ -1,41 +1,28 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { rateLimit } from '@/lib/rate-limit';
-import { getFeaturedPackages, updateFeaturedStatus, setFeaturedPackages } from '@/lib/prisma/packages';
-import { requireAuth, auth } from '@/lib/auth';
+// app/api/admin/featured-packages/route.ts
+import { NextResponse } from 'next/server';
+import { headers } from 'next/headers';
+import prisma from '@/lib/prisma';
 
-export async function GET(req: NextRequest) {
+// ✅ Force dynamic rendering to avoid static generation errors
+export const dynamic = 'force-dynamic';
+
+export async function GET() {
   try {
-    const rateLimited = await rateLimit(req);
-    if (rateLimited) return rateLimited;
+    const headerList = headers(); // Access request headers
+    const authHeader = headerList.get('authorization');
 
-    await requireAuth();
-    const packages = await getFeaturedPackages();
-    return NextResponse.json(packages);
+    if (!authHeader || authHeader !== `Bearer ${process.env.ADMIN_API_KEY}`) {
+      return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
+    }
+
+    const featuredPackages = await prisma.tourPackage.findMany({
+      where: { featured: true },
+      orderBy: { createdAt: 'desc' },
+    });
+
+    return NextResponse.json(featuredPackages);
   } catch (error) {
+    console.error('[API /admin/featured-packages] Error:', error);
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
-}
-
-export async function PUT(request: NextRequest) {
-  const rateLimitResponse = await rateLimit(request);
-  if (rateLimitResponse?.status === 429) return rateLimitResponse;
-
-  const headers = new Headers(rateLimitResponse?.headers);
-
-  const session = await auth();
-  if (!session?.user || session.user.role !== "admin") {
-    return new Response('Unauthorized', { status: 401, headers });
-  }
-
-  const { packageIds } = await request.json();
-
-  if (!packageIds || packageIds.length > 3) {
-    return NextResponse.json(
-      { error: 'Invalid request' },
-      { status: 400, headers }
-    );
-  }
-
-  await setFeaturedPackages(packageIds);
-  return NextResponse.json({ success: true }, { headers });
 }
