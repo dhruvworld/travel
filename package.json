@@ -11,15 +11,17 @@
     "postinstall": "prisma generate",
     "db:generate": "prisma generate",
     "db:push": "prisma db push",
-    "test-db": "node --loader ts-node/esm scripts/test-db.mts"
+    "test-db": "node --loader ts-node/esm scripts/test-db.mts",
+    "seed": "NODE_OPTIONS='--experimental-modules --es-module-specifier-resolution=node' ts-node --esm prisma/seed.mts"
   },
   "dependencies": {
-    "@auth/prisma-adapter": "^1.6.0",
+    "@auth/prisma-adapter": "^2.8.0",
     "@prisma/client": "5.22.0",
     "bcryptjs": "^2.4.3",
     "framer-motion": "^10.18.0",
-    "next": "14.1.0",
+    "next": "^14.2.26",
     "next-auth": "^4.24.5",
+    "rate-limiter-flexible": "^6.2.1",
     "react": "^18.2.0",
     "react-datepicker": "^4.25.0",
     "react-dom": "^18.2.0",
@@ -27,10 +29,12 @@
     "react-hook-form": "^7.49.3",
     "react-hot-toast": "^2.5.2",
     "react-icons": "^4.12.0",
-    "tailwindcss": "^3.4.1",
+    "scheduler": "^0.26.0",
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "^4.0.17",
+    "@tailwindcss/postcss7-compat": "^2.2.17",
     "@types/autoprefixer": "^10.2.0",
     "@types/bcryptjs": "^2.4.6",
     "@types/next-auth": "^3.13.0",
@@ -39,17 +43,21 @@
     "@types/react": "18.2.48",
     "@types/react-datepicker": "^4.19.6",
     "@types/react-dom": "^18.2.18",
-    "autoprefixer": "^10.4.18",
+    "autoprefixer": "^10.4.21",
     "eslint": "8.57.1",
     "eslint-config-next": "14.2.26",
-    "fast-glob": "^3.3.2",
-    "postcss": "^8.4.35",
+    "fast-glob": "^3.3.3",
+    "postcss": "^8.5.3",
     "postcss-import": "^16.0.1",
     "prisma": "5.22.0",
+    "tailwindcss": "^4.0.17",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.2"
   },
   "engines": {
     "node": ">=18.17.0"
+  },
+  "prisma": {
+    "seed": "NODE_OPTIONS='--experimental-modules --es-module-specifier-resolution=node' ts-node --esm prisma/seed.mts"
   }
 }

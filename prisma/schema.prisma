@@ -3,94 +3,87 @@ generator client {
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
+  provider = "postgresql" // or "mysql", "sqlite" depending on what you're using
+  url      = env("DATABASE_URL")
 }
 
 model Admin {
   id        String   @id @default(uuid())
   email     String   @unique
   password  String
-  name      String
-  role      Role     @default(ADMIN)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
-model Image {
+model User {
   id        String   @id @default(uuid())
-  url       String
-  publicId  String
-  category  String
+  name      String?
+  email     String   @unique
+  image     String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-}
-
-model Offer {
-  id          String   @id @default(uuid())
-  name        String
-  description String
-  discount    Float
-  startDate   DateTime
-  endDate     DateTime
-  isActive    Boolean  @default(true)
-  packageId   String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  Package     Package  @relation(fields: [packageId], references: [id])
 }
 
 model Package {
   id          String   @id @default(uuid())
   name        String
-  description String
-  price       Float
+  slug        String   @unique
   duration    Int
-  location    String
+  price       Float
+  description String
   image       String
-  isActive    Boolean  @default(true)
+  highlights  String[]
+  featured    Boolean  @default(false)
+  published   Boolean  @default(true)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-  Offer       Offer[]
+}
+
+model TourPackage {
+  id          String   @id @default(uuid())
+  name        String
+  slug        String   @unique
+  duration    Int
+  price       Float
+  description String
+  image       String
+  highlights  String[]
+  featured    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
 model Photo {
-  id          String   @id @default(uuid())
-  title       String
-  description String?
-  imageUrl    String
-  location    String
-  isActive    Boolean  @default(true)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id        String   @id @default(uuid())
+  url       String
+  caption   String?
+  packageId String?
+  createdAt DateTime @default(now())
+  Package   Package? @relation(fields: [packageId], references: [id])
 }
 
-model User {
+model Image {
   id        String   @id @default(uuid())
-  email     String   @unique
-  name      String?
-  role      String?  @default("user")
+  url       String
+  alt       String?
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
 }
 
 model customTour {
-  id           String   @id @default(uuid())
-  fullName     String
-  email        String
-  phone        String
-  destinations String
-  numTravelers Int
-  travelOnly   Boolean  @default(false)
-  preferences  String?
-  startDate    DateTime
-  endDate      DateTime
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  id          String   @id @default(uuid())
+  name        String
+  email       String
+  phone       String
+  message     String
+  createdAt   DateTime @default(now())
 }
 
-enum Role {
-  ADMIN
-  SUPER_ADMIN
+model Offer {
+  id          String   @id @default(uuid())
+  title       String
+  description String
+  discount    Float
+  expiresAt   DateTime
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
