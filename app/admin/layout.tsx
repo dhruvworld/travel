@@ -1,7 +1,7 @@
 // app/admin/layout.tsx
 import { getServerSession } from 'next-auth/next';
 import { redirect } from 'next/navigation';
-import { authOptions } from '@/lib/auth';
+import { authOptions, requireAuth } from '../../lib/auth';
 import AdminNavigation from './components/AdminNavigation';
 import './AdminPage.css';
 

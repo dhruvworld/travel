@@ -1,9 +1,10 @@
 import { getServerSession } from 'next-auth';
 import { PrismaAdapter } from '@auth/prisma-adapter';
-import prisma from './prismadb';
+import prisma from '@/lib/prismadb';
 import GoogleProvider from 'next-auth/providers/google';
 import type { NextAuthOptions, Session } from 'next-auth';
 import { JWT } from 'next-auth/jwt';
+import { redirect } from "next/navigation";
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
@@ -28,5 +29,22 @@ export const authOptions: NextAuthOptions = {
   },
 };
 
-// Add auth function export
-export const auth = () => getServerSession(authOptions);
+// Update auth function to use authOptions
+export const getSession = () => getServerSession(authOptions);
+
+export async function requireAuth() {
+  const session = await getSession();
+  
+  if (!session) {
+    redirect("/api/auth/signin");
+  }
+
+  return session;
+}
+
+export async function checkAuth() {
+  const session = await getSession();
+  return session;
+}
+
+export const auth = { getSession, requireAuth, checkAuth };
