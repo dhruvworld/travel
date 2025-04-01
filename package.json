@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.8.0",
-    "@prisma/client": "5.22.0",
+    "@prisma/client": "^5.22.0",
     "bcryptjs": "^2.4.3",
     "framer-motion": "^10.18.0",
     "next": "^14.2.26",
@@ -33,7 +33,7 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.0.17",
+    "@tailwindcss/postcss": "^4.1.0",
     "@tailwindcss/postcss7-compat": "^2.2.17",
     "@types/autoprefixer": "^10.2.0",
     "@types/bcryptjs": "^2.4.6",

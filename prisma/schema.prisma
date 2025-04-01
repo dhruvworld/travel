@@ -3,17 +3,20 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql" // or "mysql", "sqlite" depending on what you're using
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
 model Admin {
-  id        String   @id @default(uuid())
-  email     String   @unique
-  password  String
+  id       String   @id @default(cuid())
+  email    String   @unique
+  password String
+  role     String
+  name     String   // ✅ Add this line
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
 
 model User {
   id        String   @id @default(uuid())
@@ -37,6 +40,10 @@ model Package {
   published   Boolean  @default(true)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  isActive    Boolean  @default(true) 
+
+  // ✅ Photos relationship
+  photos Photo[] @relation("PackagePhotos")
 }
 
 model TourPackage {
@@ -59,7 +66,9 @@ model Photo {
   caption   String?
   packageId String?
   createdAt DateTime @default(now())
-  Package   Package? @relation(fields: [packageId], references: [id])
+
+  // ✅ Reverse relation to Package
+  Package Package? @relation("PackagePhotos", fields: [packageId], references: [id])
 }
 
 model Image {
@@ -67,16 +76,28 @@ model Image {
   url       String
   alt       String?
   createdAt DateTime @default(now())
+  cloudId   String  // Renamed from publicId to avoid any potential issues
+  category  String?
 }
 
 model customTour {
-  id          String   @id @default(uuid())
-  name        String
-  email       String
-  phone       String
-  message     String
-  createdAt   DateTime @default(now())
+  id           String   @id @default(cuid())
+  fullName     String
+  name         String   // ✅ Add this field
+  email        String
+  phone        String
+  message      String?
+  destinations String[]
+  numTravelers Int
+  travelOnly   Boolean
+  preferences  String?
+  startDate    DateTime
+  endDate      DateTime
+  createdAt    DateTime @default(now())
 }
+
+
+
 
 model Offer {
   id          String   @id @default(uuid())

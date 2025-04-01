@@ -16,10 +16,10 @@ export default function ImageUpload() {
       for (const file of acceptedFiles) {
         const formData = new FormData()
         formData.append('file', file)
-        formData.append('upload_preset', 'your_upload_preset') // You'll get this from Cloudinary
+        formData.append('upload_preset', 'your_upload_preset')
 
         const response = await fetch(
-          `https://api.cloudinary.com/v1_1/your_cloud_name/image/upload`, // Replace with your cloud name
+          `https://api.cloudinary.com/v1_1/your_cloud_name/image/upload`,
           {
             method: 'POST',
             body: formData,
@@ -29,7 +29,8 @@ export default function ImageUpload() {
         const data = await response.json()
         
         if (data.secure_url) {
-          // Save image URL to your database
+          // Save image URL to your database - note we're still sending publicId
+          // but the API will map it to cloudId
           const dbResponse = await fetch('/api/admin/images', {
             method: 'POST',
             headers: {
@@ -37,8 +38,8 @@ export default function ImageUpload() {
             },
             body: JSON.stringify({
               url: data.secure_url,
-              publicId: data.public_id,
-              category: 'gallery' // or any other category
+              publicId: data.public_id, // Send as publicId from Cloudinary
+              category: 'gallery'
             }),
           })
 
@@ -98,4 +99,4 @@ export default function ImageUpload() {
       </div>
     </div>
   )
-} 
+}

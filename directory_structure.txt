@@ -7,284 +7,7 @@
 ├── .env.local
 ├── .eslintrc.json
 ├── .gitignore
-├── .next
-│   ├── BUILD_ID
-│   ├── app-build-manifest.json
-│   ├── app-path-routes-manifest.json
-│   ├── build-manifest.json
-│   ├── export-marker.json
-│   ├── images-manifest.json
-│   ├── next-minimal-server.js.nft.json
-│   ├── next-server.js.nft.json
-│   ├── package.json
-│   ├── prerender-manifest.json
-│   ├── react-loadable-manifest.json
-│   ├── required-server-files.json
-│   ├── routes-manifest.json
-│   ├── server
-│   │   ├── app
-│   │   │   ├── _not-found
-│   │   │   │   ├── page.js
-│   │   │   │   ├── page.js.nft.json
-│   │   │   │   └── page_client-reference-manifest.js
-│   │   │   ├── about
-│   │   │   │   ├── page.js
-│   │   │   │   ├── page.js.nft.json
-│   │   │   │   └── page_client-reference-manifest.js
-│   │   │   ├── admin
-│   │   │   │   ├── bookings
-│   │   │   │   │   ├── page.js
-│   │   │   │   │   ├── page.js.nft.json
-│   │   │   │   │   └── page_client-reference-manifest.js
-│   │   │   │   ├── dashboard
-│   │   │   │   │   ├── page.js
-│   │   │   │   │   ├── page.js.nft.json
-│   │   │   │   │   └── page_client-reference-manifest.js
-│   │   │   │   ├── gallery
-│   │   │   │   │   ├── page.js
-│   │   │   │   │   ├── page.js.nft.json
-│   │   │   │   │   └── page_client-reference-manifest.js
-│   │   │   │   ├── login
-│   │   │   │   │   ├── page.js
-│   │   │   │   │   ├── page.js.nft.json
-│   │   │   │   │   └── page_client-reference-manifest.js
-│   │   │   │   ├── offers
-│   │   │   │   │   ├── page.js
-│   │   │   │   │   ├── page.js.nft.json
-│   │   │   │   │   └── page_client-reference-manifest.js
-│   │   │   │   ├── packages
-│   │   │   │   │   ├── page.js
-│   │   │   │   │   ├── page.js.nft.json
-│   │   │   │   │   └── page_client-reference-manifest.js
-│   │   │   │   ├── page.js
-│   │   │   │   ├── page.js.nft.json
-│   │   │   │   ├── page_client-reference-manifest.js
-│   │   │   │   ├── photos
-│   │   │   │   │   ├── page.js
-│   │   │   │   │   ├── page.js.nft.json
-│   │   │   │   │   └── page_client-reference-manifest.js
-│   │   │   │   └── upload
-│   │   │   │       ├── page.js
-│   │   │   │       ├── page.js.nft.json
-│   │   │   │       └── page_client-reference-manifest.js
-│   │   │   ├── api
-│   │   │   │   ├── admin
-│   │   │   │   │   └── images
-│   │   │   │   │       ├── route.js
-│   │   │   │   │       └── route.js.nft.json
-│   │   │   │   ├── auth
-│   │   │   │   │   └── [...nextauth]
-│   │   │   │   │       ├── route.js
-│   │   │   │   │       └── route.js.nft.json
-│   │   │   │   ├── contact
-│   │   │   │   │   ├── route.js
-│   │   │   │   │   └── route.js.nft.json
-│   │   │   │   ├── custom-tours
-│   │   │   │   │   ├── route.js
-│   │   │   │   │   └── route.js.nft.json
-│   │   │   │   ├── packages
-│   │   │   │   │   ├── route.js
-│   │   │   │   │   └── route.js.nft.json
-│   │   │   │   └── upload
-│   │   │   │       ├── route.js
-│   │   │   │       └── route.js.nft.json
-│   │   │   ├── car-rental
-│   │   │   │   ├── page.js
-│   │   │   │   ├── page.js.nft.json
-│   │   │   │   └── page_client-reference-manifest.js
-│   │   │   ├── contact
-│   │   │   │   ├── page.js
-│   │   │   │   ├── page.js.nft.json
-│   │   │   │   └── page_client-reference-manifest.js
-│   │   │   ├── custom-tours
-│   │   │   │   ├── page.js
-│   │   │   │   ├── page.js.nft.json
-│   │   │   │   └── page_client-reference-manifest.js
-│   │   │   ├── favicon.ico
-│   │   │   │   ├── route.js
-│   │   │   │   └── route.js.nft.json
-│   │   │   ├── favicon.ico.body
-│   │   │   ├── favicon.ico.meta
-│   │   │   ├── hotels
-│   │   │   │   ├── page.js
-│   │   │   │   ├── page.js.nft.json
-│   │   │   │   └── page_client-reference-manifest.js
-│   │   │   ├── packages
-│   │   │   │   ├── page.js
-│   │   │   │   ├── page.js.nft.json
-│   │   │   │   └── page_client-reference-manifest.js
-│   │   │   ├── page.js
-│   │   │   ├── page.js.nft.json
-│   │   │   ├── page_client-reference-manifest.js
-│   │   │   └── tours
-│   │   │       ├── page.js
-│   │   │       ├── page.js.nft.json
-│   │   │       └── page_client-reference-manifest.js
-│   │   ├── app-paths-manifest.json
-│   │   ├── chunks
-│   │   │   ├── 481.js
-│   │   │   ├── 635.js
-│   │   │   ├── 682.js
-│   │   │   ├── 710.js
-│   │   │   ├── 719.js
-│   │   │   ├── 891.js
-│   │   │   ├── 947.js
-│   │   │   ├── 948.js
-│   │   │   ├── 972.js
-│   │   │   └── font-manifest.json
-│   │   ├── edge-runtime-webpack.js
-│   │   ├── edge-runtime-webpack.js.map
-│   │   ├── font-manifest.json
-│   │   ├── functions-config-manifest.json
-│   │   ├── interception-route-rewrite-manifest.js
-│   │   ├── middleware-build-manifest.js
-│   │   ├── middleware-manifest.json
-│   │   ├── middleware-react-loadable-manifest.js
-│   │   ├── middleware.js
-│   │   ├── middleware.js.map
-│   │   ├── next-font-manifest.js
-│   │   ├── next-font-manifest.json
-│   │   ├── pages
-│   │   │   ├── 500.html
-│   │   │   ├── _app.js
-│   │   │   ├── _app.js.nft.json
-│   │   │   ├── _document.js
-│   │   │   ├── _document.js.nft.json
-│   │   │   ├── _error.js
-│   │   │   └── _error.js.nft.json
-│   │   ├── pages-manifest.json
-│   │   ├── server-reference-manifest.js
-│   │   ├── server-reference-manifest.json
-│   │   └── webpack-runtime.js
-│   ├── static
-│   │   ├── aj-i3MB2HVJw86LdDSfoL
-│   │   │   ├── _buildManifest.js
-│   │   │   └── _ssgManifest.js
-│   │   ├── chunks
-│   │   │   ├── 117-80d4827f169e54b1.js
-│   │   │   ├── 287-31f396c5fa988c69.js
-│   │   │   ├── 605-ea54f748aa1afc26.js
-│   │   │   ├── 64-f6f128d2eb0c179b.js
-│   │   │   ├── 878-e9d69a2990dd6dbf.js
-│   │   │   ├── 94-0f5f858ce5206629.js
-│   │   │   ├── 972-31f652ae9236b28f.js
-│   │   │   ├── 978-c0eec165b6662ef0.js
-│   │   │   ├── app
-│   │   │   │   ├── _not-found
-│   │   │   │   │   └── page-05a2dc3c7e4a338b.js
-│   │   │   │   ├── about
-│   │   │   │   │   └── page-e63a7410cae57670.js
-│   │   │   │   ├── admin
-│   │   │   │   │   ├── bookings
-│   │   │   │   │   │   └── page-8d05e4ca5cb38660.js
-│   │   │   │   │   ├── dashboard
-│   │   │   │   │   │   └── page-4c9492538b0b02d6.js
-│   │   │   │   │   ├── gallery
-│   │   │   │   │   │   └── page-67f065b414f5b4bf.js
-│   │   │   │   │   ├── layout-53daff30999f44d3.js
-│   │   │   │   │   ├── loading-c0243cad5f4e0238.js
-│   │   │   │   │   ├── login
-│   │   │   │   │   │   └── page-a8021d3c05ce2a14.js
-│   │   │   │   │   ├── offers
-│   │   │   │   │   │   └── page-c7827fe8f7f79844.js
-│   │   │   │   │   ├── packages
-│   │   │   │   │   │   └── page-055aec2707550dee.js
-│   │   │   │   │   ├── page-356785ca86fb2642.js
-│   │   │   │   │   ├── photos
-│   │   │   │   │   │   └── page-e1c20e0430313cd0.js
-│   │   │   │   │   └── upload
-│   │   │   │   │       └── page-900925b1daa098a5.js
-│   │   │   │   ├── car-rental
-│   │   │   │   │   └── page-7a5d99d9b8973fd4.js
-│   │   │   │   ├── contact
-│   │   │   │   │   └── page-a24901a40cb11c8f.js
-│   │   │   │   ├── custom-tours
-│   │   │   │   │   └── page-466adcb1e62da51f.js
-│   │   │   │   ├── hotels
-│   │   │   │   │   └── page-9d0573650e459ccf.js
-│   │   │   │   ├── layout-fddc64e06d480179.js
-│   │   │   │   ├── not-found-5923016605e6181c.js
-│   │   │   │   ├── packages
-│   │   │   │   │   └── page-dd02e4df18ff8dd1.js
-│   │   │   │   ├── page-1ab75f776e1d4919.js
-│   │   │   │   └── tours
-│   │   │   │       └── page-27dcee5ebe1f62fe.js
-│   │   │   ├── fd9d1056-9002ba7e10c06506.js
-│   │   │   ├── framework-f66176bb897dc684.js
-│   │   │   ├── main-47d3ff7565c20eb0.js
-│   │   │   ├── main-app-994f1088ba0f7162.js
-│   │   │   ├── pages
-│   │   │   │   ├── _app-72b849fbd24ac258.js
-│   │   │   │   └── _error-7ba65e1336b92748.js
-│   │   │   ├── polyfills-42372ed130431b0a.js
-│   │   │   └── webpack-a713f3b1a781b80e.js
-│   │   ├── css
-│   │   │   ├── 000933b863be1be1.css
-│   │   │   ├── 26a1a5c22ee4e247.css
-│   │   │   └── 7e46c1d0ca562b6a.css
-│   │   └── media
-│   │       ├── 26a46d62cd723877-s.woff2
-│   │       ├── 55c55f0601d81cf3-s.woff2
-│   │       ├── 581909926a08bbc8-s.woff2
-│   │       ├── 6d93bde91c0c2823-s.woff2
-│   │       ├── 97e0cb1ae144a2a9-s.woff2
-│   │       ├── a34f9d1faa5f3315-s.p.woff2
-│   │       └── df0a9ae256c0569c-s.woff2
-│   ├── trace
-│   └── types
-│       ├── app
-│       │   ├── about
-│       │   │   └── page.ts
-│       │   ├── admin
-│       │   │   ├── bookings
-│       │   │   │   └── page.ts
-│       │   │   ├── dashboard
-│       │   │   │   └── page.ts
-│       │   │   ├── gallery
-│       │   │   │   └── page.ts
-│       │   │   ├── login
-│       │   │   │   └── page.ts
-│       │   │   ├── offers
-│       │   │   │   └── page.ts
-│       │   │   ├── packages
-│       │   │   │   └── page.ts
-│       │   │   ├── page.ts
-│       │   │   ├── photos
-│       │   │   │   └── page.ts
-│       │   │   └── upload
-│       │   │       └── page.ts
-│       │   ├── api
-│       │   │   ├── admin
-│       │   │   │   └── images
-│       │   │   │       └── route.ts
-│       │   │   ├── auth
-│       │   │   │   └── [...nextauth]
-│       │   │   │       └── route.ts
-│       │   │   ├── contact
-│       │   │   │   └── route.ts
-│       │   │   ├── custom-tours
-│       │   │   │   └── route.ts
-│       │   │   ├── packages
-│       │   │   │   └── route.ts
-│       │   │   └── upload
-│       │   │       └── route.ts
-│       │   ├── car-rental
-│       │   │   └── page.ts
-│       │   ├── contact
-│       │   │   └── page.ts
-│       │   ├── custom-tours
-│       │   │   └── page.ts
-│       │   ├── hotels
-│       │   │   └── page.ts
-│       │   ├── layout.ts
-│       │   ├── packages
-│       │   │   └── page.ts
-│       │   ├── page.ts
-│       │   └── tours
-│       │       └── page.ts
-│       └── package.json
 ├── .venv
-│   ├── .DS_Store
 │   ├── bin
 │   │   ├── Activate.ps1
 │   │   ├── activate
@@ -301,9 +24,7 @@
 │   │   └── python3.9 2 -> python3
 │   ├── include
 │   ├── lib
-│   │   ├── .DS_Store
 │   │   └── python3.9
-│   │       ├── .DS_Store
 │   │       └── site-packages
 │   │           ├── PIL
 │   │           │   ├── .dylibs
@@ -1425,14 +1146,19 @@
 │   │               ├── entry_points.txt
 │   │               └── top_level.txt
 │   └── pyvenv.cfg
+├── .vscode
+│   └── launch.json
 ├── .zshrc.sh
 ├── Images
-│   ├── cHJpdmF0ZS9zdGF0aWMvaW1hZ2Uvd2Vic2l0ZS8yMDIyLTA0L2xyL2ZyYm9hdF9ob3VzZWJvYXRfa2VyYWxhX3JpdmVyLWltYWdlLWt5YmU2b3ZvLmpwZw.webp
-│   ├── download.jpeg
-│   └── images.jpeg
+│   ├── .DS_Store
+│   ├── goa.jpg
+│   ├── golden-triangle.jpg
+│   ├── himalayas.jpg
+│   ├── kerala.jpg
+│   ├── rajasthan.jpg
+│   └── varanasi.jpg
 ├── README.md
 ├── app
-│   ├── .DS_Store
 │   ├── about
 │   │   └── page.tsx
 │   ├── admin
@@ -1459,10 +1185,18 @@
 │   │   ├── page.tsx
 │   │   ├── photos
 │   │   │   └── page.tsx
+│   │   ├── top-destinations
+│   │   │   ├── FeaturedPackagesForm.tsx
+│   │   │   ├── loading.tsx
+│   │   │   └── page.tsx
 │   │   └── upload
 │   │       └── page.tsx
 │   ├── api
 │   │   ├── admin
+│   │   │   ├── featured
+│   │   │   │   └── route.ts
+│   │   │   ├── featured-packages
+│   │   │   │   └── route.ts
 │   │   │   └── images
 │   │   │       └── route.ts
 │   │   ├── auth
@@ -1505,6 +1239,10 @@
 │   │   └── prisma.ts
 │   ├── not-found.tsx
 │   ├── packages
+│   │   ├── [slug]
+│   │   │   ├── error.tsx
+│   │   │   ├── loading.tsx
+│   │   │   └── page.tsx
 │   │   └── page.tsx
 │   ├── page.tsx
 │   ├── pages
@@ -1534,40 +1272,77 @@
 │   ├── db.ts
 │   ├── env-check.ts
 │   ├── export default function ContactPage() {.tsx
+│   ├── images.ts
+│   ├── prisma
+│   │   ├── client.ts
+│   │   ├── index.ts
+│   │   └── packages.ts
 │   ├── prisma.ts
 │   ├── prismadb.ts
+│   ├── rate-limit.ts
 │   └── route.ts
 ├── middleware.ts
 ├── netlify.toml
 ├── next-env.d.ts
+├── next.config 2.cjs
+├── next.config 2.js
 ├── next.config.js
-├── next.config.ts
 ├── package-lock 2.json
 ├── package-lock 3.json
 ├── package-lock.json
 ├── package.json
+├── postcss.config.cjs
 ├── postcss.config.js
 ├── postcss.config.mjs
 ├── prisma
+│   ├── .DS_Store
 │   ├── migrations
 │   │   ├── 20250325063639_init
 │   │   │   └── migration.sql
 │   │   ├── 20250329204544_init_fix_id
 │   │   │   └── migration.sql
+│   │   ├── 20250401214728_fix_package_photo_relation
+│   │   │   └── migration.sql
+│   │   ├── 20250401215934_add_is_active_to_package
+│   │   │   └── migration.sql
 │   │   └── migration_lock.toml
-│   └── schema.prisma
+│   ├── schema.prisma
+│   └── seed.mts
 ├── prisma.ts
 ├── public
+│   ├── .DS_Store
 │   ├── destinations
+│   │   ├── .DS_Store
+│   │   ├── golden-triangle.jpg
+│   │   ├── kerala-backwaters.jpg
+│   │   └── varanasi.jpg
 │   ├── file.svg
 │   ├── gallery
+│   │   ├── .DS_Store
+│   │   ├── gallery-1.jpg
+│   │   ├── gallery-2.jpg
+│   │   ├── gallery-3.jpg
+│   │   ├── gallery-4.jpg
+│   │   ├── gallery-5.jpg
+│   │   ├── gallery-6.jpeg
+│   │   ├── gallery-6.jpg
+│   │   ├── gallery-7.jpeg
+│   │   ├── gallery-7.jpg
+│   │   ├── gallery-8.jpeg
+│   │   └── gallery-8.jpg
 │   ├── globe.svg
 │   ├── hero
+│   │   └── hero-main.jpg
 │   ├── images
+│   │   ├── .DS_Store
+│   │   ├── golden-triangle.jpg
+│   │   ├── gujarat-heritage.jpg
 │   │   ├── hero-bg.svg
 │   │   ├── jaipur.svg
+│   │   ├── kerala-backwaters.jpg
 │   │   ├── kerala.svg
-│   │   └── taj-mahal.svg
+│   │   ├── taj-mahal.svg
+│   │   └── varanasi.jpg
 │   ├── next.svg
 │   ├── vercel.svg
 │   └── window.svg
@@ -1576,17 +1351,16 @@
 │   ├── create-admin.js
 │   ├── create-admin.ts
 │   ├── debug-prisma.mts
+│   ├── reset-prisma.js
 │   ├── test-db.mts
 │   ├── test-db.ts
 │   ├── test-users.mts
 │   ├── tsconfig.jsonc
 │   └── validate-build.js
 ├── src
-│   ├── .DS_Store
 │   └── pages 2
 ├── tailwind.config.js
 ├── templates
-│   ├── .DS_Store
 │   ├── hotels
 │   │   └── list.html
 │   ├── rentals
@@ -1601,7 +1375,6 @@
 │   ├── views 2.py
 │   └── views.py
 ├── travel
-│   ├── .DS_Store
 │   ├── admin.py
 │   ├── models.py
 │   ├── settings.py
@@ -1626,4 +1399,4 @@
     ├── index.ts
     └── next-auth.d.ts
 
-245 directories, 1382 files
+170 directories, 1230 files
