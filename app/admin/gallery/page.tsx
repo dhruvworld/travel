@@ -1,3 +1,6 @@
+export const dynamic = 'force-dynamic';
+export const fetchCache = 'force-no-store';
+
 import ImageUpload from '../components/ImageUpload'
 
 export default function AdminGalleryPage() {
@@ -7,4 +10,4 @@ export default function AdminGalleryPage() {
       <ImageUpload />
     </div>
   )
-} 
+}

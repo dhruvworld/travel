@@ -75,6 +75,7 @@ model Package {
   duration    Int
   price       Float
   description String
+  location    String 
   image       String
   highlights  String[]
   featured    Boolean  @default(false)

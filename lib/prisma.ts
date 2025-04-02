@@ -1,18 +1,23 @@
 // lib/prisma.ts
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient } from '@prisma/client';
 
-// Prevent multiple instances in development
-const globalForPrisma = global as unknown as { prisma: PrismaClient }
+// Create a singleton instance of PrismaClient
+const prismaClientSingleton = () => {
+  return new PrismaClient();
+};
 
-// Create a singleton Prisma client instance
-export const prisma = globalForPrisma.prisma || new PrismaClient({
-  log: process.env.NODE_ENV === 'development' ? ['query', 'error', 'warn'] : ['error'],
-})
+// Use type for global variable to ensure TypeScript recognizes it
+type PrismaClientSingleton = ReturnType<typeof prismaClientSingleton>;
 
-// Only assign in development to prevent hot reload issues
-if (process.env.NODE_ENV !== 'production') {
-  globalForPrisma.prisma = prisma
-}
+// Define global variable for prisma
+const globalForPrisma = globalThis as unknown as {
+  prisma: PrismaClientSingleton | undefined;
+};
 
-// Default export for convenience
-export default prisma
+// Use existing prisma instance if available, or create a new one
+const prisma = globalForPrisma.prisma ?? prismaClientSingleton();
+
+// Set the global prisma instance in development to prevent multiple instances
+if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
+
+export default prisma;

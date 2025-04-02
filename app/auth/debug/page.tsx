@@ -1,5 +1,8 @@
 'use client';
 
+export const dynamic = 'force-dynamic';
+export const fetchCache = 'force-no-store';
+
 import { signIn, signOut, useSession } from 'next-auth/react';
 import { ClearAuthCookies } from '@/components/auth/ClearAuthCookies';
 import { useState } from 'react';
