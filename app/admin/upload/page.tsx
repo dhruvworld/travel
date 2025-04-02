@@ -1,5 +1,8 @@
 'use client'
 
+export const dynamic = 'force-dynamic';
+export const fetchCache = 'force-no-store';
+
 import { useState } from 'react'
 import Image from 'next/image'
 
@@ -111,4 +114,4 @@ export default function AdminUpload() {
       </div>
     </div>
   )
-} 
+}

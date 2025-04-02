@@ -1,7 +1,9 @@
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/lib/auth-options";  // Update import path
+import { getSession } from "@/lib/session";  // Use our new utility
 import "./globals.css";
 import { Providers } from "@/components/providers/Providers";
+
+// Force dynamic rendering for the root layout
+export const dynamic = 'force-dynamic';
 
 export const metadata = {
   title: "Travel Adventures",
@@ -13,14 +15,8 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // Try to get the session but handle errors gracefully
-  let session = null;
-  try {
-    session = await getServerSession(authOptions);
-  } catch (error) {
-    console.error("Session error:", error);
-    // Continue without a session - this prevents the JWT decryption error from breaking the app
-  }
+  // Use our new getSession utility
+  const session = await getSession();
 
   return (
     <html lang="en">
