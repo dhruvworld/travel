@@ -1,5 +1,5 @@
 import { getServerSession } from "next-auth";
-import { authOptions } from "./lib/auth-options";
+import { authOptions } from "@/app/lib/auth-options";  // Update import path
 import "./globals.css";
 import { Providers } from "@/components/providers/Providers";
 
