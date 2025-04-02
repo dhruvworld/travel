@@ -1,8 +1,30 @@
 'use client';
 
-export const dynamic = 'force-dynamic';
+import { useState } from 'react';
 
 export default function ContactPage() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { id, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [id]: value
+    }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log('Form submitted:', formData);
+    // Reset form after submission
+    setFormData({ name: '', email: '', message: '' });
+    alert("Thank you for your message! We'll get back to you shortly.");
+  };
+
   return (
     <main className="max-w-4xl mx-auto px-4 py-20">
       <h1 className="text-3xl font-bold mb-6">Contact Us</h1>
@@ -40,7 +62,7 @@ export default function ContactPage() {
           <p className="text-gray-600 mb-4">
             Fill out the form below and we'll get back to you as soon as possible.
           </p>
-          <form className="space-y-4">
+          <form className="space-y-4" onSubmit={handleSubmit}>
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
                 Your Name
@@ -48,7 +70,10 @@ export default function ContactPage() {
               <input
                 type="text"
                 id="name"
+                value={formData.name}
+                onChange={handleChange}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                required
               />
             </div>
             <div>
@@ -58,7 +83,10 @@ export default function ContactPage() {
               <input
                 type="email"
                 id="email"
+                value={formData.email}
+                onChange={handleChange}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                required
               />
             </div>
             <div>
@@ -68,7 +96,10 @@ export default function ContactPage() {
               <textarea
                 id="message"
                 rows={4}
+                value={formData.message}
+                onChange={handleChange}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                required
               ></textarea>
             </div>
             <button

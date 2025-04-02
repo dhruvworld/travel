@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
-import ImageUpload from '../components/ImageUpload';
+import ClientImageUploader from '../components/ClientImageUploader';
 
 export default function AdminHomePage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -132,8 +132,8 @@ export default function AdminHomePage() {
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Hero Image
             </label>
-            <ImageUpload 
-              onImageUpload={handleImageUpload}
+            <ClientImageUploader 
+              onImageSelected={handleImageUpload}
               previewImage={previewImage}
             />
           </div>
