@@ -1,102 +1,61 @@
-'use client'
+'use client';
 
-import { useCallback, useState } from 'react'
-import { useDropzone } from 'react-dropzone'
-import Image from 'next/image'
-import { toast } from 'react-hot-toast'
+import { useCallback } from 'react';
+import { useDropzone } from 'react-dropzone';
+import Image from 'next/image';
 
-export default function ImageUpload() {
-  const [uploading, setUploading] = useState(false)
-  const [images, setImages] = useState<string[]>([])
+interface ImageUploadProps {
+  onImageUpload: (file: File) => void;
+  previewImage?: string;
+}
 
-  const onDrop = useCallback(async (acceptedFiles: File[]) => {
-    setUploading(true)
-    
-    try {
-      for (const file of acceptedFiles) {
-        const formData = new FormData()
-        formData.append('file', file)
-        formData.append('upload_preset', 'your_upload_preset')
-
-        const response = await fetch(
-          `https://api.cloudinary.com/v1_1/your_cloud_name/image/upload`,
-          {
-            method: 'POST',
-            body: formData,
-          }
-        )
-
-        const data = await response.json()
-        
-        if (data.secure_url) {
-          // Save image URL to your database - note we're still sending publicId
-          // but the API will map it to cloudId
-          const dbResponse = await fetch('/api/admin/images', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              url: data.secure_url,
-              publicId: data.public_id, // Send as publicId from Cloudinary
-              category: 'gallery'
-            }),
-          })
-
-          if (dbResponse.ok) {
-            setImages(prev => [...prev, data.secure_url])
-            toast.success('Image uploaded successfully!')
-          }
-        }
-      }
-    } catch (error) {
-      console.error('Upload error:', error)
-      toast.error('Failed to upload image')
-    } finally {
-      setUploading(false)
+export default function ImageUpload({ onImageUpload, previewImage }: ImageUploadProps) {
+  const onDrop = useCallback((acceptedFiles: File[]) => {
+    if (acceptedFiles && acceptedFiles.length > 0) {
+      const file = acceptedFiles[0];
+      onImageUpload(file);
     }
-  }, [])
+  }, [onImageUpload]);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: {
-      'image/*': ['.jpeg', '.jpg', '.png', '.webp']
+      'image/jpeg': [],
+      'image/png': [],
+      'image/webp': [],
     },
-    multiple: true
-  })
+    maxFiles: 1,
+    multiple: false
+  });
 
   return (
-    <div className="space-y-6">
-      <div
-        {...getRootProps()}
-        className={`
-          border-2 border-dashed rounded-lg p-8 text-center cursor-pointer
-          ${isDragActive ? 'border-primary-500 bg-primary-50' : 'border-gray-300'}
-        `}
+    <div className="space-y-4">
+      <div 
+        {...getRootProps()} 
+        className={`p-6 border-2 border-dashed rounded-lg cursor-pointer text-center ${
+          isDragActive ? 'border-indigo-500 bg-indigo-50' : 'border-gray-300'
+        }`}
       >
         <input {...getInputProps()} />
-        {uploading ? (
-          <p>Uploading...</p>
-        ) : isDragActive ? (
-          <p>Drop the images here...</p>
+        {isDragActive ? (
+          <p className="text-indigo-500">Drop the image here...</p>
         ) : (
-          <p>Drag & drop images here, or click to select files</p>
+          <p className="text-gray-500">
+            Drag & drop an image here, or click to select one
+          </p>
         )}
       </div>
-
-      {/* Preview Grid */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        {images.map((url, index) => (
-          <div key={index} className="relative aspect-square">
-            <Image
-              src={url}
-              alt={`Uploaded image ${index + 1}`}
-              fill
-              className="object-cover rounded-lg"
-            />
-          </div>
-        ))}
-      </div>
+      
+      {previewImage && (
+        <div className="relative w-full h-48 overflow-hidden rounded-lg">
+          <Image 
+            src={previewImage}
+            alt="Preview" 
+            fill
+            className="object-cover"
+          />
+        </div>
+      )}
     </div>
-  )
+  );
 }

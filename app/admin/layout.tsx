@@ -1,18 +1,17 @@
-// app/admin/layout.tsx
 import { ReactNode } from 'react';
-import { requireAuth } from '@/lib/session';  // Use our new utility
-import { redirect } from 'next/navigation';
 
-// Force dynamic rendering for admin layout
-export const dynamic = 'force-dynamic';
-
-export default async function AdminLayout({ children }: { children: ReactNode }) {
-  // Use our requireAuth utility
-  await requireAuth('/admin');
+export default function AdminLayout({
+  children,
+}: {
+  children: ReactNode;
+}) {
+  // Since we already have middleware protecting our routes,
+  // we can opt to simplify this component and let middleware
+  // handle the redirects. No extra checks needed here.
   
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="container mx-auto py-8">
+    <div className="admin-layout">
+      <div className="min-h-screen">
         {children}
       </div>
     </div>

@@ -19,6 +19,10 @@ export default function AuthDebugPage() {
     setCookies(allCookies);
   };
 
+  const handleAdminSignIn = () => {
+    signIn('credentials', { callbackUrl: '/admin/dashboard' });
+  };
+
   return (
     <div className="container mx-auto p-6 max-w-2xl">
       <h1 className="text-2xl font-bold mb-4">Auth Debug Page</h1>
@@ -42,10 +46,10 @@ export default function AuthDebugPage() {
       
       <div className="flex flex-wrap gap-3 mb-6">
         <button 
-          onClick={() => signIn()} 
+          onClick={handleAdminSignIn} 
           className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
         >
-          Sign In
+          Sign In as Admin
         </button>
         
         <button 

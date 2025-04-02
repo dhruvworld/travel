@@ -10,37 +10,21 @@ export const metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="container mx-auto py-12 px-4">
-      <h1 className="text-4xl font-bold mb-8">About Us</h1>
-      
-      <div className="prose max-w-none">
-        <p className="text-lg mb-6">
-          Welcome to our travel agency! We are dedicated to providing exceptional travel experiences 
-          that create lasting memories for our clients.
-        </p>
-        
-        <h2 className="text-2xl font-semibold mt-8 mb-4">Our Mission</h2>
-        <p>
-          Our mission is to make travel accessible, enjoyable, and enriching for everyone. 
-          We believe that travel broadens perspectives, creates connections, and enriches lives.
-        </p>
-        
-        <h2 className="text-2xl font-semibold mt-8 mb-4">Our Team</h2>
-        <p>
-          Our team consists of experienced travel enthusiasts who have explored diverse corners 
-          of the world. We combine our firsthand knowledge with personalized service to craft 
-          the perfect itinerary for each client.
-        </p>
-        
-        <h2 className="text-2xl font-semibold mt-8 mb-4">Why Choose Us</h2>
-        <ul className="list-disc pl-6 space-y-2">
-          <li>Personalized travel planning tailored to your interests and budget</li>
-          <li>24/7 support during your journey</li>
-          <li>Exclusive access to unique experiences and accommodations</li>
-          <li>Sustainable travel options that respect local communities and environments</li>
-          <li>Competitive pricing and transparent booking process</li>
-        </ul>
-      </div>
-    </div>
+    <main className="max-w-4xl mx-auto px-4 py-20">
+      <h1 className="text-3xl font-bold mb-6">About Us</h1>
+      <p className="text-lg mb-4">
+        Welcome to Shuham Tours & Travels! We are dedicated to providing exceptional travel experiences throughout India.
+      </p>
+      <p className="text-lg mb-4">
+        With over a decade of experience in the travel industry, we specialize in creating personalized itineraries that showcase the best of India's diverse landscapes, rich cultural heritage, and unforgettable experiences.
+      </p>
+      <p className="text-lg mb-6">
+        Our team of travel experts has extensive knowledge of the most beautiful and authentic destinations across the country, ensuring that your journey with us will be both memorable and comfortable.
+      </p>
+      <h2 className="text-2xl font-semibold mb-4">Our Mission</h2>
+      <p className="text-lg mb-8">
+        To provide travelers with authentic, enriching experiences that connect them with India's diverse cultures, landscapes, and traditions while ensuring the highest standards of service and sustainability.
+      </p>
+    </main>
   );
 }

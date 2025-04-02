@@ -1,19 +1,58 @@
-import GithubProvider from "next-auth/providers/github";
-import GoogleProvider from "next-auth/providers/google";
+import CredentialsProvider from "next-auth/providers/credentials";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import prisma from "@/lib/prisma"; 
 import type { NextAuthOptions } from "next-auth";
+import bcrypt from "bcryptjs";
 
 export const authOptions: NextAuthOptions = {
   debug: process.env.NODE_ENV === "development",
   providers: [
-    GithubProvider({
-      clientId: process.env.GITHUB_ID || "",
-      clientSecret: process.env.GITHUB_SECRET || "",
-    }),
-    GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID || "",
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
+    // Only keep the CredentialsProvider
+    CredentialsProvider({
+      name: "Admin Login",
+      credentials: {
+        username: { label: "Username", type: "text" },
+        password: { label: "Password", type: "password" },
+      },
+      async authorize(credentials) {
+        if (!credentials?.username || !credentials?.password) {
+          return null;
+        }
+
+        try {
+          // Get admin credentials from environment
+          const adminUsername = process.env.ADMIN_USERNAME;
+          const adminPasswordHash = process.env.ADMIN_PASSWORD_HASH;
+
+          // Check if username matches
+          if (credentials.username !== adminUsername) {
+            console.log("Username does not match admin username");
+            return null;
+          }
+
+          // Verify password
+          const passwordValid = await bcrypt.compare(
+            credentials.password,
+            adminPasswordHash!
+          );
+
+          if (!passwordValid) {
+            console.log("Invalid password");
+            return null;
+          }
+
+          // Return admin user
+          return {
+            id: "admin",
+            name: "Admin",
+            email: "admin@example.com",
+            isAdmin: true,
+          };
+        } catch (error) {
+          console.error("Authorization error:", error);
+          return null;
+        }
+      },
     }),
   ],
   adapter: PrismaAdapter(prisma),
@@ -28,25 +67,46 @@ export const authOptions: NextAuthOptions = {
   },
   callbacks: {
     async session({ session, token }) {
+      // Add admin flag to session if present in token
+      if (session.user && token.isAdmin) {
+        session.user.isAdmin = Boolean(token.isAdmin);
+      }
+      
       if (session.user && token.sub) {
         session.user.id = token.sub;
       }
+      
       return session;
     },
     async jwt({ token, user }) {
+      // Persist the isAdmin flag to the token
+      if (user?.isAdmin) {
+        token.isAdmin = true;
+      }
+      
       if (user) {
         token.id = user.id;
       }
+      
       return token;
     },
     async redirect({ url, baseUrl }) {
-      if (url.startsWith("/")) return `${baseUrl}${url}`
-      else if (new URL(url).origin === baseUrl) return url
-      return baseUrl
+      // Redirect admin to dashboard after login
+      if (url.startsWith("/api/auth/signin") || url === "/") {
+        return `${baseUrl}/admin/dashboard`;
+      }
+      
+      // Allow relative callback URLs
+      if (url.startsWith("/")) return `${baseUrl}${url}`;
+      
+      // Allow callback URLs on the same origin
+      if (new URL(url).origin === baseUrl) return url;
+      
+      return baseUrl;
     }
   },
   pages: {
-    signIn: '/auth/signin',
+    signIn: '/admin/login',
     error: '/auth/error',
   },
 };
