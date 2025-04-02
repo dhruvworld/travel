@@ -42,14 +42,14 @@ export default function AuthDebugPage() {
           onClick={() => signIn()} 
           className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
         >
-          Sign&apos; In
+          Sign In
         </button>
         
         <button 
           onClick={() => signOut()} 
           className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
         >
-          Sign&apos; Out
+          Sign Out
         </button>
         
         <button 
@@ -74,7 +74,7 @@ export default function AuthDebugPage() {
       <div className="mt-4">
         <ClearAuthCookies />
         <p className="text-sm text-gray-500 mt-2">
-          If you're experiencing auth issues, try clearing the cookies and signing in again.
+          If you&apos;re experiencing auth issues, try clearing the cookies and signing in again.
         </p>
       </div>
     </div>
