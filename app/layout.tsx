@@ -1,13 +1,15 @@
-import { getSession } from "@/lib/session";  // Use our new utility
-import "./globals.css";
-import { Providers } from "@/components/providers/Providers";
+import { Providers } from '@/app/providers';
+import Navbar from '@/components/layout/Navbar';
+import { Footer } from '@/components/layout/Footer';
+import './globals.css';
+import type { Metadata } from 'next';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/lib/auth/auth-options';
+import { Toaster } from 'react-hot-toast';
 
-// Force dynamic rendering for the root layout
-export const dynamic = 'force-dynamic';
-
-export const metadata = {
-  title: "Travel Adventures",
-  description: "Explore the world with custom travel packages",
+export const metadata: Metadata = {
+  title: 'Travel Agency - Explore India',
+  description: 'Discover the beauty of India with our curated travel packages',
 };
 
 export default async function RootLayout({
@@ -15,14 +17,16 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // Use our new getSession utility
-  const session = await getSession();
+  const session = await getServerSession(authOptions);
 
   return (
     <html lang="en">
       <body>
-        <Providers session={session}>
-          {children}
+        <Providers>
+          <Navbar />
+          <main className="flex-grow">{children}</main>
+          <Footer />
+          <Toaster position="bottom-right" />
         </Providers>
       </body>
     </html>
