@@ -1,25 +1,31 @@
-import { NextResponse } from 'next/server'
-import type { NextRequest } from 'next/server'
-import { getToken } from 'next-auth/jwt'
+import { NextResponse } from "next/server";
+import { getToken } from "next-auth/jwt";
+import type { NextRequest } from "next/server";
 
 export async function middleware(request: NextRequest) {
-  const token = await getToken({ req: request })
-  
-  if (request.nextUrl.pathname.startsWith('/admin')) {
-    if (!token) {
-      const loginUrl = new URL('/login', request.url)
-      loginUrl.searchParams.set('from', request.nextUrl.pathname)
-      return NextResponse.redirect(loginUrl)
-    }
-    
-    if (token.role !== 'ADMIN') {
-      return NextResponse.redirect(new URL('/unauthorized', request.url))
+  const token = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET });
+
+  const pathname = request.nextUrl.pathname;
+  const isLoginPage = pathname === "/admin/login";
+  const isAdminPath = pathname.startsWith("/admin") && !isLoginPage;
+
+  // ✅ If accessing protected admin route
+  if (isAdminPath) {
+    if (!token || token.isAdmin !== true) {
+      const loginUrl = new URL("/admin/login", request.url);
+      loginUrl.searchParams.set("callbackUrl", pathname);
+      return NextResponse.redirect(loginUrl);
     }
   }
 
-  return NextResponse.next()
+  // ✅ If already logged in and visits login page, redirect to dashboard
+  if (isLoginPage && token?.isAdmin === true) {
+    return NextResponse.redirect(new URL("/admin/dashboard", request.url));
+  }
+
+  return NextResponse.next();
 }
 
 export const config = {
-  matcher: ['/admin/:path*']
-}
+  matcher: ["/admin/:path*"],
+};

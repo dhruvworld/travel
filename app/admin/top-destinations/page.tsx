@@ -1,82 +1,52 @@
 'use client';
 
-export const dynamic = 'force-dynamic';
-export const fetchCache = 'force-no-store';
-
 import { useState, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
+import { FeaturedPackagesForm } from './FeaturedPackagesForm';
 
 interface Package {
   id: string;
   name: string;
-  isActive: boolean;
-  // ...other fields as needed
+  featured?: boolean;
+  isActive?: boolean;
 }
 
-export default function TopDestinationsAdmin() {
+export default function TopDestinationsPage() {
   const [packages, setPackages] = useState<Package[]>([]);
-  const [selectedIds, setSelectedIds] = useState<string[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    async function fetchPackages() {
+      try {
+        const response = await fetch('/api/packages');
+        if (!response.ok) throw new Error('Failed to fetch packages');
+        const data = await response.json();
+        setPackages(data);
+      } catch (error) {
+        console.error('Error fetching packages:', error);
+        toast.error('Failed to fetch packages');
+      } finally {
+        setLoading(false);
+      }
+    }
+
     fetchPackages();
   }, []);
 
-  const fetchPackages = async () => {
-    const response = await fetch('/api/packages');
-    const data = await response.json();
-    setPackages(data);
-    setSelectedIds(data.filter((p: Package) => p.isActive).map((p: Package) => p.id));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      const response = await fetch('/api/admin/featured', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ids: selectedIds }),
-      });
-
-      if (!response.ok) throw new Error('Failed to update');
-      toast.success('Featured packages updated successfully');
-    } catch (error) {
-      toast.error('Failed to update featured packages');
-    }
-  };
+  if (loading) {
+    return <div className="p-6">Loading packages...</div>;
+  }
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold mb-6">Manage Featured Packages</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="space-y-4">
-          {packages.map((pkg) => (
-            <label key={pkg.id} className="flex items-center space-x-3">
-              <input
-                type="checkbox"
-                checked={selectedIds.includes(pkg.id)}
-                onChange={() => {
-                  const newIds = selectedIds.includes(pkg.id)
-                    ? selectedIds.filter(id => id !== pkg.id)
-                    : [...selectedIds, pkg.id];
-                  if (newIds.length <= 3) {
-                    setSelectedIds(newIds);
-                  } else {
-                    toast.error('Maximum 3 packages can be featured');
-                  }
-                }}
-                className="form-checkbox"
-              />
-              <span>{pkg.name}</span>
-            </label>
-          ))}
-        </div>
-        <button
-          type="submit"
-          className="mt-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-        >
-          Save Changes
-        </button>
-      </form>
+    <div className="max-w-4xl mx-auto p-6">
+      <h1 className="text-2xl font-bold mb-6">Featured Destinations</h1>
+      <p className="mb-6 text-gray-600">
+        Select packages to be featured on the homepage. Featured packages will be displayed prominently to visitors.
+      </p>
+      
+      <div className="bg-white p-6 rounded-lg shadow">
+        <FeaturedPackagesForm packages={packages} />
+      </div>
     </div>
   );
 }

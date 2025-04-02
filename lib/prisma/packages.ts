@@ -1,68 +1,83 @@
-import prisma from '@/lib/prismadb';
-
-export async function getAllPackages() {
-  try {
-    return await prisma.package.findMany({
-      orderBy: { createdAt: 'desc' },
-    });
-  } catch (error) {
-    console.error('Error fetching all packages:', error);
-    throw error;
-  }
-}
+import { prisma } from "./client";
 
 export async function getFeaturedPackages() {
   try {
-    return await prisma.package.findMany({
-      where: { 
+    const timeoutPromise = new Promise((_, reject) =>
+      setTimeout(() => reject(new Error("Database query timeout")), 5000)
+    );
+
+    const queryPromise = prisma.tourPackage.findMany({
+      where: {
         featured: true,
-        published: true 
       },
-      orderBy: { createdAt: 'desc' }
+      select: {
+        id: true,
+        name: true,
+        description: true,
+        price: true,
+        duration: true,
+        image: true,
+        slug: true,
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+      take: 6,
     });
+
+    const featuredPackages = await Promise.race([
+      queryPromise,
+      timeoutPromise,
+    ]) as any;
+
+    return featuredPackages;
   } catch (error) {
-    console.error('Error fetching featured packages:', error);
-    throw error;
+    console.error("Error getting featured packages:", error);
+    return [];
   }
 }
 
-export async function updateFeaturedStatus(id: string, featured: boolean) {
+export async function getAllPackages() {
   try {
-    return await prisma.package.update({
-      where: { id },
-      data: { featured }
+    const packages = await prisma.tourPackage.findMany({
+      orderBy: {
+        createdAt: "desc",
+      },
     });
+
+    return packages;
   } catch (error) {
-    console.error('Error updating package featured status:', error);
-    throw error;
+    console.error("Error getting all packages:", error);
+    return [];
   }
 }
 
 export async function getPackageById(id: string) {
   try {
-    return await prisma.package.findUnique({
-      where: { id }
+    const tourPackage = await prisma.tourPackage.findUnique({
+      where: { id },
     });
+
+    return tourPackage;
   } catch (error) {
-    console.error('Error fetching package:', error);
-    throw error;
+    console.error(`Error getting package with id ${id}:`, error);
+    return null;
   }
 }
 
-export async function setFeaturedPackages(ids: string[]) {
+export async function setFeaturedPackages(packageIds: string[], featured: boolean) {
   try {
-    // Reset all packages to not featured
-    await prisma.package.updateMany({
-      data: { featured: false },
-    });
+    const updatePromises = packageIds.map((id) =>
+      prisma.tourPackage.update({
+        where: { id },
+        data: { featured },
+      })
+    );
 
-    // Set the provided packages as featured
-    await prisma.package.updateMany({
-      where: { id: { in: ids } },
-      data: { featured: true },
-    });
+    await Promise.all(updatePromises);
+    return { success: true };
   } catch (error) {
-    console.error('Error setting featured packages:', error);
-    throw error;
+    console.error("Error setting featured packages:", error);
+    return { success: false, error };
   }
 }

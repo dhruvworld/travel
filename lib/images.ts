@@ -21,3 +21,35 @@ export async function getImages(category?: string) {
     },
   })
 }
+
+/**
+ * Default image placeholders and image utility functions
+ */
+
+// Default placeholder for missing profile images
+export const DEFAULT_PROFILE_IMAGE = "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y";
+
+// Default placeholder for missing tour package images
+export const DEFAULT_PACKAGE_IMAGE = "/images/placeholder-package.jpg";
+
+// Default placeholder for missing hotel images
+export const DEFAULT_HOTEL_IMAGE = "/images/placeholder-hotel.jpg";
+
+/**
+ * Returns an appropriate image URL, falling back to a placeholder if the image is missing
+ */
+export function getImageUrl(imageUrl: string | null | undefined, type: 'profile' | 'package' | 'hotel' = 'package'): string {
+  if (!imageUrl) {
+    switch (type) {
+      case 'profile':
+        return DEFAULT_PROFILE_IMAGE;
+      case 'hotel':
+        return DEFAULT_HOTEL_IMAGE;
+      case 'package':
+      default:
+        return DEFAULT_PACKAGE_IMAGE;
+    }
+  }
+  
+  return imageUrl;
+}

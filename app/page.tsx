@@ -1,19 +1,21 @@
+// Force dynamic rendering for this page to prevent build hang
 export const dynamic = 'force-dynamic';
 
-import Image from 'next/image'
-import Link from 'next/link'
+import Link from 'next/link';
+import ClientImage from '@/app/components/ClientImage';
 
-export default function Home() {
+export default function HomePage() {
   return (
     <main className="min-h-screen overflow-x-hidden">
       {/* Hero Section */}
       <section className="relative h-[80vh] bg-cover bg-center">
-        <Image
+        <ClientImage
           src="/hero/hero-main.jpg"
           alt="Discover India"
           fill
           priority
           className="object-cover"
+          fallbackSrc="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?q=80&w=2071&auto=format&fit=crop"
         />
         <div className="absolute inset-0 bg-black/40 flex flex-col justify-center items-center text-white text-center px-4">
           <h1 className="text-4xl md:text-6xl font-bold mb-6">
@@ -126,7 +128,7 @@ export default function Home() {
             ].map((pkg, index) => (
               <div key={index} className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
                 <div className="relative h-48">
-                  <Image
+                  <ClientImage
                     src={pkg.image}
                     alt={pkg.title}
                     fill
@@ -140,8 +142,8 @@ export default function Home() {
                   <h3 className="text-xl font-bold mb-2">{pkg.title}</h3>
                   <p className="text-gray-600 mb-4">{pkg.description}</p>
                   <div className="flex justify-between items-center">
-                    <span className="text-primary-600 font-semibold">{pkg.price}</span>
-                    <button className="text-primary-600 hover:text-primary-700 font-semibold">
+                    <span className="text-indigo-600 font-semibold">{pkg.price}</span>
+                    <button className="text-indigo-600 hover:text-indigo-700 font-semibold">
                       View Details →
                     </button>
                   </div>
@@ -249,7 +251,7 @@ export default function Home() {
                 key={index} 
                 className="group relative aspect-square overflow-hidden rounded-lg cursor-pointer"
               >
-                <Image
+                <ClientImage
                   src={image.src}
                   alt={image.alt}
                   fill
@@ -277,7 +279,7 @@ export default function Home() {
               </label>
               <input
                 type="text"
-                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary-500"
+                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500"
               />
             </div>
             <div>
@@ -286,7 +288,7 @@ export default function Home() {
               </label>
               <input
                 type="email"
-                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary-500"
+                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500"
               />
             </div>
             <div>
@@ -295,7 +297,7 @@ export default function Home() {
               </label>
               <input
                 type="tel"
-                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary-500"
+                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500"
               />
             </div>
             <div>
@@ -304,12 +306,12 @@ export default function Home() {
               </label>
               <textarea
                 rows={4}
-                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary-500"
+                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500"
               ></textarea>
             </div>
             <button
               type="submit"
-              className="w-full bg-primary-600 text-white py-3 rounded-lg hover:bg-primary-700 transition-colors"
+              className="w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 transition-colors"
             >
               Send Inquiry
             </button>
@@ -317,5 +319,5 @@ export default function Home() {
         </div>
       </section>
     </main>
-  )
+  );
 }

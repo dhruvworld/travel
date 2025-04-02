@@ -1,15 +1,18 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { SectionHeading } from '@/components/ui/SectionHeading';
+import { Button } from '@/components/ui/Button';
 
 export default function GoogleReviews() {
   return (
-    <div className="py-12 bg-gray-50">
+    <section className="py-12 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900">What Our Travelers Say</h2>
-          <p className="mt-4 text-lg text-gray-600">Read reviews from our satisfied customers</p>
-        </div>
+        <SectionHeading 
+          title="What Our Travelers Say"
+          description="Read reviews from our satisfied customers"
+          className="mb-12"
+        />
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -26,20 +29,21 @@ export default function GoogleReviews() {
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
             className="rounded-lg"
+            title="Google Maps Reviews"
+            aria-label="Google Maps Reviews for Travel India"
           ></iframe>
         </motion.div>
 
         <div className="text-center mt-12">
-          <a
+          <Button 
             href="https://g.co/kgs/LiamjfR"
             target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
+            variant="primary"
           >
             View All Reviews on Google
-          </a>
+          </Button>
         </div>
       </div>
-    </div>
+    </section>
   );
-} 
+}

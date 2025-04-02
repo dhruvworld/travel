@@ -1,49 +1,43 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
-import { Package } from '@prisma/client'
-import { toast } from 'react-hot-toast'
+import { useState } from 'react';
+import { Package } from '@prisma/client';
+import { toast } from 'react-hot-toast';
 
 export function FeaturedPackagesForm({ packages }: { packages: Package[] }) {
   const [selected, setSelected] = useState<string[]>(
-    packages.filter(p => p.isActive).map(p => p.id)
-  )
-  const [isSubmitting, setIsSubmitting] = useState(false)
+    packages.filter(p => p.isActive || p.featured).map(p => p.id)
+  );
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     if (selected.length > 3) {
-      toast.error('Please select up to 3 packages only')
-      return
+      toast.error('Please select up to 3 packages only');
+      return;
     }
     
-    setIsSubmitting(true)
+    setIsSubmitting(true);
     try {
-      const res = await fetch('/api/admin/featured-packages', {
-        method: 'PUT',
+      const res = await fetch('/api/admin/featured', {
+        method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ packageIds: selected })
-      })
+        body: JSON.stringify({ 
+          packageIds: selected,
+          featured: true 
+        })
+      });
       
-      // Show rate limit info
-      const remaining = res.headers.get('X-RateLimit-Remaining')
-      const reset = res.headers.get('X-RateLimit-Reset')
+      if (!res.ok) throw new Error('Failed to update');
       
-      if (res.status === 429) {
-        toast.error(`Rate limit exceeded. Try again after ${new Date(reset || '').toLocaleTimeString()}`)
-        return
-      }
-      
-      if (!res.ok) throw new Error('Failed to update')
-      
-      toast.success(`Updated successfully! ${remaining} requests remaining`)
+      toast.success('Updated successfully!');
     } catch (error) {
-      toast.error('Failed to update featured packages')
-      console.error(error)
+      toast.error('Failed to update featured packages');
+      console.error(error);
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
-  }
+  };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
@@ -55,9 +49,9 @@ export function FeaturedPackagesForm({ packages }: { packages: Package[] }) {
             checked={selected.includes(pkg.id)}
             onChange={(e) => {
               if (e.target.checked) {
-                setSelected([...selected, pkg.id])
+                setSelected([...selected, pkg.id]);
               } else {
-                setSelected(selected.filter(id => id !== pkg.id))
+                setSelected(selected.filter(id => id !== pkg.id));
               }
             }}
             className="h-5 w-5"
@@ -73,5 +67,5 @@ export function FeaturedPackagesForm({ packages }: { packages: Package[] }) {
         {isSubmitting ? 'Saving...' : 'Save Changes'}
       </button>
     </form>
-  )
+  );
 }
