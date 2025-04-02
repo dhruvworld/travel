@@ -1,13 +1,17 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  reactStrictMode: true,
+  swcMinify: true,
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'res.cloudinary.com',
-      },
-    ],
+    domains: ['images.unsplash.com', 'lh3.googleusercontent.com', 'avatars.githubusercontent.com'],
   },
-};
+  experimental: {
+    serverComponentsExternalPackages: ['@prisma/client'],
+  },
+  // Ensure consistent environment between development and production
+  env: {
+    NEXTAUTH_URL: process.env.NEXTAUTH_URL,
+  },
+}
 
-module.exports = nextConfig;
+module.exports = nextConfig
