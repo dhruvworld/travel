@@ -1,29 +1,34 @@
-from django.contrib import admin
-from .models import TourPackage, Hotel, Rental
+import os
+import re
 
+def remove_all_headers_from_all_files(directory):
+    for root, _, files in os.walk(directory):
+        for filename in files:
+            filepath = os.path.join(root, filename)
 
-# Add two blank lines before class as per PEP 8
+            try:
+                with open(filepath, 'r', encoding='utf-8') as f:
+                    lines = f.readlines()
 
+                if not lines:
+                    continue
 
-@admin.register(TourPackage)
-class TourPackageAdmin(admin.ModelAdmin):
-    list_display = ('name', 'price', 'duration', 'is_active')
-    list_filter = ('is_active', 'duration')
-    search_fields = ('name', 'description')
-    list_editable = ('is_active', 'price')
+                first_line = lines[0].strip()
 
+                # Matches: # "filename.ext" = "some path"
+                match_1 = re.match(r'^#\s*".+"\s*=\s*".+"$', first_line)
+                # Matches: "file" = "some path"
+                match_2 = re.match(r'^"file"\s*=\s*".+"$', first_line)
 
-@admin.register(Hotel)
-class HotelAdmin(admin.ModelAdmin):
-    list_display = ('name', 'location', 'price_per_night', 'is_active')
-    list_filter = ('is_active', 'location')
-    search_fields = ('name', 'location')
-    list_editable = ('price_per_night', 'is_active')
+                if match_1 or match_2:
+                    with open(filepath, 'w', encoding='utf-8') as f:
+                        f.writelines(lines[1:])
+                    print(f"🧹 Removed header from: {filepath}")
+                else:
+                    print(f"⏭️ No header in: {filepath}")
 
+            except Exception as e:
+                print(f"⚠️ Skipped: {filepath} due to error: {e}")
 
-@admin.register(Rental)
-class RentalAdmin(admin.ModelAdmin):
-    list_display = ('name', 'type', 'price_per_day', 'is_active')
-    list_filter = ('is_active', 'type')
-    search_fields = ('name',)
-    list_editable = ('price_per_day', 'is_active') 
+# 🔥 CLEAN EVERYTHING under ./travel/
+remove_all_headers_from_all_files("./travel")

@@ -7,6 +7,205 @@
 ├── .env.local
 ├── .eslintrc.json
 ├── .gitignore
+├── .next
+│   ├── app-build-manifest.json
+│   ├── build-manifest.json
+│   ├── cache
+│   │   ├── images
+│   │   │   ├── +bNcI7EfsVFNT7lpM+0eEEuuz80zHTClESH0X10rAXA=
+│   │   │   │   └── 60.1743617873130.JgGWrpxSh71Ucx2U6--CWddtqNwutZ0wA8B9ZLTGiMM=.webp
+│   │   │   ├── -igC34GX4QjHXSRUszE7BJV0KgCtSy3PwzFuv0eNM+Q=
+│   │   │   │   └── 60.1743617873303.59GOlHNTNcAmhlF6C3hGVmybta7wHFnARoeCENKqSs8=.webp
+│   │   │   ├── 0lLNIKfs8tTmC7UkA7pioOGO3hdDVKMdjQRLJ7MyBgo=
+│   │   │   │   └── 60.1743617170316.YFoXsgzjTNyiGpX6jYiIOtUYXS252X0ssKqfbcNiPjo=.webp
+│   │   │   ├── 5ThNs2zEKynRFHvUEwX5OgDM9fzLbfl-04ivYxmLTsc=
+│   │   │   │   └── 60.1743617873015.kEK1NRj8Fb18dAsLHWQbxzuo5v523b31D2yd86kW5lg=.webp
+│   │   │   ├── 8WSCLtyYcAzSZ2HQAqE5MfxS6up6tNHPHRV7DpTP9LU=
+│   │   │   │   └── 60.1743617170309.GhueubgNy8914a0L3IvGfXqkdll76jZdgY2J9hAHw84=.webp
+│   │   │   ├── Cb86A8RY6kibGj1X4liip-7aCyW5fWhhCpmtuvtJHy4=
+│   │   │   │   └── 60.1743617873038.UaPNTscs-ZoWbST+3O-c2x1d8YhRBgOkMYScyK6nsdg=.webp
+│   │   │   ├── LvCAx-IQUt8Tc7a3eIaOsJ6nKCi4z2cYbyS9zDUQ+6w=
+│   │   │   │   └── 60.1743617873023.iANhtHdMAQg8TcKZ-ulKDBe-v3hqQoSH4kCltvd8R18=.webp
+│   │   │   ├── RLd6rm+ZUWNateHSpSD9KZajiZcSn-kaD+Hm3+A5ElI=
+│   │   │   │   └── 60.1743617872825.9gpdWE1QRTND5WO5oPIGDJH-oll6saBezVMdn5RDlpc=.webp
+│   │   │   ├── TaY3A52femlYxbUJ5a2c8UqjwGXgseUzZHJbpcjSECE=
+│   │   │   │   └── 60.1743617873175.EHUd5zfAhAtfFIpwmNiSNxCXynyUw3uos8yGTwwL2Fk=.webp
+│   │   │   ├── U4x1IRRiXQlbGddSOfX0j9MAgMprdmPwgirEMrMuTsM=
+│   │   │   │   └── 60.1743617162041.kEK1NRj8Fb18dAsLHWQbxzuo5v523b31D2yd86kW5lg=.webp
+│   │   │   ├── XYe3nGfBABu4R4rRkFgRDas3+AvEgKmzF-vt2DXvKgQ=
+│   │   │   │   └── 60.1743617161922.9gpdWE1QRTND5WO5oPIGDJH-oll6saBezVMdn5RDlpc=.webp
+│   │   │   ├── cGB4WyukiiZXHGkxTEQ--c1ybQ-S6JLz8oMvisJ1TAs=
+│   │   │   │   └── 60.1743617170326.JGJtimHyhwQIJxL4e2zvMah4ndD5PTq1MI2RruDytAc=.webp
+│   │   │   ├── eLgIosO-MjliCNVXYm2BIyz5epKP++4L+bVBij8Otlk=
+│   │   │   │   └── 60.1743617873189.OCsPVUkLwTQcK7sc5STIuQk17PbuT8F1nGJZcgz4QnA=.webp
+│   │   │   ├── g54mnMsR7AxK5ex4cTgtzFIn0jezBzAUzP-qjqnnljE=
+│   │   │   │   └── 60.1743617872910.LIkVmHSS28m1JK1xfJ6UNAFda6aHO2ydp6STj7Wwx5o=.webp
+│   │   │   ├── gjZ9pol0mxOv-ixFJtdGO6w4+xlHOUkrg9lrAgOeF2c=
+│   │   │   │   └── 60.1743617873280.9cY6o54J+uDo4WEJskGLwxVAQtNcWgNZnzDEB5dhOVI=.webp
+│   │   │   ├── oC0mk0vicHuSNcCBtwCZc72LK7s-M6K82bFLXC5H1ws=
+│   │   │   │   └── 60.1743617161954.xHqqSdZ+fKcqhT8YayzM1PhVHTLbeKIOVUh2+CWKNJE=.webp
+│   │   │   ├── uYtoKjP6f+WO6vgSBXe7oRTEbwJa6I84oMBidEdVjSQ=
+│   │   │   │   └── 60.1743617873375.sZNJD5G2QwIqHTn+tFm1StmX8ceAjjK+djb40MR4de4=.webp
+│   │   │   └── vfU0A-6L1M1+il4Fx1N3pjGkYp0Sj2nCe69lFIU3vpQ=
+│   │   │       └── 60.1743617873290.lCX0s55newo+YJKybz0O5Vde0Z26FCK7nBhO+coFCVw=.webp
+│   │   ├── swc
+│   │   │   └── plugins
+│   │   │       └── v7_macos_aarch64_0.106.15
+│   │   └── webpack
+│   │       ├── client-development
+│   │       │   ├── 0 2.pack.gz
+│   │       │   ├── 0 3.gz_
+│   │       │   ├── 0.pack.gz
+│   │       │   ├── 1.pack.gz
+│   │       │   ├── 10.pack.gz
+│   │       │   ├── 2 2.gz_
+│   │       │   ├── 2.pack.gz
+│   │       │   ├── 3.pack.gz
+│   │       │   ├── 4.pack.gz
+│   │       │   ├── 5.pack.gz
+│   │       │   ├── 6.pack.gz
+│   │       │   ├── 7.pack.gz
+│   │       │   ├── 8.pack.gz
+│   │       │   ├── 9.pack.gz
+│   │       │   ├── index.pack.gz
+│   │       │   ├── index.pack.gz 2.pack.gz
+│   │       │   └── index.pack.gz.old
+│   │       ├── client-development-fallback
+│   │       │   ├── 0.pack.gz
+│   │       │   └── index.pack.gz
+│   │       ├── client-production
+│   │       │   ├── 0.pack
+│   │       │   └── index.pack
+│   │       ├── edge-server-development
+│   │       │   ├── 0.pack.gz
+│   │       │   └── index.pack.gz
+│   │       ├── edge-server-production
+│   │       │   ├── 0.pack
+│   │       │   └── index.pack
+│   │       ├── server-development
+│   │       │   ├── 0 2.pack.gz
+│   │       │   ├── 0.pack.gz
+│   │       │   ├── 1.pack.gz
+│   │       │   ├── 10.pack.gz
+│   │       │   ├── 2.pack.gz
+│   │       │   ├── 3.pack.gz
+│   │       │   ├── 4.pack.gz
+│   │       │   ├── 5.pack.gz
+│   │       │   ├── 6.pack.gz
+│   │       │   ├── 7.pack.gz
+│   │       │   ├── 8.pack.gz
+│   │       │   ├── 9.pack.gz
+│   │       │   ├── index.pack.gz
+│   │       │   ├── index.pack.gz 2.pack.gz
+│   │       │   └── index.pack.gz.old
+│   │       └── server-production
+│   │           ├── 0.pack
+│   │           └── index.pack
+│   ├── fallback-build-manifest.json
+│   ├── package.json
+│   ├── react-loadable-manifest.json
+│   ├── server
+│   │   ├── _error.js
+│   │   ├── app
+│   │   │   ├── _not-found
+│   │   │   │   ├── page.js
+│   │   │   │   └── page_client-reference-manifest.js
+│   │   │   ├── api
+│   │   │   │   └── auth
+│   │   │   │       └── [...nextauth]
+│   │   │   │           └── route.js
+│   │   │   ├── favicon.ico
+│   │   │   │   └── route.js
+│   │   │   ├── page.js
+│   │   │   └── page_client-reference-manifest.js
+│   │   ├── app-paths-manifest.json
+│   │   ├── edge-runtime-webpack.js
+│   │   ├── interception-route-rewrite-manifest.js
+│   │   ├── middleware-build-manifest.js
+│   │   ├── middleware-manifest.json
+│   │   ├── middleware-react-loadable-manifest.js
+│   │   ├── middleware.js
+│   │   ├── next-font-manifest.js
+│   │   ├── next-font-manifest.json
+│   │   ├── pages
+│   │   │   ├── _app.js
+│   │   │   ├── _document.js
+│   │   │   └── _error.js
+│   │   ├── pages-manifest.json
+│   │   ├── server-reference-manifest.js
+│   │   ├── server-reference-manifest.json
+│   │   ├── static
+│   │   │   └── webpack
+│   │   │       └── 633457081244afec._.hot-update.json
+│   │   ├── vendor-chunks
+│   │   │   ├── @auth.js
+│   │   │   ├── @babel.js
+│   │   │   ├── @panva.js
+│   │   │   ├── @swc.js
+│   │   │   ├── bcryptjs.js
+│   │   │   ├── cookie.js
+│   │   │   ├── goober.js
+│   │   │   ├── jose.js
+│   │   │   ├── lru-cache.js
+│   │   │   ├── next-auth.js
+│   │   │   ├── next.js
+│   │   │   ├── oauth.js
+│   │   │   ├── object-hash.js
+│   │   │   ├── oidc-token-hash.js
+│   │   │   ├── openid-client.js
+│   │   │   ├── preact-render-to-string.js
+│   │   │   ├── preact.js
+│   │   │   ├── react-hot-toast.js
+│   │   │   ├── uuid.js
+│   │   │   └── yallist.js
+│   │   └── webpack-runtime.js
+│   ├── static
+│   │   ├── chunks
+│   │   │   ├── _error.js
+│   │   │   ├── app
+│   │   │   │   ├── _not-found
+│   │   │   │   │   └── page.js
+│   │   │   │   ├── layout.js
+│   │   │   │   ├── not-found.js
+│   │   │   │   └── page.js
+│   │   │   ├── app-pages-internals.js
+│   │   │   ├── fallback
+│   │   │   │   ├── amp.js
+│   │   │   │   ├── main.js
+│   │   │   │   ├── pages
+│   │   │   │   │   ├── _app.js
+│   │   │   │   │   └── _error.js
+│   │   │   │   ├── react-refresh.js
+│   │   │   │   └── webpack.js
+│   │   │   ├── main-app.js
+│   │   │   ├── main.js
+│   │   │   ├── pages
+│   │   │   │   ├── _app.js
+│   │   │   │   └── _error.js
+│   │   │   ├── polyfills.js
+│   │   │   ├── react-refresh.js
+│   │   │   └── webpack.js
+│   │   ├── css
+│   │   │   └── app
+│   │   │       └── layout.css
+│   │   ├── development
+│   │   │   ├── _buildManifest.js
+│   │   │   └── _ssgManifest.js
+│   │   └── webpack
+│   │       ├── 38936ae6aa47109a.webpack.hot-update.json
+│   │       ├── 633457081244afec._.hot-update.json
+│   │       ├── app
+│   │       │   ├── layout.cdd99ce048373317.hot-update.js
+│   │       │   ├── layout.dd8e91e0a4e73360.hot-update.js
+│   │       │   └── layout.fabe4b5ef2de9e5f.hot-update.js
+│   │       ├── cdd99ce048373317.webpack.hot-update.json
+│   │       ├── dd8e91e0a4e73360.webpack.hot-update.json
+│   │       ├── fabe4b5ef2de9e5f.webpack.hot-update.json
+│   │       ├── webpack.38936ae6aa47109a.hot-update.js
+│   │       ├── webpack.cdd99ce048373317.hot-update.js
+│   │       ├── webpack.dd8e91e0a4e73360.hot-update.js
+│   │       └── webpack.fabe4b5ef2de9e5f.hot-update.js
+│   └── trace
 ├── .venv
 │   ├── bin
 │   │   ├── Activate.ps1
@@ -1159,6 +1358,8 @@
 │   └── varanasi.jpg
 ├── README.md
 ├── app
+│   ├── _not-found
+│   │   └── config.ts
 │   ├── about
 │   │   └── page.tsx
 │   ├── admin
@@ -1170,6 +1371,7 @@
 │   │   │   ├── AdminDashboard.tsx
 │   │   │   ├── AdminNavigation.tsx
 │   │   │   └── ImageUpload.tsx
+│   │   ├── config.ts
 │   │   ├── dashboard
 │   │   │   └── page.tsx
 │   │   ├── gallery
@@ -1203,6 +1405,7 @@
 │   │   │   └── [...nextauth]
 │   │   │       ├── auth.config.ts
 │   │   │       └── route.ts
+│   │   ├── config.ts
 │   │   ├── contact
 │   │   │   ├── route 2.ts
 │   │   │   └── route.ts
@@ -1213,7 +1416,17 @@
 │   │   │   └── route.ts
 │   │   └── upload
 │   │       └── route.ts
+│   ├── auth
+│   │   ├── auth.ts
+│   │   ├── config.ts
+│   │   ├── debug
+│   │   │   └── page.tsx
+│   │   ├── error.tsx
+│   │   ├── signin
+│   │   │   └── page.tsx
+│   │   └── signin.tsx
 │   ├── car-rental
+│   │   ├── config.ts
 │   │   └── page.tsx
 │   ├── components
 │   │   ├── ContactForm 2.tsx
@@ -1225,16 +1438,21 @@
 │   │   ├── Navbar.tsx
 │   │   ├── PhotoCarousel.tsx
 │   │   └── providers.tsx
+│   ├── config.ts
 │   ├── contact
+│   │   ├── config.ts
 │   │   └── page.tsx
 │   ├── custom-tours
+│   │   ├── config.ts
 │   │   └── page.tsx
 │   ├── favicon.ico
 │   ├── globals.css
 │   ├── hotels
+│   │   ├── config.ts
 │   │   └── page.tsx
 │   ├── layout.tsx
 │   ├── lib
+│   │   ├── auth-options.ts
 │   │   ├── auth.ts
 │   │   └── prisma.ts
 │   ├── not-found.tsx
@@ -1243,12 +1461,15 @@
 │   │   │   ├── error.tsx
 │   │   │   ├── loading.tsx
 │   │   │   └── page.tsx
+│   │   ├── config.ts
 │   │   └── page.tsx
 │   ├── page.tsx
 │   ├── pages
 │   │   └── admin.tsx
 │   ├── providers.tsx
+│   ├── root.config.ts
 │   ├── tours
+│   │   ├── config.ts
 │   │   └── page.tsx
 │   └── types
 │       ├── globals.d.ts
@@ -1257,16 +1478,25 @@
 ├── ci.yml
 ├── components
 │   ├── YourComponent.tsx
+│   ├── auth
+│   │   ├── ClearAuthCookies.tsx
+│   │   └── SessionDebug.tsx
+│   ├── layout
+│   │   ├── Footer.tsx
+│   │   └── Navbar.tsx
 │   └── providers
-│       └── AuthProvider.tsx
+│       ├── AuthProvider.tsx
+│       └── Providers.tsx
 ├── config
 │   └── auth.ts
 ├── config.ts
 ├── directory_structure.txt
 ├── export default function ContactPage() {.tsx
+├── fix-next-auth-jwt.js
 ├── layout.tsx
 ├── lib
 │   ├── 'use client';.tsx
+│   ├── auth-options.ts
 │   ├── auth.config.ts
 │   ├── auth.ts
 │   ├── db.ts
@@ -1280,7 +1510,8 @@
 │   ├── prisma.ts
 │   ├── prismadb.ts
 │   ├── rate-limit.ts
-│   └── route.ts
+│   ├── route.ts
+│   └── session.ts
 ├── middleware.ts
 ├── netlify.toml
 ├── next-env.d.ts
@@ -1305,16 +1536,31 @@
 │   │   │   └── migration.sql
 │   │   ├── 20250401215934_add_is_active_to_package
 │   │   │   └── migration.sql
+│   │   ├── 20250401222324_rename_publicid_to_cloudid
+│   │   │   └── migration.sql
+│   │   ├── 20250401222458_add_fullname_to_customtour
+│   │   │   └── migration.sql
+│   │   ├── 20250401223105_add_custom_tour_fields
+│   │   │   └── migration.sql
+│   │   ├── 20250401223208_add_start_end_dates
+│   │   │   └── migration.sql
+│   │   ├── 20250401223600_add_name_to_custom_tour
+│   │   │   └── migration.sql
+│   │   ├── 20250401225245_add_name_to_admin
+│   │   │   └── migration.sql
+│   │   ├── 20250402043810_add_location_to_package
+│   │   │   └── migration.sql
 │   │   └── migration_lock.toml
 │   ├── schema.prisma
-│   └── seed.mts
+│   ├── seed.mts
+│   └── seed.ts
 ├── prisma.ts
 ├── public
 │   ├── .DS_Store
 │   ├── destinations
 │   │   ├── .DS_Store
 │   │   ├── golden-triangle.jpg
-│   │   ├── kerala-backwaters.jpg
+│   │   ├── kerala.jpg
 │   │   └── varanasi.jpg
 │   ├── file.svg
 │   ├── gallery
@@ -1335,28 +1581,37 @@
 │   │   └── hero-main.jpg
 │   ├── images
 │   │   ├── .DS_Store
+│   │   ├── dzire.jpg
 │   │   ├── golden-triangle.jpg
 │   │   ├── gujarat-heritage.jpg
 │   │   ├── hero-bg.svg
+│   │   ├── innova.jpg
 │   │   ├── jaipur.svg
 │   │   ├── kerala-backwaters.jpg
+│   │   ├── kerala.jpg
 │   │   ├── kerala.svg
+│   │   ├── rajasthan.jpg
 │   │   ├── taj-mahal.svg
+│   │   ├── thar.jpg
 │   │   └── varanasi.jpg
 │   ├── next.svg
 │   ├── vercel.svg
 │   └── window.svg
 ├── route.ts
 ├── scripts
+│   ├── clear-auth.js
 │   ├── create-admin.js
 │   ├── create-admin.ts
 │   ├── debug-prisma.mts
+│   ├── fix-auth.js
+│   ├── patch-dynamic-pages.js
 │   ├── reset-prisma.js
 │   ├── test-db.mts
 │   ├── test-db.ts
 │   ├── test-users.mts
 │   ├── tsconfig.jsonc
-│   └── validate-build.js
+│   ├── validate-build.js
+│   └── verify-prisma.mjs
 ├── src
 │   └── pages 2
 ├── tailwind.config.js
@@ -1391,12 +1646,14 @@
 │   └── views.py
 ├── tsconfig.json
 ├── tsconfig.tsbuildinfo
-└── types
-    ├── bcryptjs.d.ts
-    ├── contact 2.ts
-    ├── contact.ts
-    ├── custom-tour.ts
-    ├── index.ts
-    └── next-auth.d.ts
+├── types
+│   ├── bcryptjs.d.ts
+│   ├── contact 2.ts
+│   ├── contact.ts
+│   ├── custom-tour.ts
+│   ├── index.ts
+│   └── next-auth.d.ts
+└── utils
+    └── generate-password-hash.js
 
-170 directories, 1230 files
+239 directories, 1418 files

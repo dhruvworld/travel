@@ -1,12 +1,11 @@
 export const dynamic = "force-dynamic";
 
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth-options";
-import { redirect } from "next/navigation";
-import type { Session } from "next-auth";
+import { authOptions } from "./auth/auth-options";
+import { Session } from "next-auth";
 
 /**
- * Get the current user session with error handling
+ * Helper to get the session with error handling
  */
 export async function getSession(): Promise<Session | null> {
   try {
@@ -18,24 +17,17 @@ export async function getSession(): Promise<Session | null> {
 }
 
 /**
- * Require authentication or redirect to sign in
- * @param redirectTo - where to redirect after sign in (defaults to current path)
+ * Check if the session exists without throwing
  */
-export async function requireAuth(redirectTo?: string): Promise<Session> {
+export async function checkSession(): Promise<boolean> {
   const session = await getSession();
-  
-  if (!session) {
-    const callbackUrl = redirectTo || '/dashboard';
-    redirect(`/auth/signin?callbackUrl=${encodeURIComponent(callbackUrl)}`);
-  }
-  
-  return session;
+  return session !== null;
 }
 
 /**
- * Check if a user is authenticated without redirecting
+ * Get the user ID from the session
  */
-export async function isAuthenticated(): Promise<boolean> {
+export async function getUserId(): Promise<string | null> {
   const session = await getSession();
-  return !!session;
+  return session?.user?.id || null;
 }
