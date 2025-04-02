@@ -1,12 +1,12 @@
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { authOptions } from '@/app/lib/auth-options';
 import type { Session } from 'next-auth';
 import { redirect } from 'next/navigation';
 
-// Export authOptions for use in other files
+// Export the authOptions for convenience
 export { authOptions };
 
-// Export helpers
+// Helper to get the session with better error handling
 export async function getSession(): Promise<Session | null> {
   try {
     return await getServerSession(authOptions);
@@ -16,6 +16,7 @@ export async function getSession(): Promise<Session | null> {
   }
 }
 
+// Require authentication or redirect
 export async function requireAuth() {
   const session = await getSession();
   if (!session) {
@@ -24,6 +25,7 @@ export async function requireAuth() {
   return session;
 }
 
+// Check if user is authenticated without throwing
 export async function checkAuth() {
   return await getSession();
 }
