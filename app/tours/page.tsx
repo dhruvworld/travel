@@ -1,9 +1,8 @@
 'use client';
 
-export const dynamic = 'force-dynamic';
-
 import { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface Tour {
   id: number;
@@ -23,7 +22,7 @@ const tours: Tour[] = [
     duration: "6 Days",
     price: 35000,
     image: "/images/golden-triangle.jpg",
-    description: "Experience the rich history and culture of India's most iconic cities."
+    description: "Experience the rich history and culture of India's most iconic cities.",
   },
   {
     id: 2,
@@ -32,7 +31,7 @@ const tours: Tour[] = [
     duration: "5 Days",
     price: 28000,
     image: "/images/kerala.jpg",
-    description: "Explore the serene backwaters and lush landscapes of God's own country."
+    description: "Explore the serene backwaters and lush landscapes of God's own country.",
   },
   {
     id: 3,
@@ -41,8 +40,8 @@ const tours: Tour[] = [
     duration: "8 Days",
     price: 45000,
     image: "/images/rajasthan.jpg",
-    description: "Discover the royal heritage and desert beauty of Rajasthan."
-  }
+    description: "Discover the royal heritage and desert beauty of Rajasthan.",
+  },
 ];
 
 export default function ToursPage() {
@@ -126,9 +125,12 @@ export default function ToursPage() {
                 </div>
                 <div className="mt-4 flex justify-between items-center">
                   <span className="text-xl font-bold">₹{tour.price}</span>
-                  <button className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+                  <Link 
+                    href={`/tours/${tour.id}`} 
+                    className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition"
+                  >
                     Book Now
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>

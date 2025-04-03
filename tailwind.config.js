@@ -8,9 +8,14 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // You can add your custom colors here
-        primary: '#3b82f6',
-        secondary: '#10b981',
+        // Modern color palette
+        primary: '#0077ff',
+        secondary: '#f59e0b',
+        light: '#f9fafb',
+        dark: '#1f2937',
+      },
+      fontFamily: {
+        sans: ['var(--font-poppins)', 'sans-serif'],
       },
     },
   },
