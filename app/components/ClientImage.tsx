@@ -6,36 +6,54 @@ import { useState } from 'react';
 interface ClientImageProps {
   src: string;
   alt: string;
-  fallbackSrc?: string;
   fill?: boolean;
-  className?: string;
-  priority?: boolean;
   width?: number;
   height?: number;
+  className?: string;
+  priority?: boolean;
+  sizes?: string;
+  fallbackSrc?: string;
 }
 
 export default function ClientImage({
-  src, 
-  alt, 
-  fallbackSrc = "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=2574&auto=format&fit=crop",
+  src,
+  alt,
   fill = false,
-  className = "",
-  priority = false,
   width,
-  height
+  height,
+  className = '',
+  priority = false,
+  sizes,
+  fallbackSrc = '/images/placeholder.jpg',
 }: ClientImageProps) {
   const [imgSrc, setImgSrc] = useState(src);
-  
+  const [isError, setIsError] = useState(false);
+
+  const handleError = () => {
+    if (!isError) {
+      setImgSrc(fallbackSrc);
+      setIsError(true);
+    }
+  };
+
+  const imageProps = {
+    src: imgSrc,
+    alt,
+    className,
+    onError: handleError,
+    priority,
+    sizes,
+  };
+
+  if (fill) {
+    return <Image {...imageProps} fill />;
+  }
+
   return (
     <Image
-      src={imgSrc}
-      alt={alt}
-      fill={fill}
-      width={!fill ? width : undefined}
-      height={!fill ? height : undefined}
-      className={className}
-      priority={priority}
-      onError={() => setImgSrc(fallbackSrc)}
+      {...imageProps}
+      width={width || 500}
+      height={height || 300}
     />
   );
 }

@@ -2,6 +2,7 @@ export const dynamic = 'force-dynamic';
 
 import Image from 'next/image'
 import Link from 'next/link'
+import SafeImage from '@/components/common/SafeImage'
 
 export default function Home() {
   return (
@@ -104,21 +105,21 @@ export default function Home() {
             {[
               {
                 title: "Golden Triangle Tour",
-                image: "/destinations/golden-triangle.jpg",
+                image: "/images/rajasthan.jpg", // Updated path
                 price: "From ₹29,999",
                 duration: "6 Days",
                 description: "Delhi, Agra, and Jaipur in 6 days"
               },
               {
                 title: "Kerala Backwaters",
-                image: "/destinations/kerala.jpg",
+                image: "/images/kerala-backwaters.jpg", // Updated path
                 price: "From ₹24,999",
                 duration: "5 Days",
                 description: "Explore God's own country"
               },
               {
                 title: "Varanasi Spiritual Tour",
-                image: "/destinations/varanasi.jpg",
+                image: "/images/varanasi.jpg", // Updated path
                 price: "From ₹19,999",
                 duration: "4 Days",
                 description: "Sacred journey along the Ganges"
@@ -126,7 +127,7 @@ export default function Home() {
             ].map((pkg, index) => (
               <div key={index} className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
                 <div className="relative h-48">
-                  <Image
+                  <SafeImage
                     src={pkg.image}
                     alt={pkg.title}
                     fill
