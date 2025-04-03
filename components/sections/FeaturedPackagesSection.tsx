@@ -11,7 +11,7 @@ export default async function FeaturedPackagesSection() {
     {
       id: "golden-triangle",
       name: "Golden Triangle Tour",
-      image: "/destinations/golden-triangle.jpg",
+      image: "/images/golden-triangle.jpg",
       price: 29999,
       duration: "6 Days",
       description: "Delhi, Agra, and Jaipur in 6 days",
@@ -20,7 +20,7 @@ export default async function FeaturedPackagesSection() {
     {
       id: "kerala-backwaters",
       name: "Kerala Backwaters",
-      image: "/destinations/kerala.jpg",
+      image: "/images/kerala.jpg",
       price: 24999,
       duration: "5 Days",
       description: "Explore God's own country",
@@ -29,7 +29,7 @@ export default async function FeaturedPackagesSection() {
     {
       id: "varanasi-spiritual",
       name: "Varanasi Spiritual Tour",
-      image: "/destinations/varanasi.jpg",
+      image: "/images/varanasi.jpg",
       price: 19999,
       duration: "4 Days",
       description: "Sacred journey along the Ganges",
