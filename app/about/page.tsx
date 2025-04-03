@@ -1,30 +1,67 @@
 import React from 'react';
+import type { Metadata } from 'next';
+import Script from 'next/script';
+import AboutSection from '@/components/sections/AboutSection';
 
 // Force dynamic rendering for this page
 export const dynamic = 'force-dynamic';
 
-export const metadata = {
-  title: 'About Us | Travel Agency',
-  description: 'Learn about our travel agency and our mission to provide exceptional travel experiences.',
+export const metadata: Metadata = {
+  title: 'About Us – Shubham Travel',
+  description: 'Learn about our journey, team, and what makes Shubham Travel unique. Discover our values, mission, and commitment to exceptional travel experiences across India.',
+  keywords: ['about Shubham Travel', 'travel agency history', 'travel experts', 'India tour company', 'Shubham Travel values'],
+  openGraph: {
+    title: 'About Us – Shubham Travel',
+    description: 'Learn about our journey, team, and what makes Shubham Travel unique.',
+    images: [
+      {
+        url: '/image/about-us.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Shubham Travel Team',
+      },
+    ],
+  },
 };
 
 export default function AboutPage() {
   return (
-    <main className="max-w-4xl mx-auto px-4 py-20">
-      <h1 className="text-3xl font-bold mb-6">About Us</h1>
-      <p className="text-lg mb-4">
-        Welcome to Shuham Tours & Travels! We are dedicated to providing exceptional travel experiences throughout India.
-      </p>
-      <p className="text-lg mb-4">
-        With over a decade of experience in the travel industry, we specialize in creating personalized itineraries that showcase the best of India's diverse landscapes, rich cultural heritage, and unforgettable experiences.
-      </p>
-      <p className="text-lg mb-6">
-        Our team of travel experts has extensive knowledge of the most beautiful and authentic destinations across the country, ensuring that your journey with us will be both memorable and comfortable.
-      </p>
-      <h2 className="text-2xl font-semibold mb-4">Our Mission</h2>
-      <p className="text-lg mb-8">
-        To provide travelers with authentic, enriching experiences that connect them with India's diverse cultures, landscapes, and traditions while ensuring the highest standards of service and sustainability.
-      </p>
-    </main>
+    <>
+      <Script id="about-breadcrumb-structured-data" type="application/ld+json">
+        {`
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://shubhamtravel.in"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "About Us",
+                "item": "https://shubhamtravel.in/about"
+              }
+            ]
+          }
+        `}
+      </Script>
+      <main className="bg-white">
+        <div className="relative h-[300px] bg-blue-600">
+          <div className="absolute inset-0 bg-black/40 z-10" />
+          <div className="relative z-20 h-full flex items-center justify-center text-white">
+            <div className="text-center">
+              <h1 className="text-4xl md:text-5xl font-bold mb-4">About Our Company</h1>
+              <p className="text-xl">Discover the story behind Shubham Travel</p>
+            </div>
+          </div>
+        </div>
+        
+        <AboutSection />
+      </main>
+    </>
   );
 }
