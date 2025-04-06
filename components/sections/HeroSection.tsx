@@ -56,10 +56,10 @@ export default function HeroSection() {
             transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
           >
             <Link href="/packages" className="px-6 py-3 text-sm sm:text-base bg-primary text-white rounded-xl font-semibold hover:bg-blue-700 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
-              View Packages
+              View Tours
             </Link>
             <Link href="/contact" className="px-6 py-3 text-sm sm:text-base border-2 border-white text-white rounded-xl hover:bg-white hover:text-dark transition-all duration-300 transform hover:-translate-y-1 mt-3 sm:mt-0">
-              Contact Us
+              Contact Uss
             </Link>
           </motion.div>
         </motion.div>

@@ -7,7 +7,6 @@ import { Menu, X, ChevronDown, ChevronUp } from 'lucide-react';
 
 const menuItems = [
   { label: 'Home', path: '/' },
-  { label: 'Packages', path: '/packages' },
   { label: 'Tours', path: '/tours' },
   { label: 'Hotels', path: '/hotels' },
   { label: 'Car Rental', path: '/car-rental' },
