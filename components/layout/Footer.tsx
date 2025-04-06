@@ -82,7 +82,7 @@ export function Footer() {
             <h4 className="text-base sm:text-lg font-semibold mb-4 sm:mb-6 text-white mt-4 sm:mt-0">Our Services</h4>
             <ul className="space-y-2 sm:space-y-3">
               <li>
-                <Link href="/tours" className="text-sm sm:text-base text-gray-300 hover:text-white transition-colors flex items-center group">
+                <Link href="/packages" className="text-sm sm:text-base text-gray-300 hover:text-white transition-colors flex items-center group">
                   <span className="w-0 group-hover:w-2 transition-all duration-300 h-0.5 bg-white mr-0 group-hover:mr-2"></span>
                   Tour Packages
                 </Link>

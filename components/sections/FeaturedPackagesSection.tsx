@@ -2,46 +2,60 @@ import ClientImage from '@/app/components/ClientImage';
 import Link from 'next/link';
 import { getFeaturedPackages } from '@/lib/services/package-service';
 
+// Default packages to use as fallback
+const defaultPackages = [
+  {
+    id: "golden-triangle",
+    name: "Golden Triangle Tour",
+    image: "/images/golden-triangle.jpg",
+    price: 29999,
+    duration: "6 Days",
+    description: "Delhi, Agra, and Jaipur in 6 days",
+    location: "North India"
+  },
+  {
+    id: "kerala-backwaters",
+    name: "Kerala Backwaters",
+    image: "/images/kerala.jpg",
+    price: 24999,
+    duration: "5 Days",
+    description: "Explore God's own country",
+    location: "Kerala"
+  },
+  {
+    id: "varanasi-spiritual",
+    name: "Varanasi Spiritual Tour",
+    image: "/images/varanasi.jpg",
+    price: 19999,
+    duration: "4 Days",
+    description: "Sacred journey along the Ganges",
+    location: "Varanasi"
+  }
+];
+
 export default async function FeaturedPackagesSection() {
-  // Fetch featured packages from the server
-  const featuredPackages = await getFeaturedPackages();
+  console.log("FeaturedPackagesSection: Starting to render...");
+  
+  // Fetch featured packages from the server with error handling
+  let featuredPackages = [];
+  try {
+    console.log("FeaturedPackagesSection: Attempting to fetch packages...");
+    featuredPackages = await getFeaturedPackages();
+    console.log("FeaturedPackagesSection: Successfully fetched packages:", featuredPackages.length);
+  } catch (error) {
+    console.error("Error in FeaturedPackagesSection:", error);
+    // Will use default packages below
+  }
   
   // Use static data as fallback if no packages are available
-  const packages = featuredPackages.length > 0 ? featuredPackages : [
-    {
-      id: "golden-triangle",
-      name: "Golden Triangle Tour",
-      image: "/images/golden-triangle.jpg",
-      price: 29999,
-      duration: "6 Days",
-      description: "Delhi, Agra, and Jaipur in 6 days",
-      location: "North India"
-    },
-    {
-      id: "kerala-backwaters",
-      name: "Kerala Backwaters",
-      image: "/images/kerala.jpg",
-      price: 24999,
-      duration: "5 Days",
-      description: "Explore God's own country",
-      location: "Kerala"
-    },
-    {
-      id: "varanasi-spiritual",
-      name: "Varanasi Spiritual Tour",
-      image: "/images/varanasi.jpg",
-      price: 19999,
-      duration: "4 Days",
-      description: "Sacred journey along the Ganges",
-      location: "Varanasi"
-    }
-  ];
+  const packages = featuredPackages?.length > 0 ? featuredPackages : defaultPackages;
+  console.log(`FeaturedPackagesSection: Using ${packages === defaultPackages ? 'default' : 'database'} packages`);
 
   return (
     <section className="py-12 sm:py-20 px-4 bg-gray-50">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-16">
-          Top Destinations
+          Featured Tour Packages
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {packages.map((pkg) => (

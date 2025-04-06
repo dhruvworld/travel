@@ -1,24 +1,22 @@
-import { getFeaturedPackages as getPrismaFeaturedPackages } from '@/lib/prisma/packages';
+import { getFeaturedPackages as getPrismaFeaturedPackages } from '../prisma/packages';
 
+/**
+ * Fetches featured packages with error handling
+ */
 export async function getFeaturedPackages() {
+  console.log('service: Attempting to fetch featured packages...');
   try {
-    // Use the existing prisma function to get featured packages
+    // Ensure we have a valid function to call
+    if (typeof getPrismaFeaturedPackages !== 'function') {
+      console.error('getPrismaFeaturedPackages is not a function');
+      return [];
+    }
+
     const packages = await getPrismaFeaturedPackages();
-    
-    // Transform the data to match what the UI expects
-    return packages.map(pkg => ({
-      id: pkg.id,
-      name: pkg.name,
-      description: pkg.description,
-      price: pkg.price,
-      duration: pkg.duration,
-      // location isn't in the schema, provide a default or fallback value
-      location: 'India', // Default location since it's not in the schema
-      image: pkg.image || '/images/destinations/default.jpg',
-      slug: pkg.slug || pkg.id // Use slug if available, fallback to ID
-    }));
+    console.log(`service: Retrieved ${packages?.length || 0} packages from database`);
+    return packages || [];
   } catch (error) {
-    console.error('Error fetching featured packages:', error);
-    return [];
+    console.error("service: Error getting featured packages:", error);
+    return []; // Return empty array to allow fallback to static data
   }
 }
