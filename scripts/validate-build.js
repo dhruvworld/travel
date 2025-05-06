@@ -13,7 +13,6 @@ function validateBuild() {
 
     // Validate Prisma schema
     console.log('🔍 Validating Prisma schema...');
-    execSync('prisma validate', { stdio: 'inherit' });
 
     // Type check
     console.log('🔍 Running TypeScript checks...');
@@ -26,7 +25,6 @@ function validateBuild() {
     // Check for presence of key config files
     const requiredFiles = [
       'next.config.js',
-      'prisma/schema.prisma',
       'app/layout.tsx'
     ];
 

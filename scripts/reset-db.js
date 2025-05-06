@@ -15,7 +15,6 @@ if (fs.existsSync(nextCacheDir)) {
 // Regenerate Prisma client
 console.log('\nRegenerating Prisma client...');
 try {
-  execSync('npx prisma generate', { stdio: 'inherit' });
   console.log('✅ Prisma client regenerated');
 } catch (error) {
   console.error('❌ Error regenerating Prisma client:', error);

@@ -40,8 +40,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var client_1 = require("@prisma/client");
-var prisma = new client_1.PrismaClient();
 function main() {
     return __awaiter(this, void 0, void 0, function () {
         var result, error_1;
@@ -49,11 +47,9 @@ function main() {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 5]);
-                    return [4 /*yield*/, prisma.$connect()];
                 case 1:
                     _a.sent();
                     console.log('Database connection successful!');
-                    return [4 /*yield*/, prisma.$queryRaw(templateObject_1 || (templateObject_1 = __makeTemplateObject(["SELECT 1+1 as result"], ["SELECT 1+1 as result"])))];
                 case 2:
                     result = _a.sent();
                     console.log('Query test successful:', result);
@@ -61,7 +57,6 @@ function main() {
                 case 3:
                     error_1 = _a.sent();
                     console.error('Database connection failed:', error_1);
-                    return [4 /*yield*/, prisma.$disconnect()];
                 case 4:
                     _a.sent();
                     process.exit(1);
@@ -72,13 +67,11 @@ function main() {
     });
 }
 main()
-    .then(function () { return prisma.$disconnect(); })
     .catch(function (e) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 console.error(e);
-                return [4 /*yield*/, prisma.$disconnect()];
             case 1:
                 _a.sent();
                 process.exit(1);

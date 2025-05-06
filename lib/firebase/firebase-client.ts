@@ -1,16 +1,24 @@
 // lib/firebase/firebase-client.ts
-import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+
+import { initializeApp, getApps, getApp } from 'firebase/app'
+import { getAuth } from 'firebase/auth'
+import { getFirestore } from 'firebase/firestore/lite'
 
 const firebaseConfig = {
-  apiKey: "AIzaSyD-tx4F-1Sz9H5MS0H_iv6cWmsfcbm7Nk",
-  authDomain: "shubhamtours-efe6f.firebaseapp.com",
-  projectId: "shubhamtours-efe6f",
-  storageBucket: "shubhamtours-efe6f.appspot.com",
-  messagingSenderId: "61100172634",
-  appId: "1:61100172634:web:5b3b4b52a9c2f478687f63",
-  measurementId: "G-7CJ1RY76EH",
-};
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY!,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN!,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID!,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET!,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID!,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID!,
+}
 
-const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
+// Initialize or reuse Firebase App
+const app = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig)
+
+// Auth instance
+const auth = getAuth(app)
+// Firestore (lite) instance
+const db = getFirestore(app)
+
+export { app, auth, db }

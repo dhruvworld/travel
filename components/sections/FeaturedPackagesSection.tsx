@@ -1,92 +1,58 @@
-'use client';
+// components/sections/FeaturedPackagesSection.tsx
+'use client'
 
-import Image from 'next/image';
-import Link from 'next/link';
+import React, { FC } from 'react'
+import Link from 'next/link'
+import type { TravelPackage } from '@/lib/services/firebase-package'
 
-type Package = {
-  id: string;
-  name: string;
-  image: string;
-  price: number;
-  duration: string;
-  description: string;
-  location: string;
-};
+export interface FeaturedPackagesSectionProps {
+  packages: TravelPackage[]
+}
 
-const featuredPackages: Package[] = [
-  {
-    id: 'golden-triangle',
-    name: 'Golden Triangle Tour',
-    image: '/images/golden-triangle.jpg',
-    price: 29999,
-    duration: '6 Days',
-    description: 'Delhi, Agra, and Jaipur in 6 days',
-    location: 'North India',
-  },
-  {
-    id: 'kerala-backwaters',
-    name: 'Kerala Backwaters',
-    image: '/images/kerala.jpg',
-    price: 24999,
-    duration: '5 Days',
-    description: "Explore God's own country",
-    location: 'Kerala',
-  },
-  {
-    id: 'varanasi-spiritual',
-    name: 'Varanasi Spiritual Tour',
-    image: '/images/varanasi.jpg',
-    price: 19999,
-    duration: '4 Days',
-    description: 'Sacred journey along the Ganges',
-    location: 'Varanasi',
-  },
-];
+const FeaturedPackagesSection: FC<FeaturedPackagesSectionProps> = ({ packages }) => {
+  if (packages.length === 0) {
+    return (
+      <section className="py-12 bg-gray-50">
+        <div className="container mx-auto text-center">
+          <h2 className="text-2xl font-semibold mb-4">Featured Packages</h2>
+          <p>No featured packages available at the moment.</p>
+        </div>
+      </section>
+    )
+  }
 
-export default function FeaturedPackagesSection() {
   return (
-    <section className="py-12 sm:py-20 px-4 bg-gray-50">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-14">
-          Featured Tour Packages
-        </h2>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {featuredPackages.map((pkg) => (
+    <section className="py-12 bg-gray-50">
+      <div className="container mx-auto">
+        <h2 className="text-3xl font-bold text-center mb-8">Featured Packages</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {packages.map((pkg) => (
             <div
               key={pkg.id}
-              className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition"
+              className="border rounded-2xl shadow-sm p-6 flex flex-col"
             >
-              <div className="relative h-48 w-full">
-                <Image
-                  src={pkg.image}
-                  alt={pkg.name}
-                  fill
-                  className="object-cover"
-                />
-                <div className="absolute top-3 right-3 bg-white text-gray-800 px-2 py-1 text-xs sm:text-sm font-semibold rounded-full shadow">
-                  {pkg.duration}
-                </div>
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2">{pkg.name}</h3>
-                <p className="text-gray-600 mb-4">{pkg.description}</p>
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-700 font-medium">
-                    Reach Out for Details
-                  </span>
-                  <Link
-                    href="/book-now"
-                    className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition"
-                  >
-                    Book Now
-                  </Link>
-                </div>
+              <img
+                src={pkg.image}
+                alt={pkg.name}
+                className="w-full h-48 object-cover rounded-xl mb-4"
+              />
+              <h3 className="text-xl font-semibold mb-2">{pkg.name}</h3>
+              <p className="flex-1 text-gray-600 mb-4">{pkg.description}</p>
+              <div className="mt-auto">
+                <span className="text-lg font-bold">${pkg.price}</span>
+                <Link
+                  href={`/packages/${pkg.slug}`}
+                  className="inline-block ml-4 text-blue-600 hover:underline"
+                >
+                  View Details
+                </Link>
               </div>
             </div>
           ))}
         </div>
       </div>
     </section>
-  );
+  )
 }
+
+export default FeaturedPackagesSection
