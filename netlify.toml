@@ -11,4 +11,3 @@
   package = "@netlify/plugin-nextjs"
 
 [functions]
-  included_files = ["prisma/**", "prisma/schema.prisma"]

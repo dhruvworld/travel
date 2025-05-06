@@ -5,9 +5,6 @@ module.exports = {
   sitemapSize: 7000,
   exclude: ['/admin/*', '/api/*'],
   robotsTxtOptions: {
-    additionalSitemaps: [
-      'https://shubhamtravel.in/sitemap.xml',
-    ],
     policies: [
       {
         userAgent: '*',
@@ -15,5 +12,8 @@ module.exports = {
         disallow: ['/admin/', '/api/'],
       },
     ],
+    additionalSitemaps: [
+      'https://shubhamtravel.in/sitemap.xml', // optional if you have multiple sitemaps
+    ],
   },
-}
+};

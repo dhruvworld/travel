@@ -1,12 +1,11 @@
 import { Providers } from './providers';
-import Navbar from '@/components/layout/Navbar';
-import { Footer } from '@/components/layout/Footer';
-import { Poppins } from 'next/font/google';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/sections/Footer'; // Import directly
 import { Toaster } from 'react-hot-toast';
-import type { Metadata, Viewport } from 'next';
+import { Poppins } from 'next/font/google';
 import '../styles/globals.css';
 
-// Define the Poppins font with specific subsets and weights
+
 const poppins = Poppins({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
@@ -18,14 +17,14 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   metadataBase: new URL('https://shubhamtravel.in'),
   title: {
-    default: 'Shubham Travel – Explore India & Beyond',
-    template: '%s | Shubham Travel'
+    default: 'Shubham Tours – Explore India & Beyond',
+    template: '%s | Shubham Tours'
   },
-  description: 'Book breathtaking tours, custom travel packages, and unforgettable experiences with Shubham Travel.',
+  description: 'Book breathtaking tours, custom travel packages, and unforgettable experiences with Shubham Tours.',
   keywords: [
     'Travel India',
     'Tour Packages',
-    'Shubham Travel', 
+    'Shubham Tours', 
     'Custom Tours',
     'Adventure Holidays',
     'India tourism',
@@ -33,8 +32,8 @@ export const metadata: Metadata = {
     'Kerala backwaters',
     'Rajasthan tours'
   ],
-  authors: [{ name: 'Shubham Travel', url: 'https://shubhamtravel.in' }],
-  creator: 'Shubham Travel',
+  authors: [{ name: 'Shubham Tours', url: 'https://shubhamtravel.in' }],
+  creator: 'Shubham Tours',
   verification: {
     google: 'verification_token',
   },
@@ -42,22 +41,22 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_IN',
     url: 'https://shubhamtravel.in',
-    title: 'Shubham Travel – Explore India & Beyond',
-    description: 'Book breathtaking tours, custom travel packages, and unforgettable experiences with Shubham Travel.',
-    siteName: 'Shubham Travel',
+    title: 'Shubham Tours – Explore India & Beyond',
+    description: 'Book breathtaking tours, custom travel packages, and unforgettable experiences with Shubham Tours.',
+    siteName: 'Shubham Tours',
     images: [
       {
         url: '/images/logo.png',
         width: 1200,
         height: 630,
-        alt: 'Shubham Travel - Your Gateway to Incredible India',
+        alt: 'Shubham Tours - Your Gateway to Incredible India',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Shubham Travel – Explore India & Beyond',
-    description: 'Book breathtaking tours, custom travel packages, and unforgettable experiences with Shubham Travel.',
+    title: 'Shubham Tours – Explore India & Beyond',
+    description: 'Book breathtaking tours, custom travel packages, and unforgettable experiences with Shubham Tours.',
     images: ['/images/logo.png'],
     creator: '@shubhamtravelIN',
   },
@@ -100,6 +99,11 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 1,
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#000000' }
+  ],
+  colorScheme: 'light'
 };
 
 export default function RootLayout({
@@ -111,13 +115,7 @@ export default function RootLayout({
     <html lang="en" className={`${poppins.variable} scroll-smooth`}>
       <body className="font-sans bg-white text-dark min-h-screen flex flex-col">
         <Providers>
-          <Toaster position="top-right" toastOptions={{
-            duration: 3000,
-            style: {
-              background: '#363636',
-              color: '#fff',
-            },
-          }} />
+          <Toaster position="top-right" />
           <Navbar />
           <div className="flex-grow">{children}</div>
           <Footer />

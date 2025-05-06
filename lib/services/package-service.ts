@@ -1,22 +1,14 @@
-import { getFeaturedPackages as getPrismaFeaturedPackages } from '../prisma/packages';
+// lib/services/package-service.ts
+import { firestore } from '@/lib/firebase-client';
+import { collection, getDocs, query, where } from 'firebase/firestore';
 
-/**
- * Fetches featured packages with error handling
- */
 export async function getFeaturedPackages() {
-  console.log('service: Attempting to fetch featured packages...');
   try {
-    // Ensure we have a valid function to call
-    if (typeof getPrismaFeaturedPackages !== 'function') {
-      console.error('getPrismaFeaturedPackages is not a function');
-      return [];
-    }
-
-    const packages = await getPrismaFeaturedPackages();
-    console.log(`service: Retrieved ${packages?.length || 0} packages from database`);
-    return packages || [];
+    const q = query(collection(firestore, 'packages'), where('featured', '==', true));
+    const snapshot = await getDocs(q);
+    return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
   } catch (error) {
-    console.error("service: Error getting featured packages:", error);
-    return []; // Return empty array to allow fallback to static data
+    console.error('[GET_FEATURED_PACKAGES_ERROR]', error);
+    return [];
   }
 }

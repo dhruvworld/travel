@@ -1,39 +1,42 @@
-// app/api/admin/featured-packages/route.ts
 import { NextResponse } from 'next/server';
 import { headers } from 'next/headers';
-import prisma from '@/lib/prisma';
+import { yourFn } from '@/lib/services/firebase-package'; // Use alias
 
-// ✅ Force dynamic rendering to avoid static generation errors
+import { getAllPackages, toggleFeatured } from '@/lib/services/firebase-package';
+
 export const dynamic = 'force-dynamic';
 
 export async function GET() {
+  const authHeader = (await headers()).get('authorization');
+  if (!authHeader || authHeader !== `Bearer ${process.env.ADMIN_API_KEY}`) {
+    return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
+  }
+
   try {
-    const headerList = headers(); // Access request headers
-    const authHeader = headerList.get('authorization');
-
-    if (!authHeader || authHeader !== `Bearer ${process.env.ADMIN_API_KEY}`) {
-      return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
-    }
-
-    // Check if prisma is properly initialized
-    if (!prisma) {
-      console.error('[API /admin/featured-packages] Prisma client not initialized');
-      return NextResponse.json({ error: 'Database connection error' }, { status: 500 });
-    }
-
-    try {
-      const featuredPackages = await prisma.tourPackage.findMany({
-        where: { featured: true },
-        orderBy: { createdAt: 'desc' },
-      });
-      
-      return NextResponse.json(featuredPackages);
-    } catch (dbError) {
-      console.error('[API /admin/featured-packages] Database error:', dbError);
-      return NextResponse.json({ error: 'Database query failed' }, { status: 500 });
-    }
+    const featuredPackages = await getAllPackages(true); // only featured
+    return NextResponse.json(featuredPackages);
   } catch (error) {
-    console.error('[API /admin/featured-packages] Error:', error);
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    console.error('Admin GET featured-packages error:', error);
+    return NextResponse.json({ error: 'Failed to fetch featured packages' }, { status: 500 });
+  }
+}
+
+export async function POST(req: Request) {
+  const authHeader = (await headers()).get('authorization');
+  const { adminKey, id, featured } = await req.json();
+
+  if (
+    (!authHeader || authHeader !== `Bearer ${process.env.ADMIN_API_KEY}`) &&
+    adminKey !== process.env.ADMIN_API_KEY
+  ) {
+    return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
+  }
+
+  try {
+    const result = await toggleFeatured(id, featured);
+    return NextResponse.json(result);
+  } catch (error) {
+    console.error('Admin POST featured-packages error:', error);
+    return NextResponse.json({ error: 'Failed to update featured status' }, { status: 500 });
   }
 }
