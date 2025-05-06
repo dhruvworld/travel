@@ -1,21 +1,25 @@
-// components/auth/AdminGate.tsx
-'use client';
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import { isAdmin } from '@/lib/utils/is-admin';
+'use client'
+
+import { useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
+import { isAdmin } from '@/lib/utils/is-admin'
 
 export default function AdminGate({ children }: { children: React.ReactNode }) {
-  const router = useRouter();
-  const [authorized, setAuthorized] = useState(false);
+  const router = useRouter()
+  const [authorized, setAuthorized] = useState(false)
 
   useEffect(() => {
-    if (isAdmin()) {
-      setAuthorized(true);
-    } else {
-      router.replace('/admin/login');
+    async function checkAdmin() {
+      const ok = await isAdmin()     // now takes zero args
+      if (!ok) {
+        router.replace('/admin/login')
+      } else {
+        setAuthorized(true)
+      }
     }
-  }, []);
+    checkAdmin()
+  }, [router])
 
-  if (!authorized) return null;
-  return <>{children}</>;
+  if (!authorized) return null
+  return <>{children}</>
 }

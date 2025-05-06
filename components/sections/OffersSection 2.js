@@ -1,3 +1,4 @@
+"use client";
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -35,38 +36,40 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getSession = exports.signOut = exports.signIn = exports.auth = void 0;
-var next_auth_1 = require("next-auth");
-var google_1 = require("next-auth/providers/google");
-var prisma = new client_1.PrismaClient();
-exports.auth = (_a = (0, next_auth_1.default)({
-    adapter: (0, prisma_adapter_1.PrismaAdapter)(prisma),
-    providers: [
-        (0, google_1.default)({
-            clientId: process.env.GOOGLE_CLIENT_ID || '',
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET || '',
-        }),
-    ],
-    callbacks: {
-        session: function (_a) {
-            return __awaiter(this, arguments, void 0, function (_b) {
-                var session = _b.session, user = _b.user;
-                return __generator(this, function (_c) {
-                    if (session.user) {
-                        session.user.id = user.id;
-                        // Add role to the session
-                        session.user.role = user.role || 'user';
-                    }
-                    return [2 /*return*/, session];
-                });
+exports.default = OffersSection;
+var react_1 = require("react");
+var offer_service_1 = require("@/lib/offer-service");
+function OffersSection() {
+    var _this = this;
+    var _a = (0, react_1.useState)([]), offers = _a[0], setOffers = _a[1];
+    (0, react_1.useEffect)(function () {
+        var fetchOffers = function () { return __awaiter(_this, void 0, void 0, function () {
+            var data;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, (0, offer_service_1.getActiveOffers)()];
+                    case 1:
+                        data = _a.sent();
+                        setOffers(data);
+                        return [2 /*return*/];
+                }
             });
-        },
-    },
-    pages: {
-        signIn: '/auth/signin',
-    },
-}), _a.auth), exports.signIn = _a.signIn, exports.signOut = _a.signOut;
-// Use this instead of getServerSession
-exports.getSession = exports.auth;
+        }); };
+        fetchOffers();
+    }, []);
+    if (!offers.length)
+        return null;
+    return (<section className="py-12 px-6 bg-yellow-100 rounded-2xl shadow-md">
+      <h2 className="text-3xl font-bold mb-6 text-center">Special Offers</h2>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {offers.map(function (offer) { return (<div key={offer.id} className="bg-white p-6 rounded-xl shadow-sm">
+            <h3 className="text-xl font-semibold">{offer.title}</h3>
+            <p className="text-gray-600">{offer.description}</p>
+            <span className="text-green-600 font-bold mt-2 block">
+              {offer.discount}% Off
+            </span>
+          </div>); })}
+      </div>
+    </section>);
+}

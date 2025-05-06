@@ -1,23 +1,36 @@
 // scripts/setAdminClaim.ts
-import { initializeApp, cert } from 'firebase-admin/app';
-import { getAuth } from 'firebase-admin/auth';
-import serviceAccount from './serviceAccountKey.json'; // download from Firebase
 
-initializeApp({
-  credential: cert(serviceAccount),
-});
+import admin from 'firebase-admin'
+import 'dotenv/config'
 
-async function setAdmin(uid: string) {
+// Initialize the Admin SDK once
+if (!admin.apps.length) {
+  admin.initializeApp({
+    credential: admin.credential.cert({
+      projectId: process.env.FIREBASE_PROJECT_ID!,
+      clientEmail: process.env.FIREBASE_CLIENT_EMAIL!,
+      privateKey: process.env.FIREBASE_PRIVATE_KEY!.replace(/\\n/g, '\n'),
+    }),
+  })
+}
+
+async function main() {
+  const uid = process.argv[2]
+  if (!uid) {
+    console.error('❌ Please provide the user UID as the first argument.')
+    process.exit(1)
+  }
+
   try {
-    await getAuth().setCustomUserClaims(uid, { admin: true });
-    console.log(`✅ Admin claim set for user: ${uid}`);
-    console.log(
-      `ℹ️ Verify in Firebase Console: Go to Authentication > Users > Select User > Custom Claims`
-    );
+    await admin.auth().setCustomUserClaims(uid, { role: 'ADMIN' })
+    console.log(`✅ Set "role: ADMIN" claim on user ${uid}`)
+    process.exit(0)
   } catch (err) {
-    console.error('❌ Failed to set claim:', err);
+    console.error('❌ Failed to set custom claim:', err)
+    process.exit(1)
   }
 }
 
-// Replace with actual UID from Firebase console
-setAdmin('AZ9OHfkkGFcIA56TjMQ3jZQTzPq2');
+if (require.main === module) {
+  main()
+}
