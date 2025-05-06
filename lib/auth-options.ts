@@ -12,6 +12,7 @@ export const authOptions: NextAuthOptions = {
         password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials) {
+        // Guard against undefined credentials
         const username = credentials?.username
         const password = credentials?.password
 

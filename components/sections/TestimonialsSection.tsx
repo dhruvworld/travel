@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Star } from 'lucide-react';
 import Image from 'next/image';
-import { getTestimonials } from "../../lib/services/firebase-testimonial";
 
 interface Testimonial {
   id: string;

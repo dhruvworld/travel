@@ -14,7 +14,7 @@ const poppins = Poppins({
 });
 
 // Enhanced metadata for SEO and social sharing
-export const metadata: Metadata = {
+export const metadata = {
   metadataBase: new URL('https://shubhamtravel.in'),
   title: {
     default: 'Shubham Tours – Explore India & Beyond',
@@ -95,7 +95,7 @@ export const metadata: Metadata = {
 };
 
 // Properly define the viewport metadata
-export const viewport: Viewport = {
+export const viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 1,

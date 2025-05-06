@@ -1,53 +1,16 @@
-import { getServerSession } from 'next-auth';
-import { authOptions } from './auth/auth-options';
-import type { Session } from 'next-auth';
-import { redirect } from 'next/navigation';
-import { AUTH_CONFIG } from './auth.config';
+// lib/auth.ts
 
-// Export the authOptions for convenience
-export { authOptions };
+import { NextRequest, NextResponse } from 'next/server'
+import { getServerSession } from 'next-auth/next'
+import { authOptions } from './auth-options'
 
-/**
- * Helper to get the session with better error handling
- */
-export async function getSession(): Promise<Session | null> {
-  try {
-    return await getServerSession(authOptions);
-  } catch (error) {
-    console.error("Error getting session:", error);
-    return null;
+export async function middleware(req: NextRequest) {
+  const session = await getServerSession(authOptions)
+  const isAdmin = (session?.user as any)?.isAdmin
+
+  if (!session || !isAdmin) {
+    return NextResponse.redirect(new URL('/login', req.url))
   }
-}
 
-/**
- * Get admin session or redirect to login
- */
-export async function getAdminSession() {
-  const session = await getSession();
-  
-  if (!session?.user?.isAdmin) {
-    redirect(AUTH_CONFIG.ADMIN_LOGIN_ROUTE);
-  }
-  
-  return session;
+  return NextResponse.next()
 }
-
-/**
- * Require authentication or redirect
- */
-export async function requireAuth() {
-  const session = await getSession();
-  if (!session) {
-    redirect(`${AUTH_CONFIG.LOGIN_ROUTE}?callbackUrl=/dashboard`);
-  }
-  return session;
-}
-
-/**
- * Check if user is authenticated without throwing
- */
-export async function checkAuth() {
-  return await getSession();
-}
-
-export const auth = { getSession, requireAuth, checkAuth, getAdminSession };
