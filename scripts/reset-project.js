@@ -37,7 +37,6 @@ try {
 // Regenerate Prisma client
 console.log('Regenerating Prisma client...');
 try {
-  execSync('npx prisma generate', { stdio: 'inherit' });
 } catch (error) {
   console.error('Error generating Prisma client:', error);
 }
@@ -46,7 +45,6 @@ try {
 console.log('\nChecking Prisma models:');
 try {
   // This will show all available Prisma models in your terminal
-  execSync('node scripts/check-prisma-models.js', { stdio: 'inherit' });
 } catch (error) {
   console.error('Error checking Prisma models:', error);
 }

@@ -37,7 +37,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 // scripts/updateFeaturedPackages.ts
-var prisma_js_1 = require("../lib/prisma.js"); // Adjusted to relative path with .js extension
 // Ensure the 'dayjs' package is installed by running: npm install dayjs
 // If using TypeScript, also install types: npm install --save-dev @types/dayjs
 var dayjs_1 = require("dayjs");
@@ -50,7 +49,6 @@ function main() {
                 case 0:
                     now = (0, dayjs_1.default)();
                     hour = now.hour();
-                    return [4 /*yield*/, prisma_js_1.default.package.findMany({
                             where: { published: true, isActive: true },
                             orderBy: { createdAt: 'asc' }
                         })];
@@ -63,7 +61,6 @@ function main() {
                         console.warn('⚠️ No packages available to feature.');
                         return [2 /*return*/];
                     }
-                    return [4 /*yield*/, prisma_js_1.default.package.updateMany({ data: { featured: false } })];
                 case 2:
                     _a.sent();
                     _i = 0, nextFeatured_1 = nextFeatured;
@@ -71,7 +68,6 @@ function main() {
                 case 3:
                     if (!(_i < nextFeatured_1.length)) return [3 /*break*/, 6];
                     pkg = nextFeatured_1[_i];
-                    return [4 /*yield*/, prisma_js_1.default.package.update({
                             where: { id: pkg.id },
                             data: { featured: true }
                         })];
