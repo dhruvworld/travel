@@ -49,12 +49,21 @@ export const authConfig: NextAuthOptions = {
     signIn: '/login',
   },
   callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+        // Ensure isAdmin is a boolean
+        token.isAdmin = Boolean(user.isAdmin);
+      }
+      return token;
+    },
     async session({ session, token }) {
-      if (session?.user && token?.id) {
-        session.user.id = token.id as string;
+      if (session.user) {
+        session.user.id = token.id;
+        // Ensure isAdmin is properly typed as boolean
+        session.user.isAdmin = Boolean(token.isAdmin);
       }
       return session;
     },
-    // You can also define `jwt`, `signIn`, etc. if needed
   },
 };

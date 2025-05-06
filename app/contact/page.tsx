@@ -36,7 +36,7 @@ export default function ContactPage() {
           {
             "@context": "https://schema.org",
             "@type": "ContactPage",
-            "name": "Contact Shubham Travel",
+            "name": "Contact Shubham Tours",
             "description": "Get in touch with our team to plan your dream vacation across India. We're available to answer your questions and help with bookings.",
             "mainEntityOfPage": {
               "@type": "WebPage",

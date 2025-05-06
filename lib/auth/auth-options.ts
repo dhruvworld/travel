@@ -1,66 +1,59 @@
+import { PrismaAdapter } from "@/lib/auth/prisma-adapter"; // Correct import
+import { AuthOptions } from "next-auth";
+import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { PrismaAdapter } from "@auth/prisma-adapter";
 import prisma from "@/lib/db/prisma";
 import bcrypt from "bcryptjs";
-import type { NextAuthOptions } from "next-auth";
 
-export const authOptions: NextAuthOptions = {
+export const authOptions: AuthOptions = {
+  adapter: PrismaAdapter(prisma), // Use the custom adapter
   providers: [
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+    }),
     CredentialsProvider({
-      name: "Admin Login",
+      name: "Credentials",
       credentials: {
-        username: { label: "Username", type: "text" },
+        email: { label: "Email", type: "text" },
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        const adminUsername = process.env.ADMIN_USERNAME;
-        const adminPassword = process.env.ADMIN_PASSWORD;
+        if (!credentials?.email || !credentials?.password) return null;
 
-        if (!credentials || credentials.username !== adminUsername) {
-          return null;
-        }
+        const user = await prisma.user.findUnique({
+          where: { email: credentials.email },
+        });
 
-        // For development, directly compare with plaintext password
-        // In production, you should use the hashed password approach
-        if (credentials.password === adminPassword) {
-          return {
-            id: "admin",
-            name: "Admin",
-            email: process.env.ADMIN_EMAIL || "jamesbond@007.com",
-            isAdmin: true, // ✅ required in token/session
-          };
-        }
+        if (!user || !user.password) return null;
 
-        return null;
+        const isValid = await bcrypt.compare(credentials.password, user.password);
+        if (!isValid) return null;
+
+        return user;
       },
     }),
   ],
-  adapter: PrismaAdapter(prisma),
-  session: {
-    strategy: "jwt",
-  },
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        // Copy user properties to token
-        token.isAdmin = user.isAdmin === true;
+        token.id = user.id;
+        token.role = user.role;
+        token.isAdmin = user.role === "ADMIN";
       }
       return token;
     },
     async session({ session, token }) {
-      if (session.user) {
-        // Make isAdmin available in the session
-        session.user.isAdmin = token.isAdmin === true;
+      if (token) {
+        session.user.id = token.id as string;
+        session.user.role = token.role as string;
+        session.user.isAdmin = token.isAdmin as boolean;
       }
       return session;
     },
   },
-  secret: process.env.NEXTAUTH_SECRET,
-  pages: {
-    signIn: "/admin/login",
+  session: {
+    strategy: "jwt",
   },
+  secret: process.env.NEXTAUTH_SECRET,
 };
-
-
-
-

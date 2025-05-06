@@ -1,188 +1,136 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { toast } from 'react-hot-toast';
-import ClientImageUploader from '../components/ClientImageUploader';
+import { useState, Suspense } from 'react';
+import dynamic from 'next/dynamic';
+import { Toaster } from 'react-hot-toast';
+import { getHomeContent } from "../../lib/services/firebase-home";
+
+// Use dynamic imports with loading fallbacks for better performance
+const FeaturedPackagesTab = dynamic(
+  () => import('./FeaturedPackagesTab'),
+  { 
+    loading: () => (
+      <div className="flex justify-center items-center py-10">
+        <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+        <span className="ml-2 text-gray-500">Loading packages manager...</span>
+      </div>
+    ),
+    ssr: false
+  }
+);
+
+const TestimonialsTab = dynamic(
+  () => import('./TestimonialsTab'),
+  { 
+    loading: () => (
+      <div className="flex justify-center items-center py-10">
+        <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+        <span className="ml-2 text-gray-500">Loading testimonials manager...</span>
+      </div>
+    ),
+    ssr: false
+  }
+);
+
+const GalleryEditor = dynamic(
+  () => import('./gallery'),
+  { 
+    loading: () => (
+      <div className="flex justify-center items-center py-10">
+        <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+        <span className="ml-2 text-gray-500">Loading gallery manager...</span>
+      </div>
+    ),
+    ssr: false
+  }
+);
+
+const OffersEditor = dynamic(
+  () => import('./offers'),
+  { 
+    loading: () => (
+      <div className="flex justify-center items-center py-10">
+        <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+        <span className="ml-2 text-gray-500">Loading offers manager...</span>
+      </div>
+    ),
+    ssr: false
+  }
+);
 
 export default function AdminHomePage() {
-  const [isLoading, setIsLoading] = useState(false);
-  const [formData, setFormData] = useState({
-    heroTitle: '',
-    heroSubtitle: '',
-    welcomeTitle: '',
-    welcomeText: '',
-  });
-  const [previewImage, setPreviewImage] = useState('');
-  const [heroImage, setHeroImage] = useState<File | null>(null);
-
-  useEffect(() => {
-    async function loadContent() {
-      setIsLoading(true);
-      try {
-        const response = await fetch('/api/admin/home');
-        if (!response.ok) {
-          throw new Error('Failed to fetch home content');
-        }
-        const data = await response.json();
-        
-        setFormData({
-          heroTitle: data.heroTitle || '',
-          heroSubtitle: data.heroSubtitle || '',
-          welcomeTitle: data.welcomeTitle || '',
-          welcomeText: data.welcomeText || '',
-        });
-        
-        if (data.heroImage) {
-          setPreviewImage(data.heroImage);
-        }
-      } catch (error) {
-        console.error('Failed to load home content', error);
-        toast.error('Failed to load content');
-      } finally {
-        setIsLoading(false);
-      }
-    }
-
-    loadContent();
-  }, []);
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleImageUpload = (file: File) => {
-    setHeroImage(file);
-    setPreviewImage(URL.createObjectURL(file));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-
-    const formPayload = new FormData();
-    for (const key in formData) {
-      formPayload.append(key, formData[key as keyof typeof formData]);
-    }
-    
-    if (heroImage) {
-      formPayload.append('heroImage', heroImage);
-    }
-
-    try {
-      const response = await fetch('/api/admin/home', {
-        method: 'POST',
-        body: formPayload,
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to update home content');
-      }
-
-      toast.success('Home page updated successfully');
-    } catch (error) {
-      console.error('Error updating home page:', error);
-      toast.error('Failed to update home page');
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  const [activeTab, setActiveTab] = useState<'packages' | 'testimonials' | 'gallery' | 'offers'>('packages');
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
-      <h1 className="text-2xl font-bold mb-6">Edit Home Page</h1>
-      
-      <form onSubmit={handleSubmit} className="space-y-6">
-        <div className="bg-white shadow rounded-lg p-6">
-          <h2 className="text-lg font-medium mb-4">Hero Section</h2>
-          
-          <div className="mb-4">
-            <label htmlFor="heroTitle" className="block text-sm font-medium text-gray-700 mb-1">
-              Hero Title
-            </label>
-            <input
-              type="text"
-              id="heroTitle"
-              name="heroTitle"
-              value={formData.heroTitle}
-              onChange={handleInputChange}
-              className="w-full p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
-              required
-            />
-          </div>
-          
-          <div className="mb-4">
-            <label htmlFor="heroSubtitle" className="block text-sm font-medium text-gray-700 mb-1">
-              Hero Subtitle
-            </label>
-            <input
-              type="text"
-              id="heroSubtitle"
-              name="heroSubtitle"
-              value={formData.heroSubtitle}
-              onChange={handleInputChange}
-              className="w-full p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
-            />
-          </div>
-          
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Hero Image
-            </label>
-            <ClientImageUploader 
-              onImageSelected={handleImageUpload}
-              previewImage={previewImage}
-            />
-          </div>
-        </div>
-        
-        <div className="bg-white shadow rounded-lg p-6">
-          <h2 className="text-lg font-medium mb-4">Welcome Section</h2>
-          
-          <div className="mb-4">
-            <label htmlFor="welcomeTitle" className="block text-sm font-medium text-gray-700 mb-1">
-              Welcome Title
-            </label>
-            <input
-              type="text"
-              id="welcomeTitle"
-              name="welcomeTitle"
-              value={formData.welcomeTitle}
-              onChange={handleInputChange}
-              className="w-full p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
-            />
-          </div>
-          
-          <div className="mb-4">
-            <label htmlFor="welcomeText" className="block text-sm font-medium text-gray-700 mb-1">
-              Welcome Text
-            </label>
-            <textarea
-              id="welcomeText"
-              name="welcomeText"
-              rows={4}
-              value={formData.welcomeText}
-              onChange={handleInputChange}
-              className="w-full p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
-            />
-          </div>
-        </div>
-        
-        <div className="flex justify-end">
-          <button
-            type="submit"
-            disabled={isLoading}
-            className={`px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ${
-              isLoading ? 'opacity-50 cursor-not-allowed' : ''
-            }`}
-          >
-            {isLoading ? 'Saving...' : 'Save Changes'}
-          </button>
-        </div>
-      </form>
+    <div className="space-y-6">
+      <Toaster position="top-right" />
+      <h1 className="text-2xl font-bold text-blue-700">🏠 Homepage Content Manager</h1>
+
+      <div className="flex flex-wrap gap-2">
+        <button
+          onClick={() => setActiveTab('packages')}
+          className={`px-4 py-2 rounded ${activeTab === 'packages' ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
+        >
+          Featured Packages
+        </button>
+        <button
+          onClick={() => setActiveTab('testimonials')}
+          className={`px-4 py-2 rounded ${activeTab === 'testimonials' ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
+        >
+          Testimonials
+        </button>
+        <button
+          onClick={() => setActiveTab('gallery')}
+          className={`px-4 py-2 rounded ${activeTab === 'gallery' ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
+        >
+          Travel Gallery
+        </button>
+        <button
+          onClick={() => setActiveTab('offers')}
+          className={`px-4 py-2 rounded ${activeTab === 'offers' ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
+        >
+          Special Offers
+        </button>
+      </div>
+
+      {/* Only render the active tab component */}
+      <div className="border rounded-xl p-4 bg-white shadow">
+        {activeTab === 'packages' && (
+          <>
+            <h2 className="text-lg font-semibold mb-4">📦 Featured Packages</h2>
+            <Suspense fallback={<div>Loading...</div>}>
+              <FeaturedPackagesTab />
+            </Suspense>
+          </>
+        )}
+
+        {activeTab === 'testimonials' && (
+          <>
+            <h2 className="text-lg font-semibold mb-4">💬 Client Testimonials</h2>
+            <Suspense fallback={<div>Loading...</div>}>
+              <TestimonialsTab />
+            </Suspense>
+          </>
+        )}
+
+        {activeTab === 'gallery' && (
+          <>
+            <h2 className="text-lg font-semibold mb-4">🖼️ Travel Gallery</h2>
+            <Suspense fallback={<div>Loading...</div>}>
+              <GalleryEditor />
+            </Suspense>
+          </>
+        )}
+
+        {activeTab === 'offers' && (
+          <>
+            <h2 className="text-lg font-semibold mb-4">🏷️ Special Offers</h2>
+            <Suspense fallback={<div>Loading...</div>}>
+              <OffersEditor />
+            </Suspense>
+          </>
+        )}
+      </div>
     </div>
   );
 }

@@ -1,9 +1,12 @@
-// app/providers.tsx
-'use client';
+"use client";
 
-import { SessionProvider } from 'next-auth/react';
-import { ReactNode } from 'react';
+import { Toaster } from "react-hot-toast";
 
-export function Providers({ children }: { children: ReactNode }) {
-  return <SessionProvider>{children}</SessionProvider>;
+export function Providers({ children }: { children: React.ReactNode }) {
+  return (
+    <>
+      {children}
+      <Toaster position="top-center" />
+    </>
+  );
 }

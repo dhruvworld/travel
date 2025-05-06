@@ -7,18 +7,18 @@ import AboutSection from '@/components/sections/AboutSection';
 export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
-  title: 'About Us – Shubham Travel',
-  description: 'Learn about our journey, team, and what makes Shubham Travel unique. Discover our values, mission, and commitment to exceptional travel experiences across India.',
-  keywords: ['about Shubham Travel', 'travel agency history', 'travel experts', 'India tour company', 'Shubham Travel values'],
+  title: 'About Us – Shubham Tours',
+  description: 'Learn about our journey, team, and what makes Shubham Tours unique. Discover our values, mission, and commitment to exceptional travel experiences across India.',
+  keywords: ['about Shubham Tours', 'travel agency history', 'travel experts', 'India tour company', 'Shubham Tours values'],
   openGraph: {
-    title: 'About Us – Shubham Travel',
-    description: 'Learn about our journey, team, and what makes Shubham Travel unique.',
+    title: 'About Us – Shubham Tours',
+    description: 'Learn about our journey, team, and what makes Shubham Tours unique.',
     images: [
       {
         url: '/image/about-us.jpg',
         width: 1200,
         height: 630,
-        alt: 'Shubham Travel Team',
+        alt: 'Shubham Tours Team',
       },
     ],
   },
@@ -55,7 +55,7 @@ export default function AboutPage() {
           <div className="relative z-20 h-full flex items-center justify-center text-white">
             <div className="text-center">
               <h1 className="text-4xl md:text-5xl font-bold mb-4">About Our Company</h1>
-              <p className="text-xl">Discover the story behind Shubham Travel</p>
+              <p className="text-xl">Discover the story behind Shubham Tours</p>
             </div>
           </div>
         </div>

@@ -1,9 +1,10 @@
 {
-  "extends": [
-    "next/core-web-vitals"
-  ],
+  "extends": "next/core-web-vitals",
   "rules": {
-    "react/no-unescaped-entities": "off"
+    "react/no-unescaped-entities": "off",
+    "@next/next/no-img-element": "off",
+    "react/jsx-no-undef": "error",
+    "@next/next/no-html-link-for-pages": "off"
   },
   "overrides": [
     {

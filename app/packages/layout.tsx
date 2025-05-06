@@ -1,11 +1,11 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Tour Destinations – Shubham Travel',
+  title: 'Tour Destinations – Shubham Tours',
   description: 'Explore our curated selection of tour destinations across India. Visit majestic palaces, serene beaches, and spiritual landmarks with expert guides.',
   keywords: ['India destinations', 'tourist places', 'heritage sites', 'cultural tours', 'adventure destinations'],
   openGraph: {
-    title: 'Tour Destinations – Shubham Travel',
+    title: 'Tour Destinations – Shubham Tours',
     description: 'Discover the most beautiful and culturally rich destinations across India.',
     images: [
       {

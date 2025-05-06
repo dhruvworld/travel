@@ -1,5 +1,4 @@
 import { DefaultSession } from 'next-auth';
-import { PrismaClient } from '@prisma/client';
 
 declare global {
   // For Prisma Client
@@ -11,15 +10,18 @@ declare module 'next-auth' {
     user: {
       id: string;
       role?: string | null;
+      isAdmin?: boolean;
     } & DefaultSession['user']
   }
 
   interface JWT {
     role?: string | null;
+    isAdmin?: boolean;
   }
 
   interface User {
     id: string;
     role?: string | null;
+    isAdmin?: boolean; 
   }
 }
