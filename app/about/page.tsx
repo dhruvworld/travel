@@ -4,7 +4,7 @@ import Script from 'next/script';
 import AboutSection from '@/components/sections/AboutSection';
 
 // Force dynamic rendering for this page
-export const dynamic = 'force-dynamic';
+export const dynamic = 'auto';
 
 export const metadata: Metadata = {
   title: 'About Us – Shubham Tours',
