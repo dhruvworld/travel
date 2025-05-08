@@ -1,6 +1,6 @@
 [build]
   command = "npm run build"
-  publish = ".next" # The new build output directory for Next.js
+  publish = "out"
 
 [[headers]]
   for = "/*"
@@ -11,3 +11,6 @@
   from = "/*"
   to = "/index.html"
   status = 200
+
+[build.environment]
+  NEXT_TELEMETRY_DISABLED = "1"

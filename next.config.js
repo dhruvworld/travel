@@ -1,11 +1,12 @@
 // next.config.js
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'standalone', // Static export mode
+  output: 'export',
   reactStrictMode: true,
   images: {
-    domains: ['your-image-domain.com'],
+    unoptimized: true
   },
+  trailingSlash: true,
 };
 
 module.exports = nextConfig;
