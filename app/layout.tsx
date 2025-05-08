@@ -4,7 +4,8 @@ import Footer from '@/components/sections/Footer'; // Import directly
 import { Toaster } from 'react-hot-toast';
 import { Poppins } from 'next/font/google';
 import '../styles/globals.css';
-
+import MobileNav from '@/components/MobileNav';
+import type { Metadata } from 'next'
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -14,7 +15,7 @@ const poppins = Poppins({
 });
 
 // Enhanced metadata for SEO and social sharing
-export const metadata = {
+export const metadata: Metadata = {
   metadataBase: new URL('https://shubhamtravel.in'),
   title: {
     default: 'Shubham Tours – Explore India & Beyond',
@@ -119,6 +120,7 @@ export default function RootLayout({
           <Navbar />
           <div className="flex-grow">{children}</div>
           <Footer />
+          <MobileNav />
         </Providers>
       </body>
     </html>
