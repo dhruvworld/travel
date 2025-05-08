@@ -22,7 +22,6 @@ const packages = [
     id: "1",
     name: "Bali Adventure",
     description: "Experience the beauty of Bali with our comprehensive tour package.",
-    price: 1299,
     duration: "7 days",
     location: "Bali, Indonesia",
     images: [
@@ -60,7 +59,6 @@ const packages = [
     id: "2",
     name: "Paris Getaway",
     description: "Discover the romance of Paris with our exclusive package.",
-    price: 1499,
     duration: "5 days",
     location: "Paris, France",
     images: [
@@ -90,7 +88,6 @@ const packages = [
     id: "3",
     name: "Tokyo Explorer",
     description: "Immerse yourself in the vibrant culture of Tokyo.",
-    price: 1699,
     duration: "6 days",
     location: "Tokyo, Japan",
     images: [
@@ -171,7 +168,6 @@ export default function PackagePage({ params }: PackageParams) {
         <div>
           <h2 className="text-xl font-semibold mb-2">Details</h2>
           <ul className="space-y-2">
-            <li><strong>Price:</strong> ${pkg.price}</li>
             <li><strong>Duration:</strong> {pkg.duration}</li>
             <li><strong>Location:</strong> {pkg.location}</li>
           </ul>
