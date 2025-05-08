@@ -29,7 +29,7 @@ function patchFile(filePath) {
   const content = fs.readFileSync(filePath, 'utf8');
   
   // Skip if file already has dynamic export
-  if (content.includes("export const dynamic = 'force-dynamic'")) {
+  if (content.includes("export const dynamic = 'auto'")) {
     console.log(`  Already patched: ${filePath}`);
     return false;
   }
@@ -59,11 +59,11 @@ function patchFile(filePath) {
     
     // Insert dynamic directive after 'use client' directive with proper spacing
     newContent = hasNewlineAfterUseClient ?
-      `${content.slice(0, afterUseClient)}\nexport const dynamic = 'force-dynamic';${content.slice(afterUseClient)}` :
-      `${content.slice(0, afterUseClient)}\n\nexport const dynamic = 'force-dynamic';${content.slice(afterUseClient)}`;
+      `${content.slice(0, afterUseClient)}\nexport const dynamic = 'auto';${content.slice(afterUseClient)}` :
+      `${content.slice(0, afterUseClient)}\n\nexport const dynamic = 'auto';${content.slice(afterUseClient)}`;
   } else {
     // If no 'use client', add dynamic at the beginning
-    newContent = `export const dynamic = 'force-dynamic';\n\n${content}`;
+    newContent = `export const dynamic = 'auto';\n\n${content}`;
   }
   
   fs.writeFileSync(filePath, newContent, 'utf8');
