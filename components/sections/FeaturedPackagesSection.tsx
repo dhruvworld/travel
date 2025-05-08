@@ -3,7 +3,7 @@
 
 import React, { FC } from 'react'
 import Link from 'next/link'
-import type { TravelPackage } from '@/lib/services/firebase-package'
+import type { TravelPackage } from '@/types/travel'
 
 export interface FeaturedPackagesSectionProps {
   packages: TravelPackage[]
