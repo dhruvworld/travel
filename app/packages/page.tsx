@@ -9,7 +9,6 @@ interface Tour {
   title: string;
   location: string;
   duration: string;
-  price: number;
   folder: string;
   imageCount: number;
   description: string;
@@ -21,7 +20,6 @@ const tours: Tour[] = [
     title: 'Kasol Escape',
     location: 'Himachal Pradesh',
     duration: '4 Days',
-    price: 22000,
     folder: 'kasol',
     imageCount: 5,
     description: 'Relax in the serene valleys and enjoy the hippie vibes of Kasol.',
@@ -31,7 +29,6 @@ const tours: Tour[] = [
     title: 'Ladakh Adventure',
     location: 'Ladakh',
     duration: '7 Days',
-    price: 48000,
     folder: 'ladakh',
     imageCount: 5,
     description: 'Explore the cold desert, monasteries, and pristine lakes of Ladakh.',
@@ -41,7 +38,6 @@ const tours: Tour[] = [
     title: 'Manali Snow Trails',
     location: 'Himachal Pradesh',
     duration: '5 Days',
-    price: 30000,
     folder: 'manali',
     imageCount: 5,
     description: 'Enjoy snowfall, adventure sports, and cozy cafes in Manali.',
@@ -51,7 +47,6 @@ const tours: Tour[] = [
     title: 'Shimla Hills',
     location: 'Himachal Pradesh',
     duration: '3 Days',
-    price: 20000,
     folder: 'shimla',
     imageCount: 5,
     description: 'Experience colonial charm, mall road shopping and scenic views in Shimla.',
@@ -61,7 +56,6 @@ const tours: Tour[] = [
     title: 'Spiti Valley Ride',
     location: 'Himachal Pradesh',
     duration: '6 Days',
-    price: 42000,
     folder: 'spiti',
     imageCount: 5,
     description: 'Ride through one of India\'s most breathtaking and remote valleys.',
@@ -70,18 +64,14 @@ const tours: Tour[] = [
 
 export default function ToursPage() {
   const [selectedDuration, setSelectedDuration] = useState('all');
-  
-  const [priceRange, setPriceRange] = useState(50000);
 
   const filteredTours = tours.filter((tour) => {
     const durationMatch =
       selectedDuration === 'all' ||
       (selectedDuration === 'short' && parseInt(tour.duration) <= 5) ||
       (selectedDuration === 'long' && parseInt(tour.duration) > 5);
-    const priceMatch = tour.price <= priceRange;
-    return durationMatch && priceMatch;
+    return durationMatch;
   });
-  
 
   return (
     <div className="min-h-screen pt-16 bg-gray-50">
@@ -114,23 +104,6 @@ export default function ToursPage() {
                 <option value="long">More than 5 Days</option>
               </select>
             </div>
-            {/* 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Max Price (₹{priceRange})
-              </label>
-              <input
-                type="range"
-                min="10000"
-                max="50000"
-                step="1000"
-                value={priceRange}
-                onChange={(e) => setPriceRange(parseInt(e.target.value))}
-                className="w-full"
-              />
-            </div> 
-            */}
-
           </div>
         </div>
 
@@ -161,7 +134,6 @@ export default function ToursPage() {
                   <div className="flex justify-between items-center text-sm text-gray-500">
                     <span>{tour.location}</span>
                     <span>{tour.duration}</span>
-                    <span>₹{tour.price}</span>
                   </div>
                   <div className="mt-4 flex justify-between items-center">
                     <span className="text-[15px] font-semibold">Reach Out for Details</span>
