@@ -1,22 +1,43 @@
 // app/api/car-rental/route.ts
-import { db } from '@/lib/firebase-client';
-import { collection, getDocs, addDoc } from 'firebase/firestore';
 import { NextResponse } from 'next/server';
+
+// Static car rental data
+const cars = [
+  {
+    id: "1",
+    name: "Toyota Camry",
+    type: "Sedan",
+    price: 50,
+    image: "/images/cars/camry.jpg",
+    available: true
+  },
+  {
+    id: "2",
+    name: "Honda CR-V",
+    type: "SUV",
+    price: 65,
+    image: "/images/cars/crv.jpg",
+    available: true
+  },
+  {
+    id: "3",
+    name: "BMW X5",
+    type: "Luxury SUV",
+    price: 120,
+    image: "/images/cars/x5.jpg",
+    available: true
+  }
+];
 
 // Fetch all cars
 export async function GET() {
-  const carsRef = collection(db, "cars");
-  const snapshot = await getDocs(carsRef);
-  const cars = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-  
   return NextResponse.json(cars);
 }
 
 // Add a new car rental option (no ID dependency)
 export async function POST(req: Request) {
   const data = await req.json();
-  const carsRef = collection(db, "cars");
-  await addDoc(carsRef, data);
-
+  // In a real application, you would save this to a database
+  // For now, we'll just return a success message
   return NextResponse.json({ message: "Car rental added successfully" });
 }

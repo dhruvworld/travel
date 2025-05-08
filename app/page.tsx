@@ -6,25 +6,71 @@ import FeaturedPackagesSection from '@/components/sections/FeaturedPackagesSecti
 import TestimonialsSection from '@/components/sections/TestimonialsSection'
 import GallerySection from '@/components/sections/GallerySection'
 import ContactSection from '@/components/sections/ContactSection'
-
-import { getFeaturedPackages, TravelPackage } from '@/lib/services/firebase-package'
+import type { TravelPackage } from '@/types/travel'
 
 export const dynamic = 'auto'
 
-export default async function HomePage() {
-  let packages: TravelPackage[] = []
-
-  try {
-    packages = await getFeaturedPackages()
-  } catch (e) {
-    console.error('Failed to fetch featured packages:', e)
+// Static featured packages data
+const featuredPackages: TravelPackage[] = [
+  {
+    id: "1",
+    name: "Bali Adventure",
+    description: "Experience the beauty of Bali with our comprehensive tour package.",
+    price: 1299,
+    image: "/images/packages/bali.jpg",
+    slug: "bali-adventure",
+    featured: true,
+    duration: "7 days",
+    location: "Bali, Indonesia",
+    category: "Adventure",
+    amenities: ["Hotel", "Meals", "Transport", "Guide"],
+    itinerary: [
+      { day: 1, description: "Arrival and welcome dinner" },
+      { day: 2, description: "Temple tour and cultural experience" }
+    ]
+  },
+  {
+    id: "2",
+    name: "Paris Getaway",
+    description: "Discover the romance of Paris with our exclusive city tour.",
+    price: 1499,
+    image: "/images/packages/paris.jpg",
+    slug: "paris-getaway",
+    featured: true,
+    duration: "5 days",
+    location: "Paris, France",
+    category: "City Tour",
+    amenities: ["Hotel", "Meals", "Transport", "Guide"],
+    itinerary: [
+      { day: 1, description: "Eiffel Tower visit" },
+      { day: 2, description: "Louvre Museum tour" }
+    ]
+  },
+  {
+    id: "3",
+    name: "Tokyo Explorer",
+    description: "Immerse yourself in the vibrant culture of Tokyo.",
+    price: 1699,
+    image: "/images/packages/tokyo.jpg",
+    slug: "tokyo-explorer",
+    featured: true,
+    duration: "6 days",
+    location: "Tokyo, Japan",
+    category: "Cultural",
+    amenities: ["Hotel", "Meals", "Transport", "Guide"],
+    itinerary: [
+      { day: 1, description: "City orientation" },
+      { day: 2, description: "Temple visits" }
+    ]
   }
+]
 
+export default async function HomePage() {
   return (
     <main className="min-h-screen overflow-x-hidden">
       <HeroSection />
       <ServicesSection />
-      <FeaturedPackagesSection packages={packages} />
+      <FeaturedPackagesSection packages={featuredPackages} />
       <TestimonialsSection />
       <GallerySection />
       <ContactSection />

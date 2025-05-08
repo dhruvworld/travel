@@ -1,7 +1,7 @@
 # 🔒 Security: Prevent sensitive files from being committed
 .env
 .env*.local
-firebase/serviceAccountKey.json
+serviceAccountKey.json
 scripts/serviceAccountKey.json
 
 # ✅ Node.js dependencies
@@ -12,21 +12,9 @@ scripts/serviceAccountKey.json
 # ✅ Build and output directories
 /.next/
 /out/
-/build
-/dist
 
 # ✅ Next.js and Vercel
-.next/
 .vercel
-.next/cache
-
-# ✅ Firebase Hosting
-.firebase/
-firebase-debug.log
-firestore-debug.log
-
-# ✅ GitHub Actions Secrets and Workflows
-.github/workflows/firebase-service-key.json
 
 # ✅ Debug and logs
 npm-debug.log*
@@ -37,11 +25,10 @@ yarn-error.log*
 # ✅ TypeScript and Build Artifacts
 *.tsbuildinfo
 next-env.d.ts
-next.config.js
 
 # ✅ IDE Settings
+.idea
 .vscode/
-.idea/
 *.suo
 *.ntvs*
 *.njsproj
@@ -55,4 +42,3 @@ Thumbs.db
 
 # ✅ Coverage and Testing
 /coverage
-/test-coverage

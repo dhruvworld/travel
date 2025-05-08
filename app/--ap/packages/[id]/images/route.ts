@@ -1,22 +1,72 @@
-// app/api/packages/route.ts
-import { db } from '@/lib/firebase-client';
-import { collection, getDocs, addDoc } from 'firebase/firestore';
+// app/api/packages/[id]/images/route.ts
 import { NextResponse } from 'next/server';
 
-// Fetch all packages
-export async function GET() {
-  const packagesRef = collection(db, "packages");
-  const snapshot = await getDocs(packagesRef);
-  const packages = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-  
-  return NextResponse.json(packages);
+interface PackageImage {
+  id: string;
+  url: string;
+  caption: string;
 }
 
-// Add a new package (no ID dependency)
-export async function POST(req: Request) {
-  const data = await req.json();
-  const packagesRef = collection(db, "packages");
-  await addDoc(packagesRef, data);
+interface PackageImages {
+  [key: string]: PackageImage[];
+}
 
-  return NextResponse.json({ message: "Package added successfully" });
+// Static package images data
+const packageImages: PackageImages = {
+  "1": [
+    {
+      id: "1",
+      url: "/images/packages/bali/1.jpg",
+      caption: "Bali Beach Sunset"
+    },
+    {
+      id: "2",
+      url: "/images/packages/bali/2.jpg",
+      caption: "Temple Visit"
+    }
+  ],
+  "2": [
+    {
+      id: "3",
+      url: "/images/packages/paris/1.jpg",
+      caption: "Eiffel Tower"
+    },
+    {
+      id: "4",
+      url: "/images/packages/paris/2.jpg",
+      caption: "Louvre Museum"
+    }
+  ],
+  "3": [
+    {
+      id: "5",
+      url: "/images/packages/tokyo/1.jpg",
+      caption: "Tokyo Tower"
+    },
+    {
+      id: "6",
+      url: "/images/packages/tokyo/2.jpg",
+      caption: "Shibuya Crossing"
+    }
+  ]
+};
+
+// Fetch package images
+export async function GET(
+  request: Request,
+  { params }: { params: { id: string } }
+) {
+  const images = packageImages[params.id] || [];
+  return NextResponse.json(images);
+}
+
+// Add a new package image
+export async function POST(
+  request: Request,
+  { params }: { params: { id: string } }
+) {
+  const data = await request.json();
+  // In a real application, you would save this to a database
+  // For now, we'll just return a success message
+  return NextResponse.json({ message: "Image added successfully" });
 }
