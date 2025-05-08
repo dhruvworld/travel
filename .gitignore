@@ -1,6 +1,8 @@
 # 🔒 Security: Prevent sensitive files from being committed
 .env
 .env*.local
+serviceAccountKey.json
+scripts/serviceAccountKey.json
 
 # ✅ Node.js dependencies
 /node_modules
