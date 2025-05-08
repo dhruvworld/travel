@@ -1,9 +1,8 @@
 [build]
   command = "npm run build"
-  publish = ".next"
+  publish = ".next" # The new build output directory for Next.js
 
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
-  force = true
