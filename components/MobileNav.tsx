@@ -24,12 +24,12 @@ export default function MobileNav() {
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0, opacity: 0 }}
-            className="absolute bottom-16 right-0 w-64 h-64"
+            className="absolute bottom-20 right-0 w-72 h-72"
           >
             <div className="relative w-full h-full">
               {navItems.map((item, index) => {
                 const angle = (index * 360) / navItems.length;
-                const radius = 100; // Distance from center
+                const radius = 120; // Increased radius for better spacing
                 const x = Math.cos((angle * Math.PI) / 180) * radius;
                 const y = Math.sin((angle * Math.PI) / 180) * radius;
 
@@ -50,10 +50,10 @@ export default function MobileNav() {
                     <Link
                       href={item.href}
                       onClick={() => setIsOpen(false)}
-                      className="flex flex-col items-center justify-center w-12 h-12 bg-white rounded-full shadow-lg hover:bg-blue-50 transition-colors"
+                      className="flex flex-col items-center justify-center w-16 h-16 bg-white rounded-full shadow-xl hover:bg-blue-50 transition-colors group"
                     >
-                      <span className="text-xl">{item.icon}</span>
-                      <span className="text-xs mt-1 font-medium">{item.name}</span>
+                      <span className="text-2xl transform group-hover:scale-110 transition-transform">{item.icon}</span>
+                      <span className="text-xs mt-1 font-semibold text-gray-700 group-hover:text-blue-600 transition-colors">{item.name}</span>
                     </Link>
                   </motion.div>
                 );
@@ -65,16 +65,16 @@ export default function MobileNav() {
 
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-14 h-14 bg-blue-600 rounded-full shadow-lg flex items-center justify-center text-white"
+        className="w-16 h-16 bg-blue-600 rounded-full shadow-xl flex items-center justify-center text-white hover:bg-blue-700 transition-colors"
         whileTap={{ scale: 0.9 }}
       >
         <motion.div
           animate={{ rotate: isOpen ? 45 : 0 }}
           transition={{ duration: 0.2 }}
-          className="w-6 h-6 flex flex-col justify-center items-center"
+          className="w-7 h-7 flex flex-col justify-center items-center"
         >
-          <span className="w-6 h-0.5 bg-white mb-1.5"></span>
-          <span className="w-6 h-0.5 bg-white"></span>
+          <span className="w-7 h-0.5 bg-white mb-1.5 rounded-full"></span>
+          <span className="w-7 h-0.5 bg-white rounded-full"></span>
         </motion.div>
       </motion.button>
     </div>

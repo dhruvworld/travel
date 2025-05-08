@@ -2,11 +2,25 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  reactStrictMode: true,
   images: {
-    unoptimized: true
+    unoptimized: true,
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
+    ],
   },
-  trailingSlash: true,
+  experimental: {
+    optimizeCss: true,
+    optimizePackageImports: ['framer-motion'],
+  },
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
+  poweredByHeader: false,
+  reactStrictMode: true,
+  swcMinify: true,
 };
 
 module.exports = nextConfig;
