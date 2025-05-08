@@ -14,50 +14,50 @@ export const dynamic = 'auto'
 const featuredPackages: TravelPackage[] = [
   {
     id: "1",
-    name: "Bali Adventure",
-    description: "Experience the beauty of Bali with our comprehensive tour package.",
-    image: "/images/packages/bali.jpg",
-    slug: "bali-adventure",
+    name: "Ladakh Adventure",
+    description: "Explore the cold desert, monasteries, and pristine lakes of Ladakh.",
+    image: "/images/package-img/ladakh/1.jpeg",
+    slug: "ladakh-adventure",
     featured: true,
     duration: "7 days",
-    location: "Bali, Indonesia",
+    location: "Ladakh",
     category: "Adventure",
     amenities: ["Hotel", "Meals", "Transport", "Guide"],
     itinerary: [
-      { day: 1, description: "Arrival and welcome dinner" },
-      { day: 2, description: "Temple tour and cultural experience" }
+      { day: 1, description: "Arrival in Leh and acclimatization" },
+      { day: 2, description: "Local sightseeing and monastery visits" }
     ]
   },
   {
     id: "2",
-    name: "Paris Getaway",
-    description: "Discover the romance of Paris with our exclusive city tour.",
-    image: "/images/packages/paris.jpg",
-    slug: "paris-getaway",
+    name: "Kasol Escape",
+    description: "Relax in the serene valleys and enjoy the hippie vibes of Kasol.",
+    image: "/images/package-img/kasol/1.jpeg",
+    slug: "kasol-escape",
     featured: true,
-    duration: "5 days",
-    location: "Paris, France",
-    category: "City Tour",
+    duration: "4 days",
+    location: "Himachal Pradesh",
+    category: "Nature",
     amenities: ["Hotel", "Meals", "Transport", "Guide"],
     itinerary: [
-      { day: 1, description: "Eiffel Tower visit" },
-      { day: 2, description: "Louvre Museum tour" }
+      { day: 1, description: "Arrival and local exploration" },
+      { day: 2, description: "Trek to Kheerganga" }
     ]
   },
   {
     id: "3",
-    name: "Tokyo Explorer",
-    description: "Immerse yourself in the vibrant culture of Tokyo.",
-    image: "/images/packages/tokyo.jpg",
-    slug: "tokyo-explorer",
+    name: "Spiti Valley Ride",
+    description: "Ride through one of India's most breathtaking and remote valleys.",
+    image: "/images/package-img/spiti/1.jpeg",
+    slug: "spiti-valley-ride",
     featured: true,
     duration: "6 days",
-    location: "Tokyo, Japan",
-    category: "Cultural",
+    location: "Himachal Pradesh",
+    category: "Adventure",
     amenities: ["Hotel", "Meals", "Transport", "Guide"],
     itinerary: [
-      { day: 1, description: "City orientation" },
-      { day: 2, description: "Temple visits" }
+      { day: 1, description: "Arrival and orientation" },
+      { day: 2, description: "Visit ancient monasteries" }
     ]
   }
 ]

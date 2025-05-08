@@ -63,16 +63,6 @@ const tours: Tour[] = [
 ];
 
 export default function ToursPage() {
-  const [selectedDuration, setSelectedDuration] = useState('all');
-
-  const filteredTours = tours.filter((tour) => {
-    const durationMatch =
-      selectedDuration === 'all' ||
-      (selectedDuration === 'short' && parseInt(tour.duration) <= 5) ||
-      (selectedDuration === 'long' && parseInt(tour.duration) > 5);
-    return durationMatch;
-  });
-
   return (
     <div className="min-h-screen pt-16 bg-gray-50">
       {/* Hero Section */}
@@ -86,30 +76,10 @@ export default function ToursPage() {
         </div>
       </div>
 
-      {/* Filters */}
+      {/* Tour Cards */}
       <div className="container mx-auto px-4 py-8">
-        <div className="bg-white p-4 rounded-lg shadow-sm mb-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Duration
-              </label>
-              <select
-                value={selectedDuration}
-                onChange={(e) => setSelectedDuration(e.target.value)}
-                className="w-full p-2 border rounded-md"
-              >
-                <option value="all">All Durations</option>
-                <option value="short">5 Days or Less</option>
-                <option value="long">More than 5 Days</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-        {/* Tour Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredTours.map((tour) => {
+          {tours.map((tour) => {
             const images = Array.from({ length: tour.imageCount }, (_, i) => `/images/package-img/${tour.folder}/${i + 1}.jpeg`);
 
             return (
