@@ -1,11 +1,17 @@
-import { adminAuth } from "@/lib/firebase-admin";
-import { NextRequest } from "next/server";
+// lib/utils/verify-admin.ts
+import { adminAuth } from '@/lib/firebase-admin';
 
-export async function verifyAdmin(req: NextRequest): Promise<boolean> {
-  const authHeader = req.headers.get("authorization");
-  if (!authHeader) return false;
+export async function verifyAdmin(req: Request) {
+  const authHeader = req.headers.get("Authorization");
+  if (!authHeader) {
+    throw new Error("Missing Authorization header");
+  }
 
   const token = authHeader.replace("Bearer ", "");
+  if (!adminAuth) {
+    throw new Error("Firebase Admin is not initialized.");
+  }
+
   try {
     const decodedToken = await adminAuth.verifyIdToken(token);
     return decodedToken.admin === true;
@@ -14,6 +20,3 @@ export async function verifyAdmin(req: NextRequest): Promise<boolean> {
     return false;
   }
 }
-
-// Just for backward compatibility if anything expects authOptions (even though not needed anymore)
-export const authOptions = {};
