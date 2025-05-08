@@ -1,21 +1,19 @@
 // lib/firebase-admin.ts
 
-import admin from "firebase-admin";
+import { initializeApp, cert, getApps } from "firebase-admin/app";
+import { getAuth } from "firebase-admin/auth";
+import { getFirestore } from "firebase-admin/firestore";
 
-// Only initialize Firebase if running on Firebase Hosting
-if (process.env.NETLIFY === undefined) {
-  if (!admin.apps.length) {
-    const serviceAccount = {
-      project_id: process.env.FIREBASE_PROJECT_ID,
-      client_email: process.env.FIREBASE_CLIENT_EMAIL,
-      private_key: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
-    };
-
-    admin.initializeApp({
-      credential: admin.credential.cert(serviceAccount as admin.ServiceAccount),
-    });
-  }
+// Ensure it doesn't re-initialize in hot-reload
+if (!getApps().length) {
+  initializeApp({
+    credential: cert({
+      projectId: process.env.FIREBASE_PROJECT_ID,
+      clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+      privateKey: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, "\n"),
+    }),
+  });
 }
 
-export const adminAuth = admin.apps.length ? admin.auth() : null;
-export const firestore = admin.apps.length ? admin.firestore() : null;
+export const adminAuth = getAuth();
+export const firestore = getFirestore();

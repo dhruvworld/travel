@@ -9,7 +9,7 @@ import ContactSection from '@/components/sections/ContactSection'
 
 import { getFeaturedPackages, TravelPackage } from '@/lib/services/firebase-package'
 
-export const dynamic = 'force-dynamic'
+export const dynamic = 'auto'
 
 export default async function HomePage() {
   let packages: TravelPackage[] = []
