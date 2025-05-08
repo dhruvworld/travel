@@ -1,52 +1,58 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# 🔒 Security: Prevent sensitive files from being committed
+.env
+.env*.local
+firebase/serviceAccountKey.json
+scripts/serviceAccountKey.json
 
-# dependencies
+# ✅ Node.js dependencies
 /node_modules
 /.pnp
 .pnp.js
 
-# Don't commit service account key
-firebase/serviceAccountKey.json
-scripts/serviceAccountKey.json
-
-# testing
-/coverage
-
-# next.js
+# ✅ Build and output directories
 /.next/
 /out/
-
-# production
 /build
+/dist
 
-# misc
-.DS_Store
-*.pem
-*.log
+# ✅ Next.js and Vercel
+.next/
+.vercel
+.next/cache
 
-# debug
+# ✅ Firebase Hosting
+.firebase/
+firebase-debug.log
+firestore-debug.log
+
+# ✅ GitHub Actions Secrets and Workflows
+.github/workflows/firebase-service-key.json
+
+# ✅ Debug and logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+*.log
 
-# local env files
-.env
-.env*.local
-
-
-# vercel
-.vercel
-
-# typescript
+# ✅ TypeScript and Build Artifacts
 *.tsbuildinfo
 next-env.d.ts
+next.config.js
 
-# netlify
-.netlify
-
-# IDE
+# ✅ IDE Settings
 .vscode/
 .idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
 
-# Build
-dist/
+# ✅ OS-Specific Files
+.DS_Store
+Thumbs.db
+*.pem
+
+# ✅ Coverage and Testing
+/coverage
+/test-coverage
