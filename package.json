@@ -1,15 +1,4 @@
 {
-  "name": "travel",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "migrate-firebase": "ts-node scripts/migrate-to-firebase.ts",
-    "deploy": "firebase deploy",
-    "mark": "cross-env $(cat .env.local | xargs) tsx scripts/mark-featured.ts"
-  },
   "dependencies": {
     "@fontsource/poppins": "^5.2.6",
     "axios": "^1.4.0",
@@ -19,8 +8,6 @@
     "date-fns": "^2.30.0",
     "dayjs": "^1.11.9",
     "dotenv": "^16.5.0",
-    "firebase": "^11.6.1",
-    "firebase-admin": "^13.3.0",
     "framer-motion": "^10.13.0",
     "get-intrinsic": "^1.3.0",
     "lucide-react": "^0.263.0",
