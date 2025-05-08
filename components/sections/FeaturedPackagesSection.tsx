@@ -40,7 +40,7 @@ const FeaturedPackagesSection: FC<FeaturedPackagesSectionProps> = ({ packages })
               <p className="flex-1 text-gray-600 mb-4">{pkg.description}</p>
               <div className="mt-auto">
                 <Link
-                  href={`/packages/${pkg.slug}`}
+                  href="/packages"
                   className="inline-block text-blue-600 hover:underline"
                 >
                   View Details
