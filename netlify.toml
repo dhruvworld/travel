@@ -1,9 +1,10 @@
 [build]
-  command = "npm run build && npm run export"
-  publish = "out"
+  command = "npm run build"
+  publish = ".next"
   base = "/"
 
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+  force = true
