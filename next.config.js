@@ -1,7 +1,6 @@
 // next.config.js
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
   images: {
     remotePatterns: [
       {
@@ -9,7 +8,6 @@ const nextConfig = {
         hostname: '**',
       },
     ],
-    unoptimized: true, // Required for static export
   },
   experimental: {
     optimizeCss: true,
