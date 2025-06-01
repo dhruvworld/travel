@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <h2 class="text-3xl font-bold mb-8">Vehicle Rentals</h2>
+    
+    {% if rentals %}
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {% for rental in rentals %}
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    {% if rental.image %}
+                        <img src="{{ rental.image.url }}" alt="{{ rental.name }}" class="w-full h-48 object-cover">
+                    {% endif %}
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold">{{ rental.name }}</h3>
+                        <p class="text-gray-600">Type: {{ rental.get_type_display }}</p>
+                        <p class="text-gray-600 mt-2">{{ rental.description|truncatewords:20 }}</p>
+                        <p class="text-primary-600 font-bold mt-2">₹{{ rental.price_per_day }} per day</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No rentals available at the moment.</p>
+    {% endif %}
+</div>
+{% endblock %} 

@@ -1,0 +1,52 @@
+# 🔒 Security: Prevent sensitive files from being committed
+.env
+.env*.local
+serviceAccountKey.json
+scripts/serviceAccountKey.json
+
+# ✅ Node.js dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# ✅ Build and output directories
+/.next/
+/out/
+
+# ✅ Next.js and Vercel
+.vercel
+
+# ✅ Debug and logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# ✅ TypeScript and Build Artifacts
+*.tsbuildinfo
+next-env.d.ts
+
+# ✅ IDE Settings
+.idea
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# ✅ OS-Specific Files
+.DS_Store
+Thumbs.db
+*.pem
+
+# ✅ Coverage and Testing
+/coverage
+
+# Large files
+.firebase/shubham-tours/functions/node_modules/@next/swc-darwin-arm64/next-swc.darwin-arm64.node
+
+# Node modules
+.firebase/shubham-tours/functions/node_modules/
+node_modules/
+.firebase/
