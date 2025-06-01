@@ -38,8 +38,6 @@
     "zod": "^3.24.3"
   },
   "devDependencies": {
-    "@eslint/config-array": "^1.0.0",
-    "@eslint/object-schema": "^1.0.0",
     "@types/next": "^8.0.7",
     "@types/node": "^20",
     "@types/nodemailer": "^6.4.17",
@@ -49,7 +47,7 @@
     "autoprefixer": "^10.0.1",
     "cross-env": "^7.0.3",
     "dotenv-cli": "^8.0.0",
-    "eslint": "^9.0.0",
+    "eslint": "^8.57.0",
     "eslint-config-next": "14.1.0",
     "glob": "^10.3.10",
     "postcss": "^8",
