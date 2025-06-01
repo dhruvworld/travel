@@ -1,22 +1,19 @@
 // lib/utils/verify-admin.ts
-import { adminAuth } from '@/lib/firebase-admin';
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/lib/auth-options";
 
-export async function verifyAdmin(req: Request) {
-  const authHeader = req.headers.get("Authorization");
-  if (!authHeader) {
-    throw new Error("Missing Authorization header");
+export async function verifyAdmin() {
+  const session = await getServerSession(authOptions);
+  
+  if (!session?.user?.email) {
+    throw new Error("Not authenticated");
   }
 
-  const token = authHeader.replace("Bearer ", "");
-  if (!adminAuth) {
-    throw new Error("Firebase Admin is not initialized.");
+  // Check if user is admin based on email
+  const adminEmails = process.env.ADMIN_EMAIL?.split(',') || [];
+  if (!adminEmails.includes(session.user.email)) {
+    throw new Error("Not authorized");
   }
 
-  try {
-    const decodedToken = await adminAuth.verifyIdToken(token);
-    return decodedToken.admin === true;
-  } catch (error) {
-    console.error("Token verification failed:", error);
-    return false;
-  }
+  return session.user;
 }

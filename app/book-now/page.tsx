@@ -2,14 +2,16 @@
 
 import { Phone, MessageSquare, Home } from "lucide-react";
 import Link from "next/link";
-import { useSearchParams } from 'next/navigation';
+import BookingForm from './booking-form';
 
-export default function BookNowPage() {
-  // Get the source and item details from URL parameters
-  const searchParams = useSearchParams();
-  const source = searchParams.get('source') || 'general';
-  const itemName = searchParams.get('name') || '';
-  const itemType = searchParams.get('type') || '';
+export default function BookNowPage({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined };
+}) {
+  const source = typeof searchParams.source === 'string' ? searchParams.source : 'general';
+  const itemName = typeof searchParams.name === 'string' ? searchParams.name : '';
+  const itemType = typeof searchParams.type === 'string' ? searchParams.type : '';
 
   // Generate appropriate WhatsApp message based on source
   const getWhatsAppMessage = () => {
@@ -38,26 +40,11 @@ export default function BookNowPage() {
           Reach out to our travel expert and confirm your {itemType || 'booking'} instantly.
         </p>
 
-        <div className="bg-blue-50 rounded-xl shadow-inner p-6 mb-6">
-          <h2 className="text-2xl font-semibold text-blue-700 mb-2">Jayendra Patel</h2>
-
-          <div className="flex flex-col items-center gap-3">
-            <a href="tel:+919737990335" className="flex items-center gap-2 text-blue-600 hover:text-blue-800 text-lg font-medium transition">
-              <Phone className="w-5 h-5" /> +91 97379 90335
-            </a>
-
-            <a 
-              href={whatsappUrl}
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-green-600 hover:text-green-800 text-lg font-medium transition"
-            >
-              <MessageSquare className="w-5 h-5" /> WhatsApp Now
-            </a>
-          </div>
-
-          <p className="mt-4 text-sm text-gray-500">Available every day from 9:00 AM to 9:00 PM</p>
-        </div>
+        <BookingForm 
+          source={source}
+          itemName={itemName}
+          itemType={itemType}
+        />
 
         <Link href="/" className="inline-flex items-center gap-2 mt-4 text-sm text-blue-600 hover:text-blue-800 transition">
           <Home className="w-4 h-4" /> Back to Home

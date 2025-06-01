@@ -1,8 +1,17 @@
-// app/api/packages/[id]/images/route.ts
 import { NextResponse } from 'next/server';
 
+type PackageImage = {
+  id: string;
+  url: string;
+  caption: string;
+};
+
+type PackageImages = {
+  [key: string]: PackageImage[];
+};
+
 // Static package images data
-const packageImages = {
+const packageImages: PackageImages = {
   "1": [
     {
       id: "1",
@@ -46,7 +55,12 @@ export async function GET(
   request: Request,
   { params }: { params: { id: string } }
 ) {
-  const images = packageImages[params.id] || [];
+  // Check if the id exists in packageImages
+  if (!(params.id in packageImages)) {
+    return NextResponse.json({ error: "Package not found" }, { status: 404 });
+  }
+
+  const images = packageImages[params.id];
   return NextResponse.json(images);
 }
 
@@ -55,8 +69,13 @@ export async function POST(
   request: Request,
   { params }: { params: { id: string } }
 ) {
+  // Check if the id exists in packageImages
+  if (!(params.id in packageImages)) {
+    return NextResponse.json({ error: "Package not found" }, { status: 404 });
+  }
+
   const data = await request.json();
   // In a real application, you would save this to a database
   // For now, we'll just return a success message
   return NextResponse.json({ message: "Image added successfully" });
-}
+} 
