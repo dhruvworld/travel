@@ -26,7 +26,7 @@ const cars: Car[] = [
     transmission: "Automatic",
     price: 3000,
     folder: "innova",
-    imageCount: 3,
+    imageCount: 1,
     imageExtension: "jpg",
     features: ["Air Conditioning", "GPS Navigation", "Bluetooth", "Parking Sensors"]
   },
@@ -38,7 +38,7 @@ const cars: Car[] = [
     transmission: "Manual",
     price: 2000,
     folder: "dzire",
-    imageCount: 2,
+    imageCount: 1,
     imageExtension: "jpg",
     features: ["Air Conditioning", "Power Windows", "Central Locking", "ABS"]
   },
@@ -50,7 +50,7 @@ const cars: Car[] = [
     transmission: "Manual",
     price: 3500,
     folder: "thar",
-    imageCount: 2,
+    imageCount: 1,
     imageExtension: "jpg",
     features: ["4x4 Drive", "Air Conditioning", "Touchscreen", "Cruise Control"]
   },

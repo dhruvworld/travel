@@ -8,6 +8,12 @@ const nextConfig = {
         hostname: '**',
       },
     ],
+    // Enable static image optimization for local images
+    unoptimized: false,
+    // Allow images from public directory
+    dangerouslyAllowSVG: true,
+    contentDispositionType: 'attachment',
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   experimental: {
     optimizeCss: true,
