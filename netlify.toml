@@ -1,17 +1,17 @@
 [build]
   command = "npm run build"
   publish = "out"
-  environment = { NETLIFY_NEXT_PLUGIN_SKIP = "true" }
-
-[build.environment]
-  ADMIN_EMAIL = ""
-  ADMIN_PASSWORD = ""
-  ADMIN_USERNAME = ""
-  NEXTAUTH_SECRET = ""
-  NEXT_PUBLIC_ADMIN_KEY = ""
-  NEXT_PUBLIC_ADMIN_TOKEN = ""
-  UPLOAD_PATH = ""
-  NEXT_TELEMETRY_DISABLED = "1"
+  environment = { 
+    NETLIFY_NEXT_PLUGIN_SKIP = "true",
+    ADMIN_EMAIL = "",
+    ADMIN_PASSWORD = "",
+    ADMIN_USERNAME = "",
+    NEXTAUTH_SECRET = "",
+    NEXT_PUBLIC_ADMIN_KEY = "",
+    NEXT_PUBLIC_ADMIN_TOKEN = "",
+    UPLOAD_PATH = "",
+    NEXT_TELEMETRY_DISABLED = "1"
+  }
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
