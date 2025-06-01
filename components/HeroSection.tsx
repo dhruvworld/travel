@@ -28,7 +28,7 @@ export default function HeroSection() {
 
       {/* Background Image */}
       <Image
-        src="/images/hero-bg.svg"
+        src="/images/hero.jpg"
         alt="Beautiful travel destination"
         fill
         priority
