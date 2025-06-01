@@ -1,6 +1,16 @@
 [build]
   command = "npm run build"
   publish = "out"
+  environment = {
+    ADMIN_EMAIL = "",
+    ADMIN_PASSWORD = "",
+    ADMIN_USERNAME = "",
+    NEXTAUTH_SECRET = "",
+    NEXT_PUBLIC_ADMIN_KEY = "",
+    NEXT_PUBLIC_ADMIN_TOKEN = "",
+    UPLOAD_PATH = "",
+    NEXT_TELEMETRY_DISABLED = "1"
+  }
 
 [[headers]]
   for = "/*"
@@ -12,5 +22,5 @@
   to = "/index.html"
   status = 200
 
-[build.environment]
-  NEXT_TELEMETRY_DISABLED = "1"
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
