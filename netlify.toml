@@ -1,6 +1,7 @@
 [build]
   command = "npm run build"
   publish = "out"
+  environment = { NETLIFY_NEXT_PLUGIN_SKIP = "true" }
 
 [build.environment]
   ADMIN_EMAIL = ""
