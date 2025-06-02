@@ -1,0 +1,10 @@
+// jsconfig.json (create at root if missing)
+{
+    "compilerOptions": {
+      "baseUrl": ".",
+      "paths": {
+        "@/*": ["*"]
+      }
+    }
+  }
+  

@@ -1,0 +1,159 @@
+.
+├── .DS_Store
+├── .gitkeep
+├── about-us.jpg
+├── cars
+│   ├── .DS_Store
+│   ├── 45 seat bus
+│   │   ├── .DS_Store
+│   │   ├── 1.jpeg
+│   │   ├── 2.jpg
+│   │   └── 3.jpeg
+│   ├── 53 seat volvo
+│   │   ├── .DS_Store
+│   │   ├── 1.jpeg
+│   │   ├── 2.jpeg
+│   │   ├── 3.jpeg
+│   │   ├── 4.jpeg
+│   │   ├── 5.jpeg
+│   │   ├── 6.jpeg
+│   │   └── 7.jpeg
+│   ├── dzire.jpg
+│   ├── innova.jpg
+│   ├── tempo traveller  12 ,17,20 seat
+│   │   ├── .DS_Store
+│   │   ├── 1.jpeg
+│   │   ├── 2.jpeg
+│   │   ├── 3.jpeg
+│   │   ├── 4.jpeg
+│   │   ├── 5.jpeg
+│   │   ├── 6.jpeg
+│   │   ├── 7.jpeg
+│   │   ├── 8.jpeg
+│   │   └── 9.jpeg
+│   ├── thar.jpg
+│   └── Urbania 20 seat
+│       ├── .DS_Store
+│       ├── 1.jpeg
+│       ├── 2.jpeg
+│       ├── 3.jpeg
+│       ├── 4.jpeg
+│       ├── 5.jpeg
+│       ├── 6.jpeg
+│       └── 7.jpeg
+├── directory_structure_img.txt
+├── dzire.jpg
+├── gallery-2.jpg
+├── gallery-3.jpg
+├── gallery-4.jpg
+├── gallery-5.jpg
+├── gallery-6.jpeg
+├── gallery-6.jpg
+├── gallery-7.jpeg
+├── gallery-8.jpeg
+├── gallery-8.jpg
+├── goa.jpg
+├── golden-triangle.jpg
+├── gujarat-heritage.jpg
+├── hero-bg.svg
+├── hero-default.jpg
+├── hero.jpg
+├── hero1.jpg
+├── himalayas.jpg
+├── jaipur.svg
+├── kasol
+│   ├── .DS_Store
+│   ├── 1.jpeg
+│   ├── 10.jpeg
+│   ├── 11.jpeg
+│   ├── 12.jpeg
+│   ├── 13.jpeg
+│   ├── 2.jpeg
+│   ├── 3.jpeg
+│   ├── 4.jpeg
+│   ├── 5.jpeg
+│   ├── 6.jpeg
+│   ├── 7.jpeg
+│   ├── 8.jpeg
+│   └── 9.jpeg
+├── kerala-backwaters.jpg
+├── kerala.jpg
+├── kerala.svg
+├── ladakh
+│   ├── .DS_Store
+│   ├── 1.jpeg
+│   ├── 10.jpeg
+│   ├── 11.jpeg
+│   ├── 12.jpeg
+│   ├── 13.jpeg
+│   ├── 14.jpeg
+│   ├── 15.jpeg
+│   ├── 16.jpeg
+│   ├── 17.jpeg
+│   ├── 18.jpeg
+│   ├── 19.jpeg
+│   ├── 2.jpeg
+│   ├── 20.jpeg
+│   ├── 21.jpeg
+│   ├── 22.jpeg
+│   ├── 23.jpeg
+│   ├── 24.jpeg
+│   ├── 3.jpeg
+│   ├── 4.jpeg
+│   ├── 5.jpeg
+│   ├── 6.jpeg
+│   ├── 7.jpeg
+│   ├── 8.jpeg
+│   └── 9.jpeg
+├── leela.jpg
+├── logo.png
+├── manali
+│   ├── .DS_Store
+│   ├── 1.jpeg
+│   ├── 10.jpeg
+│   ├── 11.jpeg
+│   ├── 12.jpeg
+│   ├── 13.jpeg
+│   ├── 14.jpeg
+│   ├── 15.jpeg
+│   ├── 2.jpeg
+│   ├── 3.jpeg
+│   ├── 4.jpeg
+│   ├── 5.jpeg
+│   ├── 6.jpeg
+│   ├── 7.jpeg
+│   ├── 8.jpeg
+│   └── 9.jpeg
+├── person1.jpg
+├── person2.jpg
+├── person3.jpg
+├── rajasthan.jpg
+├── shimla
+│   ├── .DS_Store
+│   ├── 1.jpeg
+│   ├── 10.jpeg
+│   ├── 2.jpeg
+│   ├── 3.jpeg
+│   ├── 4.jpeg
+│   ├── 5.jpeg
+│   ├── 6.jpeg
+│   ├── 7.jpeg
+│   ├── 8.jpeg
+│   └── 9.jpeg
+├── spiti
+│   ├── .DS_Store
+│   ├── 1.jpeg
+│   ├── 2.jpeg
+│   ├── 3.jpeg
+│   ├── 4.jpeg
+│   ├── 5.jpeg
+│   ├── 6.jpeg
+│   ├── 7.jpeg
+│   └── 8.jpeg
+├── taj-mahal.jpg
+├── taj-mahal.svg
+├── taj-palace.jpg
+├── udaivilas.jpg
+└── varanasi.jpg
+
+11 directories, 146 files

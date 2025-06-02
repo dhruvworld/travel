@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+  <!-- Sky Gradient -->
+  <defs>
+    <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a237e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0d47a1;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1920" height="1080" fill="url(#skyGradient)"/>
+  
+  <!-- Mountains -->
+  <path d="M0 800 L400 400 L800 800" fill="#2e7d32"/>
+  <path d="M200 800 L600 300 L1000 800" fill="#1b5e20"/>
+  <path d="M400 800 L800 200 L1200 800" fill="#0a280e"/>
+  
+  <!-- Stars -->
+  <circle cx="200" cy="200" r="2" fill="#FFFFFF"/>
+  <circle cx="400" cy="150" r="2" fill="#FFFFFF"/>
+  <circle cx="600" cy="250" r="2" fill="#FFFFFF"/>
+  <circle cx="800" cy="180" r="2" fill="#FFFFFF"/>
+  <circle cx="1000" cy="220" r="2" fill="#FFFFFF"/>
+  
+  <!-- Moon -->
+  <circle cx="1600" cy="200" r="60" fill="#FFD700"/>
+  <circle cx="1580" cy="180" r="50" fill="#FFA500"/>
+</svg> 

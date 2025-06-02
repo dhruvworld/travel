@@ -1,0 +1,16 @@
+[build]
+  command = "npm run build"
+  publish = "out"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[build.environment]
+  NEXT_TELEMETRY_DISABLED = "1"
