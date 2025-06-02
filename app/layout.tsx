@@ -21,7 +21,11 @@ export const metadata: Metadata = {
     default: 'Shubham Tours – Explore India & Beyond',
     template: '%s | Shubham Tours'
   },
+<<<<<<< HEAD
   description: 'Book breathtaking tours, custom travel packages, and unforgettable experiences with Shubham Tours. Discover India\'s hidden gems with our expert guides.',
+=======
+  description: 'Book breathtaking tours, custom travel packages, and unforgettable experiences with Shubham Tours.',
+>>>>>>> 71dd6a2d7891fabe7a464e7bf3442ff76ebe9671
   keywords: [
     'Travel India',
     'Tour Packages',
@@ -31,6 +35,7 @@ export const metadata: Metadata = {
     'India tourism',
     'Golden Triangle tour',
     'Kerala backwaters',
+<<<<<<< HEAD
     'Rajasthan tours',
     'Himachal Pradesh tours',
     'Ladakh tours',
@@ -44,6 +49,12 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
+=======
+    'Rajasthan tours'
+  ],
+  authors: [{ name: 'Shubham Tours', url: 'https://shubhamtravel.in' }],
+  creator: 'Shubham Tours',
+>>>>>>> 71dd6a2d7891fabe7a464e7bf3442ff76ebe9671
   verification: {
     google: 'verification_token',
   },
@@ -78,7 +89,10 @@ export const metadata: Metadata = {
       follow: true,
       'max-image-preview': 'large',
       'max-snippet': -1,
+<<<<<<< HEAD
       'max-video-preview': -1,
+=======
+>>>>>>> 71dd6a2d7891fabe7a464e7bf3442ff76ebe9671
     },
   },
   alternates: {
@@ -109,7 +123,11 @@ export const metadata: Metadata = {
 export const viewport = {
   width: 'device-width',
   initialScale: 1,
+<<<<<<< HEAD
   maximumScale: 5,
+=======
+  maximumScale: 1,
+>>>>>>> 71dd6a2d7891fabe7a464e7bf3442ff76ebe9671
   themeColor: [
     { media: '(prefers-color-scheme: light)', color: '#ffffff' },
     { media: '(prefers-color-scheme: dark)', color: '#000000' }
@@ -117,6 +135,7 @@ export const viewport = {
   colorScheme: 'light'
 };
 
+<<<<<<< HEAD
 // Add structured data for the organization
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -136,6 +155,8 @@ const jsonLd = {
   }
 };
 
+=======
+>>>>>>> 71dd6a2d7891fabe7a464e7bf3442ff76ebe9671
 export default function RootLayout({
   children,
 }: {
@@ -143,12 +164,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${poppins.variable} scroll-smooth`}>
+<<<<<<< HEAD
       <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
+=======
+>>>>>>> 71dd6a2d7891fabe7a464e7bf3442ff76ebe9671
       <body className="font-sans bg-white text-dark min-h-screen flex flex-col">
         <Providers>
           <Toaster position="top-right" />

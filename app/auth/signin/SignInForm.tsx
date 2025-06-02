@@ -8,7 +8,11 @@ export default function SignInForm() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+<<<<<<< HEAD
     // TODO: Implement actual authentication logic
+=======
+    // Replace with your Firebase login logic
+>>>>>>> 71dd6a2d7891fabe7a464e7bf3442ff76ebe9671
     console.log('Logging in with', { email, password });
   };
 
