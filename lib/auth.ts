@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { getServerSession } from 'next-auth';
 import { authOptions } from './auth/auth-options';
 import type { Session } from 'next-auth';
@@ -51,3 +52,21 @@ export async function checkAuth() {
 }
 
 export const auth = { getSession, requireAuth, checkAuth, getAdminSession };
+=======
+// lib/auth.ts
+
+import { NextRequest, NextResponse } from 'next/server'
+import { getServerSession } from 'next-auth/next'
+import { authOptions } from './auth-options'
+
+export async function middleware(req: NextRequest) {
+  const session = await getServerSession(authOptions)
+  const isAdmin = (session?.user as any)?.isAdmin
+
+  if (!session || !isAdmin) {
+    return NextResponse.redirect(new URL('/login', req.url))
+  }
+
+  return NextResponse.next()
+}
+>>>>>>> 44ef0346a7c81ff5618abd514baaf7db50292d27

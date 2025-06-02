@@ -64,6 +64,7 @@ export default function HotelsClientComponent() {
   return (
     <div className="min-h-screen pt-16 bg-gray-50">
       {/* Hero Section */}
+<<<<<<< HEAD
       <div className="relative h-[300px] bg-blue-600">
         <div className="absolute inset-0 bg-black/40 z-10" />
         <div className="relative z-20 h-full flex items-center justify-center text-white">
@@ -72,6 +73,11 @@ export default function HotelsClientComponent() {
             <p className="text-xl">Find the perfect stay for your journey</p>
           </div>
         </div>
+=======
+      <div className="bg-blue-800 py-12 text-center text-white mb-8">
+        <h1 className="text-4xl font-bold">Luxury Hotels</h1>
+        <p className="mt-2 text-lg">Find the perfect stay for your journey</p>
+>>>>>>> 44ef0346a7c81ff5618abd514baaf7db50292d27
       </div>
 
       {/* Search and Filters */}
@@ -90,6 +96,10 @@ export default function HotelsClientComponent() {
                 className="w-full p-2 border rounded-md"
               />
             </div>
+<<<<<<< HEAD
+=======
+            {/* 
+>>>>>>> 44ef0346a7c81ff5618abd514baaf7db50292d27
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Max Price (₹{priceRange})
@@ -104,6 +114,10 @@ export default function HotelsClientComponent() {
                 className="w-full"
               />
             </div>
+<<<<<<< HEAD
+=======
+            */}
+>>>>>>> 44ef0346a7c81ff5618abd514baaf7db50292d27
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Minimum Rating
@@ -135,6 +149,7 @@ export default function HotelsClientComponent() {
                 />
               </div>
               <div className="p-6">
+<<<<<<< HEAD
                 <div className="flex justify-between items-start mb-2">
                   <h3 className="text-xl font-semibold">{hotel.name}</h3>
                   <div className="flex items-center bg-blue-100 px-2 py-1 rounded">
@@ -164,6 +179,20 @@ export default function HotelsClientComponent() {
                   >
                     Book Now
                   </Link>
+=======
+                <h3 className="text-xl font-semibold mb-2">{hotel.name}</h3>
+                <p className="text-gray-600 mb-4">{hotel.description}</p>
+                <div className="flex justify-between items-center">
+                  <span className="text-xl font-bold">Reach Out for Details</span>
+                  {/* <span className="text-gray-600">₹{hotel.price}</span> */}
+                  <Link 
+                        href="/book-now" 
+                        className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition"
+                      >
+                        Book Now
+                  </Link>
+
+>>>>>>> 44ef0346a7c81ff5618abd514baaf7db50292d27
                 </div>
               </div>
             </div>

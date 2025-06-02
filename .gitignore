@@ -1,20 +1,52 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# 🔒 Security: Prevent sensitive files from being committed
+.env
+.env*.local
+<<<<<<< HEAD
+.env.development
+.env.production
+.env.test
+serviceAccountKey.json
+scripts/serviceAccountKey.json
+*.pem
+*.key
+*.cert
 
-# dependencies
+# ✅ Dependencies
+node_modules/
+/.pnp
+.pnp.js
+package-lock*.json
+yarn.lock
+.pnpm-lock.yaml
+=======
+serviceAccountKey.json
+scripts/serviceAccountKey.json
+
+# ✅ Node.js dependencies
 /node_modules
 /.pnp
 .pnp.js
+<<<<<<< HEAD
+=======
+>>>>>>> 71dd6a2d7891fabe7a464e7bf3442ff76ebe9671
+>>>>>>> 44ef0346a7c81ff5618abd514baaf7db50292d27
 
-# testing
-/coverage
-
-# next.js
+# ✅ Build and output directories
 /.next/
 /out/
+<<<<<<< HEAD
+/dist/
+/build/
+/.firebase/
+/.vercel/
+/.netlify/
+=======
 
-# production
-/build
+# ✅ Next.js and Vercel
+.vercel
+>>>>>>> 71dd6a2d7891fabe7a464e7bf3442ff76ebe9671
 
+<<<<<<< HEAD
 # misc
 .DS_Store
 *.pem
@@ -49,3 +81,137 @@ next-env.d.ts
 
 # Build
 dist/
+=======
+# ✅ Debug and logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+<<<<<<< HEAD
+logs/
+*.log.*
+=======
+>>>>>>> 71dd6a2d7891fabe7a464e7bf3442ff76ebe9671
+
+# ✅ TypeScript and Build Artifacts
+*.tsbuildinfo
+next-env.d.ts
+<<<<<<< HEAD
+*.js.map
+*.d.ts
+!types/*.d.ts
+
+# ✅ IDE and Editor Settings
+.idea/
+=======
+
+# ✅ IDE Settings
+.idea
+>>>>>>> 71dd6a2d7891fabe7a464e7bf3442ff76ebe9671
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+<<<<<<< HEAD
+.project
+.classpath
+.settings/
+*.sublime-workspace
+*.sublime-project
+=======
+>>>>>>> 71dd6a2d7891fabe7a464e7bf3442ff76ebe9671
+
+# ✅ OS-Specific Files
+.DS_Store
+Thumbs.db
+<<<<<<< HEAD
+desktop.ini
+$RECYCLE.BIN/
+*.tmp
+*.temp
+
+# ✅ Testing and Coverage
+/coverage/
+/.nyc_output/
+/cypress/videos/
+/cypress/screenshots/
+/jest-coverage/
+
+# ✅ Temporary and Cache Files
+.cache/
+.temp/
+.tmp/
+*.cache
+*.bak
+*.swp
+*~
+
+# ✅ Large Media and Binary Files
+*.mp4
+*.tiff
+*.avi
+*.flv
+*.mov
+*.wmv
+*.zip
+*.tar.gz
+*.rar
+*.7z
+*.iso
+*.dmg
+*.pkg
+
+# ✅ Keep these files
+!public/images/
+!public/fonts/
+!public/icons/
+
+# ✅ Firebase specific
+.firebase/
+firebase-debug.log
+firebase-debug.*.log
+ui-debug.log
+ui-debug.*.log
+.runtimeconfig.json
+.runtimeconfig.*.json
+
+# ✅ Next.js specific
+.next/
+out/
+.vercel/
+.env*.local
+
+# ✅ Python specific (if any)
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+.venv/
+venv/
+ENV/
+env/
+.env/
+.venv
+env.bak/
+venv.bak/
+.python-version
+
+# ✅ Keep essential config files
+!next.config.js
+!tailwind.config.js
+!postcss.config.js
+!tsconfig.json
+!package.json
+!README.md
+!.eslintrc.json
+!.prettierrc
+!jsconfig.json
+=======
+*.pem
+
+# ✅ Coverage and Testing
+/coverage
+>>>>>>> 71dd6a2d7891fabe7a464e7bf3442ff76ebe9671
+>>>>>>> 44ef0346a7c81ff5618abd514baaf7db50292d27

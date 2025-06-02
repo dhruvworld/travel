@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+<<<<<<< HEAD
 import { getToken } from "next-auth/jwt";
 import type { NextRequest } from "next/server";
 
@@ -29,3 +30,21 @@ export async function middleware(request: NextRequest) {
 export const config = {
   matcher: ["/admin/:path*"],
 };
+=======
+import type { NextRequest } from "next/server";
+
+export function middleware(req: NextRequest) {
+  const url = req.nextUrl.clone();
+
+  // Example: protect /admin routes
+  if (url.pathname.startsWith("/admin")) {
+    const token = req.headers.get("authorization");
+    if (!token) {
+      url.pathname = "/auth/signin";
+      return NextResponse.redirect(url);
+    }
+  }
+
+  return NextResponse.next();
+}
+>>>>>>> 44ef0346a7c81ff5618abd514baaf7db50292d27

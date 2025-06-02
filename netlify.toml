@@ -1,5 +1,6 @@
 [build]
   command = "npm run build"
+<<<<<<< HEAD
   publish = ".next"
 
 [build.environment]
@@ -12,3 +13,19 @@
 
 [functions]
   included_files = ["prisma/**", "prisma/schema.prisma"]
+=======
+  publish = "out"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[build.environment]
+  NEXT_TELEMETRY_DISABLED = "1"
+>>>>>>> 44ef0346a7c81ff5618abd514baaf7db50292d27

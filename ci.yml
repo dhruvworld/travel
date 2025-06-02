@@ -23,7 +23,10 @@ jobs:
       run: npm ci
       
     - name: Generate Prisma Client
+<<<<<<< HEAD
       run: npx prisma generate
+=======
+>>>>>>> 44ef0346a7c81ff5618abd514baaf7db50292d27
       
     - name: Build
       run: npm run build

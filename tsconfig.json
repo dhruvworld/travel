@@ -1,7 +1,18 @@
 {
   "compilerOptions": {
+<<<<<<< HEAD
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
+=======
+    "baseUrl": ".",
+    "paths": { "@/*": ["./*"] },
+    "target": "es2020",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+>>>>>>> 44ef0346a7c81ff5618abd514baaf7db50292d27
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -14,16 +25,41 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./*"
+      ]
+    },
+    "typeRoots": [
+      "./node_modules/@types",
+      "./types"
+    ],
     "plugins": [
       {
         "name": "next"
       }
+<<<<<<< HEAD
     ],
     "baseUrl": ".",
     "paths": {
       "@/*": ["./*"]
     }
+=======
+    ]
+>>>>>>> 44ef0346a7c81ff5618abd514baaf7db50292d27
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "types/**/*.ts",
+    "types/**/*.d.ts",
+    "app/types/**/*.ts",
+    "app/types/**/*.d.ts",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

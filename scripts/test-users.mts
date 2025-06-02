@@ -1,11 +1,17 @@
+<<<<<<< HEAD
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient({
+=======
+>>>>>>> 44ef0346a7c81ff5618abd514baaf7db50292d27
   log: ['query', 'info', 'warn', 'error'],
 });
 
 async function main() {
   try {
+<<<<<<< HEAD
     const user = await prisma.user.create({
+=======
+>>>>>>> 44ef0346a7c81ff5618abd514baaf7db50292d27
       data: {
         name: "Dhruv",
         email: "dhruv@example.com"
@@ -24,7 +30,10 @@ async function main() {
     }
   } finally {
     console.log("🔌 Disconnecting Prisma...");
+<<<<<<< HEAD
     await prisma.$disconnect();
+=======
+>>>>>>> 44ef0346a7c81ff5618abd514baaf7db50292d27
   }
 }
 main();

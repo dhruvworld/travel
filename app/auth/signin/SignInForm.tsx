@@ -1,5 +1,6 @@
 'use client';
 
+<<<<<<< HEAD
 import { useState, useEffect } from 'react';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
@@ -60,10 +61,27 @@ export default function SignInForm() {
       setErrorMessage('An error occurred. Please try again.');
       setIsLoading(false);
     }
+=======
+import { useState } from 'react';
+
+export default function SignInForm() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+<<<<<<< HEAD
+    // TODO: Implement actual authentication logic
+=======
+    // Replace with your Firebase login logic
+>>>>>>> 71dd6a2d7891fabe7a464e7bf3442ff76ebe9671
+    console.log('Logging in with', { email, password });
+>>>>>>> 44ef0346a7c81ff5618abd514baaf7db50292d27
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
+<<<<<<< HEAD
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
         <h1 className="text-2xl font-bold mb-6 text-center">Sign In</h1>
         
@@ -113,6 +131,31 @@ export default function SignInForm() {
           </button>
         </form>
       </div>
+=======
+      <form onSubmit={handleSubmit} className="bg-white p-6 rounded shadow-md w-full max-w-sm">
+        <h2 className="text-2xl font-bold mb-4 text-center">Admin Login</h2>
+        <input
+          type="email"
+          className="w-full px-3 py-2 border rounded mb-3"
+          placeholder="Email"
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          className="w-full px-3 py-2 border rounded mb-4"
+          placeholder="Password"
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+        />
+        <button
+          type="submit"
+          className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+        >
+          Sign In
+        </button>
+      </form>
+>>>>>>> 44ef0346a7c81ff5618abd514baaf7db50292d27
     </div>
   );
 }

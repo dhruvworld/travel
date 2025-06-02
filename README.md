@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 # Shubham Travel Website
 
 This is the official website for Shubham Travel, a premier travel agency specializing in tours across India.
+=======
+# Shubham Tours Website
+
+This is the official website for Shubham Tours, a premier travel agency specializing in tours across India.
+>>>>>>> 44ef0346a7c81ff5618abd514baaf7db50292d27
 
 ## Development Notes
 

@@ -28,6 +28,10 @@ export default function ClientImage({
 }: ClientImageProps) {
   const [imgSrc, setImgSrc] = useState(src);
   const [isError, setIsError] = useState(false);
+<<<<<<< HEAD
+=======
+  const [hasLoaded, setHasLoaded] = useState(false);
+>>>>>>> 44ef0346a7c81ff5618abd514baaf7db50292d27
 
   const handleError = () => {
     if (!isError) {
@@ -46,6 +50,7 @@ export default function ClientImage({
   };
 
   if (fill) {
+<<<<<<< HEAD
     return <Image {...imageProps} fill />;
   }
 
@@ -55,5 +60,46 @@ export default function ClientImage({
       width={width || 500}
       height={height || 300}
     />
+=======
+    return (
+      <>
+        <Image
+          {...imageProps}
+          alt={alt || "Image"}
+          onLoad={() => setHasLoaded(true)}
+          fill
+        />
+        {!hasLoaded && (
+          <Image
+            {...imageProps}
+            alt={alt || "Loading placeholder"}
+            className="blur-2xl scale-110"
+            fill
+          />
+        )}
+      </>
+    );
+  }
+
+  return (
+    <>
+      <Image
+        {...imageProps}
+        alt={alt || "Image"}
+        onLoad={() => setHasLoaded(true)}
+        width={width || 500}
+        height={height || 300}
+      />
+      {!hasLoaded && (
+        <Image
+          {...imageProps}
+          alt={alt || "Loading placeholder"}
+          className="blur-2xl scale-110"
+          width={width || 500}
+          height={height || 300}
+        />
+      )}
+    </>
+>>>>>>> 44ef0346a7c81ff5618abd514baaf7db50292d27
   );
 }

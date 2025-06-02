@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import Image from 'next/image';
 import Link from 'next/link';
 import type { Metadata } from 'next';
@@ -22,5 +23,16 @@ export const metadata: Metadata = {
 };
 
 export default function HotelsPage() {
+=======
+import HotelsClientComponent from './HotelsClientComponent';
+
+export const metadata = {
+  title: 'Hotel Booking – Shubham Tours',
+  description: 'Book the best hotels for your stay across India. Choose from a wide range of accommodations to suit your needs and budget.',
+  keywords: ['hotel booking India', 'luxury hotels', 'budget hotels', 'travel accommodations'],
+};
+
+export default function Page() {
+>>>>>>> 44ef0346a7c81ff5618abd514baaf7db50292d27
   return <HotelsClientComponent />;
 }

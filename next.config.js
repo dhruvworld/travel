@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -16,10 +17,23 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'avatars.githubusercontent.com',
+=======
+// next.config.js
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  output: 'export',
+  images: {
+    unoptimized: true,
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+>>>>>>> 44ef0346a7c81ff5618abd514baaf7db50292d27
       },
     ],
   },
   experimental: {
+<<<<<<< HEAD
     serverComponentsExternalPackages: ['@prisma/client'],
   },
   // Output standalone for better compatibility with Netlify and other platforms
@@ -48,3 +62,17 @@ const nextConfig = {
 }
 
 module.exports = nextConfig
+=======
+    optimizeCss: true,
+    optimizePackageImports: ['framer-motion'],
+  },
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
+  poweredByHeader: false,
+  reactStrictMode: true,
+  swcMinify: true,
+};
+
+module.exports = nextConfig;
+>>>>>>> 44ef0346a7c81ff5618abd514baaf7db50292d27
