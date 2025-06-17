@@ -1,13 +1,43 @@
 import { notFound } from 'next/navigation'
-import { getPackageById } from '@/lib/prisma/packages'
 import Image from 'next/image'
+
+// Static package data - replace with your actual packages
+const packages = [
+  {
+    id: 'ladakh',
+    slug: 'ladakh',
+    name: 'Ladakh Adventure',
+    duration: 7,
+    price: 25000,
+    description: 'Experience the breathtaking landscapes of Ladakh with our comprehensive tour package.',
+    image: '/images/package-img/ladakh/1.jpeg'
+  },
+  {
+    id: 'manali',
+    slug: 'manali',
+    name: 'Manali Getaway',
+    duration: 5,
+    price: 18000,
+    description: 'Discover the beauty of Manali with our carefully curated tour package.',
+    image: '/images/package-img/manali/1.jpeg'
+  },
+  {
+    id: 'kasol',
+    slug: 'kasol',
+    name: 'Kasol Trek',
+    duration: 4,
+    price: 12000,
+    description: 'Explore the scenic trails of Kasol with our adventure tour package.',
+    image: '/images/package-img/kasol/1.jpeg'
+  }
+]
 
 export default async function PackageDetailPage({ 
   params: { slug } 
 }: { 
   params: { slug: string } 
 }) {
-  const pkg = await getPackageById(slug)
+  const pkg = packages.find(p => p.slug === slug)
   
   if (!pkg) {
     notFound()

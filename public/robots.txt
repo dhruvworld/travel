@@ -1,9 +1,11 @@
+# *
 User-agent: *
 Allow: /
-
-# Disallow admin paths
 Disallow: /admin/
 Disallow: /api/
 
-# Sitemap location
+# Host
+Host: https://shubhamtravel.in
+
+# Sitemaps
 Sitemap: https://shubhamtravel.in/sitemap.xml
