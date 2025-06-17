@@ -28,12 +28,8 @@ export default function ClientImage({
 }: ClientImageProps) {
   const [imgSrc, setImgSrc] = useState(src);
   const [isError, setIsError] = useState(false);
-<<<<<<< HEAD
-=======
-  const [hasLoaded, setHasLoaded] = useState(false);
->>>>>>> 44ef0346a7c81ff5618abd514baaf7db50292d27
-
-  const handleError = () => {
+const [hasLoaded, setHasLoaded] = useState(false);
+const handleError = () => {
     if (!isError) {
       setImgSrc(fallbackSrc);
       setIsError(true);
@@ -50,18 +46,7 @@ export default function ClientImage({
   };
 
   if (fill) {
-<<<<<<< HEAD
-    return <Image {...imageProps} fill />;
-  }
-
-  return (
-    <Image
-      {...imageProps}
-      width={width || 500}
-      height={height || 300}
-    />
-=======
-    return (
+return (
       <>
         <Image
           {...imageProps}
@@ -100,6 +85,5 @@ export default function ClientImage({
         />
       )}
     </>
->>>>>>> 44ef0346a7c81ff5618abd514baaf7db50292d27
-  );
+);
 }

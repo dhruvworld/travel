@@ -1,19 +1,11 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-<<<<<<< HEAD
-  title: 'Car Rental Services – Shubham Travel',
-  description: 'Rent comfortable and reliable vehicles for your journey across India. Choose from our fleet of cars, SUVs, and luxury vehicles with professional drivers.',
-  keywords: ['car rental India', 'vehicle hire', 'driver services', 'travel transportation', 'luxury car rental'],
-  openGraph: {
-    title: 'Car Rental Services – Shubham Travel',
-=======
   title: 'Car Rental Services – Shubham Tours',
   description: 'Rent comfortable and reliable vehicles for your journey across India. Choose from our fleet of cars, SUVs, and luxury vehicles with professional drivers.',
   keywords: ['car rental India', 'vehicle hire', 'driver services', 'travel transportation', 'luxury car rental'],
   openGraph: {
     title: 'Car Rental Services – Shubham Tours',
->>>>>>> 44ef0346a7c81ff5618abd514baaf7db50292d27
     description: 'Get reliable and comfortable transportation for your trip.',
     images: [
       {

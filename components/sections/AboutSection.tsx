@@ -13,16 +13,10 @@ export default function AboutSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-<<<<<<< HEAD
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">About Shubham Travel</h2>
-          <p className="text-gray-600 mb-4 leading-relaxed">
-            At Shubham Travel, we craft unforgettable journeys for passionate explorers. With years of
-=======
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">About Shubham Tours</h2>
+<h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">About Shubham Tours</h2>
           <p className="text-gray-600 mb-4 leading-relaxed">
             At Shubham Tours, we craft unforgettable journeys for passionate explorers. With years of
->>>>>>> 44ef0346a7c81ff5618abd514baaf7db50292d27
-            expertise and local insight, our mission is to offer personalized travel experiences that
+expertise and local insight, our mission is to offer personalized travel experiences that
             connect people to culture, adventure, and memory-making moments.
           </p>
           <p className="text-gray-600 mb-4 leading-relaxed">
@@ -30,12 +24,8 @@ export default function AboutSection() {
             getaway — our team ensures everything is smooth, exciting, and unforgettable.
           </p>
           <p className="text-gray-600 leading-relaxed">
-<<<<<<< HEAD
-            Founded with a passion for showcasing India's diverse beauty, Shubham Travel has grown into
-=======
-            Founded with a passion for showcasing India's diverse beauty, Shubham Tours has grown into
->>>>>>> 44ef0346a7c81ff5618abd514baaf7db50292d27
-            a trusted name in the travel industry. Our team of experienced travel consultants work tirelessly
+Founded with a passion for showcasing India's diverse beauty, Shubham Tours has grown into
+a trusted name in the travel industry. Our team of experienced travel consultants work tirelessly
             to provide exceptional service and create tailor-made experiences for every client.
           </p>
         </motion.div>
@@ -49,12 +39,8 @@ export default function AboutSection() {
           <div className="relative overflow-hidden rounded-2xl shadow-lg">
             <Image
               src="/images/about-us.jpg"
-<<<<<<< HEAD
-              alt="Shubham Travel Team"
-=======
-              alt="Shubham Tours Team"
->>>>>>> 44ef0346a7c81ff5618abd514baaf7db50292d27
-              width={600}
+alt="Shubham Tours Team"
+width={600}
               height={400}
               className="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-500"
             />
@@ -127,12 +113,8 @@ export default function AboutSection() {
             {
               year: "2010",
               title: "The Beginning",
-<<<<<<< HEAD
-              description: "Shubham Travel was founded with a vision to showcase the beauty of India to travelers."
-=======
-              description: "Shubham Tours was founded with a vision to showcase the beauty of India to travelers."
->>>>>>> 44ef0346a7c81ff5618abd514baaf7db50292d27
-            },
+description: "Shubham Tours was founded with a vision to showcase the beauty of India to travelers."
+},
             {
               year: "2015",
               title: "Expanding Horizons",

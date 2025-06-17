@@ -107,9 +107,10 @@ export default function ContactSection() {
                   <div>
                     <p className="font-medium text-gray-900 mb-1">Address</p>
                     <p className="text-gray-600">
-                      Yogeshwar Twin Bauglo, 10<br />
-                      New Ranip, Ahmedabad<br />
-                      Gujarat 382481, India
+                      10, Yogeshwar Twin Bungalows,<br />
+                      New Ranip, Ahmedabad,<br />
+                      Gujarat – 382481,<br />
+                      India.
                     </p>
                   </div>
                 </div>

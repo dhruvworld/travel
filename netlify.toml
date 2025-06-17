@@ -1,20 +1,6 @@
 [build]
   command = "npm run build"
-<<<<<<< HEAD
-  publish = ".next"
-
-[build.environment]
-  NEXT_USE_NETLIFY_EDGE = "true"
-  NEXT_TELEMETRY_DISABLED = "1"
-  NODE_VERSION = "18"
-
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
-
-[functions]
-  included_files = ["prisma/**", "prisma/schema.prisma"]
-=======
-  publish = "out"
+publish = "out"
 
 [[headers]]
   for = "/*"
@@ -28,4 +14,3 @@
 
 [build.environment]
   NEXT_TELEMETRY_DISABLED = "1"
->>>>>>> 44ef0346a7c81ff5618abd514baaf7db50292d27

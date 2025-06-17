@@ -1,10 +1,12 @@
-<<<<<<< HEAD
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Core settings
   reactStrictMode: true,
   swcMinify: true,
+  poweredByHeader: false,
+  
+  // Image optimization settings
   images: {
-    // Use remotePatterns instead
     remotePatterns: [
       {
         protocol: 'https',
@@ -17,62 +19,46 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'avatars.githubusercontent.com',
-=======
-// next.config.js
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  output: 'export',
-  images: {
-    unoptimized: true,
-    remotePatterns: [
+      },
       {
         protocol: 'https',
         hostname: '**',
->>>>>>> 44ef0346a7c81ff5618abd514baaf7db50292d27
       },
     ],
+    unoptimized: true,
   },
+
+  // Experimental features
   experimental: {
-<<<<<<< HEAD
     serverComponentsExternalPackages: ['@prisma/client'],
+    optimizeCss: true,
+    optimizePackageImports: ['framer-motion'],
   },
-  // Output standalone for better compatibility with Netlify and other platforms
+
+  // Build and deployment settings
   output: 'standalone',
-  
-  // Ignore build errors to help with deployment
   eslint: {
     ignoreDuringBuilds: true,
   },
   typescript: {
     ignoreBuildErrors: true,
   },
-  
-  // Force dynamic rendering by default
+
+  // Runtime configuration
   serverRuntimeConfig: {
     PROJECT_ROOT: __dirname,
   },
-  
-  // Increase timeouts
-  staticPageGenerationTimeout: 180,
-  
-  // Add more explicit settings for dynamic rendering
-  env: {
-    NEXT_FORCE_DYNAMIC: '1',
-  }
-}
 
-module.exports = nextConfig
-=======
-    optimizeCss: true,
-    optimizePackageImports: ['framer-motion'],
-  },
+  // Build settings
+  staticPageGenerationTimeout: 180,
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
-  poweredByHeader: false,
-  reactStrictMode: true,
-  swcMinify: true,
+
+  // Environment variables
+  env: {
+    NEXT_FORCE_DYNAMIC: '1',
+  },
 };
 
 module.exports = nextConfig;
->>>>>>> 44ef0346a7c81ff5618abd514baaf7db50292d27

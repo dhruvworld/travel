@@ -1,28 +1,8 @@
+'use client';
+
 import type { Metadata } from 'next';
 import CustomToursClientComponent from './CustomToursClientComponent';
 
-<<<<<<< HEAD
-export const metadata: Metadata = {
-  title: 'Custom Tour Packages – Shubham Travel',
-  description: 'Create your own personalized travel experience with our custom tour services. Tell us your preferences and we\'ll plan the perfect itinerary for you.',
-  keywords: ['custom travel packages', 'personalized tours', 'bespoke travel', 'tailor-made itineraries', 'private tours India'],
-  openGraph: {
-    title: 'Custom Tour Packages – Shubham Travel',
-    description: 'Design your own perfect travel experience with our personalized tour services.',
-    images: [
-      {
-        url: '/custom-tours-featured.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Customized Travel Experiences',
-      },
-    ],
-  },
-};
-
-export default function CustomToursPage() {
-  return <CustomToursClientComponent />;
-=======
 import { useState } from 'react';
 import { saveCustomPackageRequest } from '../lib/custom-packages';
 
@@ -217,5 +197,4 @@ export default function CustomToursPage() {
       </div>
     </div>
   );
->>>>>>> 44ef0346a7c81ff5618abd514baaf7db50292d27
 }

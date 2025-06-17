@@ -114,9 +114,10 @@ export function Footer() {
             <address className="not-italic space-y-2 sm:space-y-3 text-sm sm:text-base text-gray-300">
               <p className="flex items-start">
                 <MapPin className="mr-2 sm:mr-3 text-gray-400 mt-1 flex-shrink-0" />
-                <span>Yogeshwar Twin Bauglo, 10<br />
-                New Ranip, Ahmedabad<br />
-                Gujarat 382481, India</span>
+                <span>10, Yogeshwar Twin Bungalows,<br />
+                New Ranip, Ahmedabad,<br />
+                Gujarat – 382481,<br />
+                India.</span>
               </p>
               <p className="flex items-center mt-2 sm:mt-4">
                 <Phone className="mr-2 sm:mr-3 text-gray-400 flex-shrink-0" />

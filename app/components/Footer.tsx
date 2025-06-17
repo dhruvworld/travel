@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { FaFacebook, FaInstagram, FaTwitter, FaPhone, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
+import { MapPin } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -109,11 +110,12 @@ export default function Footer() {
           <div>
             <h4 className="text-lg font-semibold mb-6 text-white">Contact Us</h4>
             <address className="not-italic space-y-3 text-gray-300">
-              <p className="flex items-center">
-                <FaMapMarkerAlt className="mr-3 text-gray-400" />
-                <span>Yogeshwar Twin Bauglo, 10<br />
-                New Ranip, Ahmedabad<br />
-                Gujarat 382481, India</span>
+              <p className="flex items-start">
+                <MapPin className="mr-2 sm:mr-3 text-gray-400 mt-1 flex-shrink-0" />
+                <span>10, Yogeshwar Twin Bungalows,<br />
+                New Ranip, Ahmedabad,<br />
+                Gujarat – 382481,<br />
+                India.</span>
               </p>
               <p className="flex items-center mt-4">
                 <FaPhone className="mr-3 text-gray-400" />

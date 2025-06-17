@@ -4,17 +4,6 @@ import Script from 'next/script';
 import AboutSection from '@/components/sections/AboutSection';
 
 // Force dynamic rendering for this page
-<<<<<<< HEAD
-export const dynamic = 'force-dynamic';
-
-export const metadata: Metadata = {
-  title: 'About Us – Shubham Travel',
-  description: 'Learn about our journey, team, and what makes Shubham Travel unique. Discover our values, mission, and commitment to exceptional travel experiences across India.',
-  keywords: ['about Shubham Travel', 'travel agency history', 'travel experts', 'India tour company', 'Shubham Travel values'],
-  openGraph: {
-    title: 'About Us – Shubham Travel',
-    description: 'Learn about our journey, team, and what makes Shubham Travel unique.',
-=======
 export const dynamic = 'auto';
 
 export const metadata: Metadata = {
@@ -24,17 +13,12 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'About Us – Shubham Tours',
     description: 'Learn about our journey, team, and what makes Shubham Tours unique.',
->>>>>>> 44ef0346a7c81ff5618abd514baaf7db50292d27
     images: [
       {
         url: '/image/about-us.jpg',
         width: 1200,
         height: 630,
-<<<<<<< HEAD
-        alt: 'Shubham Travel Team',
-=======
         alt: 'Shubham Tours Team',
->>>>>>> 44ef0346a7c81ff5618abd514baaf7db50292d27
       },
     ],
   },
@@ -71,11 +55,7 @@ export default function AboutPage() {
           <div className="relative z-20 h-full flex items-center justify-center text-white">
             <div className="text-center">
               <h1 className="text-4xl md:text-5xl font-bold mb-4">About Our Company</h1>
-<<<<<<< HEAD
-              <p className="text-xl">Discover the story behind Shubham Travel</p>
-=======
               <p className="text-xl">Discover the story behind Shubham Tours</p>
->>>>>>> 44ef0346a7c81ff5618abd514baaf7db50292d27
             </div>
           </div>
         </div>

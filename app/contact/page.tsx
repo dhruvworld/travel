@@ -36,12 +36,8 @@ export default function ContactPage() {
           {
             "@context": "https://schema.org",
             "@type": "ContactPage",
-<<<<<<< HEAD
-            "name": "Contact Shubham Travel",
-=======
-            "name": "Contact Shubham Tours",
->>>>>>> 44ef0346a7c81ff5618abd514baaf7db50292d27
-            "description": "Get in touch with our team to plan your dream vacation across India. We're available to answer your questions and help with bookings.",
+"name": "Contact Shubham Tours",
+"description": "Get in touch with our team to plan your dream vacation across India. We're available to answer your questions and help with bookings.",
             "mainEntityOfPage": {
               "@type": "WebPage",
               "@id": "https://shubhamtravel.in/contact"
@@ -71,7 +67,7 @@ export default function ContactPage() {
               </li>
               <li className="flex items-start">
                 <span className="font-medium mr-2">Address:</span> 
-                <span className="text-sm sm:text-base">Yogeshwar Twin Bauglo, 10, New Ranip, Ahmedabad, Gujarat 382481, India</span>
+                <span className="text-sm sm:text-base">10, Yogeshwar Twin Bungalows, New Ranip, Ahmedabad, Gujarat – 382481, India.</span>
               </li>
             </ul>
             

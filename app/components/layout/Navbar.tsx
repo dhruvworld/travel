@@ -7,13 +7,8 @@ import { Menu, X } from 'lucide-react';
 
 const menuItems = [
   { path: '/', label: 'Home' },
-<<<<<<< HEAD
-  { path: '/destinations', label: 'Destinations' },
-  { path: '/packages', label: 'Packages' },
-=======
-  { path: '/tours', label: 'Tours' },
->>>>>>> 44ef0346a7c81ff5618abd514baaf7db50292d27
-  { path: '/about', label: 'About' },
+{ path: '/tours', label: 'Tours' },
+{ path: '/about', label: 'About' },
   { path: '/contact', label: 'Contact' },
   { path: '/admin', label: 'Admin Dashboard' },
 ];
