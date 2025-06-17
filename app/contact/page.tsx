@@ -36,11 +36,26 @@ export default function ContactPage() {
           {
             "@context": "https://schema.org",
             "@type": "ContactPage",
-"name": "Contact Shubham Tours",
-"description": "Get in touch with our team to plan your dream vacation across India. We're available to answer your questions and help with bookings.",
+            "name": "Contact Shubham Tours",
+            "description": "Get in touch with Shubham Tours in Ahmedabad to plan your dream vacation across India. We're available to answer your questions and help with bookings.",
             "mainEntityOfPage": {
               "@type": "WebPage",
-              "@id": "https://shubhamtravel.in/contact"
+              "@id": "https://shubhamtours.com/contact"
+            },
+            "mainEntity": {
+              "@type": "TravelAgency",
+              "name": "Shubham Tours",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "10, Yogeshwar Twin Bungalows, New Ranip",
+                "addressLocality": "Ahmedabad",
+                "addressRegion": "Gujarat",
+                "postalCode": "382481",
+                "addressCountry": "IN"
+              },
+              "telephone": "+91-97379-90335",
+              "email": "info@shubhamtours.com",
+              "openingHours": "Mo-Fr 09:00-18:00, Sa 10:00-16:00"
             }
           }
         `}
@@ -57,8 +72,8 @@ export default function ContactPage() {
             <ul className="space-y-2 sm:space-y-3">
               <li className="flex items-start">
                 <span className="font-medium mr-2">Email:</span> 
-                <a href="mailto:info@shuhamtravels.com" className="text-indigo-600 hover:underline text-sm sm:text-base">
-                  info@shuhamtravels.com
+                <a href="mailto:info@shubhamtours.com" className="text-indigo-600 hover:underline text-sm sm:text-base">
+                  info@shubhamtours.com
                 </a>
               </li>
               <li className="flex items-start">

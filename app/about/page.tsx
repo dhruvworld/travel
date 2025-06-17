@@ -37,13 +37,13 @@ export default function AboutPage() {
                 "@type": "ListItem",
                 "position": 1,
                 "name": "Home",
-                "item": "https://shubhamtravel.in"
+                "item": "https://shubhamtours.com"
               },
               {
                 "@type": "ListItem",
                 "position": 2,
                 "name": "About Us",
-                "item": "https://shubhamtravel.in/about"
+                "item": "https://shubhamtours.com/about"
               }
             ]
           }

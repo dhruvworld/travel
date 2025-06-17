@@ -5,7 +5,7 @@ Disallow: /admin/
 Disallow: /api/
 
 # Host
-Host: https://shubhamtravel.in
+Host: https://shubhamtours.com
 
 # Sitemaps
-Sitemap: https://shubhamtravel.in/sitemap.xml
+Sitemap: https://shubhamtours.com/sitemap.xml

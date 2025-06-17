@@ -1,19 +1,19 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: process.env.SITE_URL || 'https://shubhamtravel.in',
+  siteUrl: process.env.SITE_URL || 'https://shubhamtours.com',
   generateRobotsTxt: true,
   sitemapSize: 7000,
   exclude: ['/admin/*', '/api/*'],
   robotsTxtOptions: {
-policies: [
+    policies: [
       {
         userAgent: '*',
         allow: '/',
         disallow: ['/admin/', '/api/'],
       },
     ],
-additionalSitemaps: [
-      'https://shubhamtravel.in/sitemap.xml', // optional if you have multiple sitemaps
+    additionalSitemaps: [
+      'https://shubhamtours.com/sitemap.xml', // optional if you have multiple sitemaps
     ],
   },
 };

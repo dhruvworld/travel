@@ -1,5 +1,6 @@
 // app/page.tsx
 
+import type { Metadata } from 'next';
 import HeroSection from '@/components/HeroSection'
 import ServicesSection from '@/components/sections/ServicesSection'
 import FeaturedPackagesSection from '@/components/sections/FeaturedPackagesSection'
@@ -7,6 +8,7 @@ import TestimonialsSection from '@/components/sections/TestimonialsSection'
 import GallerySection from '@/components/sections/GallerySection'
 import ContactSection from '@/components/sections/ContactSection'
 import type { TravelPackage } from '@/types/travel'
+import FAQSection from '@/components/sections/FAQSection'
 
 export const dynamic = 'auto'
 
@@ -62,15 +64,98 @@ const featuredPackages: TravelPackage[] = [
   }
 ]
 
-export default async function HomePage() {
+export const metadata: Metadata = {
+  title: 'Shubham Tours - Best Travel Agency in Ahmedabad | Tour Packages India',
+  description: 'Shubham Tours - Leading travel agency in Ahmedabad offering best tour packages across India. Book Ladakh, Manali, Goa, Kerala tours with expert guides. Call +91 97379 90335',
+  keywords: [
+    'Shubham Tours',
+    'Shubham Travels',
+    'Travel Agency Ahmedabad',
+    'Tour Packages India',
+    'Ladakh Tour Package',
+    'Manali Tour Package',
+    'Goa Tour Package',
+    'Kerala Tour Package',
+    'Rajasthan Tour Package',
+    'Golden Triangle Tour',
+    'Car Rental Ahmedabad',
+    'Hotel Booking India',
+    'Custom Tours India',
+    'Adventure Tours India',
+    'Holiday Packages India',
+    'Travel Company Ahmedabad',
+    'Tour Operator Gujarat',
+    'India Tourism',
+    'Domestic Tours',
+    'International Tours'
+  ],
+  openGraph: {
+    title: 'Shubham Tours - Best Travel Agency in Ahmedabad | India Tour Packages',
+    description: 'Shubham Tours is the leading travel agency in Ahmedabad, India. Book the best tour packages, car rentals, and hotel bookings across India.',
+    url: 'https://shubhamtours.com',
+    siteName: 'Shubham Tours',
+    images: [
+      {
+        url: '/images/hero.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Shubham Tours - Your Gateway to Incredible India',
+      },
+    ],
+    locale: 'en_IN',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Shubham Tours - Best Travel Agency in Ahmedabad | India Tour Packages',
+    description: 'Shubham Tours is the leading travel agency in Ahmedabad, India. Book the best tour packages, car rentals, and hotel bookings across India.',
+    images: ['/images/hero.jpg'],
+  },
+  alternates: {
+    canonical: 'https://shubhamtours.com',
+  },
+};
+
+// Structured data for the homepage
+const homePageStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Shubham Tours - Best Travel Agency in Ahmedabad',
+  description: 'Leading travel agency in Ahmedabad offering best tour packages across India. Specializing in Ladakh, Manali, Goa, Kerala, and Rajasthan tours.',
+  url: 'https://shubhamtours.com',
+  mainEntity: {
+    '@type': 'TravelAgency',
+    name: 'Shubham Tours',
+    description: 'Leading travel agency in Ahmedabad offering best tour packages across India',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: '10, Yogeshwar Twin Bungalows, New Ranip',
+      addressLocality: 'Ahmedabad',
+      addressRegion: 'Gujarat',
+      postalCode: '382481',
+      addressCountry: 'IN'
+    },
+    telephone: '+91-97379-90335',
+    email: 'info@shubhamtours.com'
+  }
+};
+
+export default function HomePage() {
   return (
-    <main className="min-h-screen overflow-x-hidden">
-      <HeroSection />
-      <ServicesSection />
-      <FeaturedPackagesSection packages={featuredPackages} />
-      <TestimonialsSection />
-      <GallerySection />
-      <ContactSection />
-    </main>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homePageStructuredData) }}
+      />
+      <main className="min-h-screen overflow-x-hidden">
+        <HeroSection />
+        <ServicesSection />
+        <FeaturedPackagesSection packages={featuredPackages} />
+        <TestimonialsSection />
+        <GallerySection />
+        <FAQSection />
+        <ContactSection />
+      </main>
+    </>
   )
 }

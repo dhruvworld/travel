@@ -4,11 +4,11 @@
 /*    /index.html   200
 
 # Force HTTPS
-http://shubhamtravel.in/* https://shubhamtravel.in/:splat 301!
+http://shubhamtours.com/* https://shubhamtours.com/:splat 301!
 
 # Redirect old URLs if you have any
 # /old-page    /new-page    301
 # /another-old-page    /another-new-page    301
 
 # Handle possible Netlify domain to your custom domain
-https://shubhamtravel.netlify.app/* https://shubhamtravel.in/:splat 301!
+https://shubhamtours.netlify.app/* https://shubhamtours.com/:splat 301!

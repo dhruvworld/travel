@@ -16,27 +16,37 @@ const poppins = Poppins({
 
 // Enhanced metadata for SEO and social sharing
 export const metadata: Metadata = {
-  metadataBase: new URL('https://shubhamtravel.in'),
+  metadataBase: new URL('https://shubhamtours.com'),
   title: {
-    default: 'Shubham Tours – Explore India & Beyond',
+    default: 'Shubham Tours - Best Travel Agency in Ahmedabad | India Tour Packages',
     template: '%s | Shubham Tours'
   },
-  description: 'Book breathtaking tours, custom travel packages, and unforgettable experiences with Shubham Tours. Discover India\'s hidden gems with our expert guides.',
+  description: 'Shubham Tours is the leading travel agency in Ahmedabad, India. Book the best tour packages, car rentals, and hotel bookings across India. Trusted by thousands for Ladakh, Manali, Goa, Kerala, Rajasthan, and custom tours.',
   keywords: [
-    'Travel India',
-    'Tour Packages',
-    'Shubham Tours', 
-    'Custom Tours',
-    'Adventure Holidays',
-    'India tourism',
-    'Golden Triangle tour',
-    'Kerala backwaters',
-    'Rajasthan tours',
-    'Himachal Pradesh tours',
-    'Ladakh tours',
-    'Spiti Valley tours'
+    'Shubham Tours',
+    'Shubham Travels',
+    'Shubham Tours Ahmedabad',
+    'Shubham Travels Ahmedabad',
+    'Travel Agency Ahmedabad',
+    'Tour Packages India',
+    'Ladakh Tour Package',
+    'Manali Tour Package',
+    'Goa Tour Package',
+    'Kerala Tour Package',
+    'Rajasthan Tour Package',
+    'Golden Triangle Tour',
+    'Car Rental Ahmedabad',
+    'Hotel Booking India',
+    'Custom Tours India',
+    'Adventure Tours India',
+    'Holiday Packages India',
+    'Travel Company Ahmedabad',
+    'Tour Operator Gujarat',
+    'India Tourism',
+    'Domestic Tours',
+    'International Tours'
   ],
-  authors: [{ name: 'Shubham Tours', url: 'https://shubhamtravel.in' }],
+  authors: [{ name: 'Shubham Tours', url: 'https://shubhamtours.com' }],
   creator: 'Shubham Tours',
   publisher: 'Shubham Tours',
   formatDetection: {
@@ -50,13 +60,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_IN',
-    url: 'https://shubhamtravel.in',
-    title: 'Shubham Tours – Explore India & Beyond',
-    description: 'Book breathtaking tours, custom travel packages, and unforgettable experiences with Shubham Tours.',
+    url: 'https://shubhamtours.com',
+    title: 'Shubham Tours - Best Travel Agency in Ahmedabad | India Tour Packages',
+    description: 'Shubham Tours is the leading travel agency in Ahmedabad, India. Book the best tour packages, car rentals, and hotel bookings across India.',
     siteName: 'Shubham Tours',
     images: [
       {
-        url: '/images/logo.png',
+        url: '/images/hero.jpg',
         width: 1200,
         height: 630,
         alt: 'Shubham Tours - Your Gateway to Incredible India',
@@ -65,10 +75,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Shubham Tours – Explore India & Beyond',
-    description: 'Book breathtaking tours, custom travel packages, and unforgettable experiences with Shubham Tours.',
-    images: ['/images/logo.png'],
-    creator: '@shubhamtravelIN',
+    title: 'Shubham Tours - Best Travel Agency in Ahmedabad | India Tour Packages',
+    description: 'Shubham Tours is the leading travel agency in Ahmedabad, India. Book the best tour packages, car rentals, and hotel bookings across India.',
+    images: ['/images/hero.jpg'],
+    creator: '@shubhamtoursIN',
   },
   robots: {
     index: true,
@@ -82,7 +92,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: 'https://shubhamtravel.in',
+    canonical: 'https://shubhamtours.com',
   },
   icons: {
     icon: '/favicon.ico',
@@ -122,17 +132,80 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'TravelAgency',
   name: 'Shubham Tours',
-  description: 'Your trusted travel partner for unforgettable experiences in India',
-  url: 'https://shubhamtravel.in',
-  logo: 'https://shubhamtravel.in/images/logo.png',
+  alternateName: 'Shubham Travels',
+  description: 'Best travel agency in Ahmedabad, India. Book India tour packages, car rentals, and hotels with Shubham Tours.',
+  url: 'https://shubhamtours.com',
+  logo: 'https://shubhamtours.com/images/logo.png',
+  image: 'https://shubhamtours.com/images/hero.jpg',
   address: {
     '@type': 'PostalAddress',
+    streetAddress: '10, Yogeshwar Twin Bungalows, New Ranip',
+    addressLocality: 'Ahmedabad',
+    addressRegion: 'Gujarat',
+    postalCode: '382481',
     addressCountry: 'IN'
   },
   contactPoint: {
     '@type': 'ContactPoint',
-    telephone: '+91-XXXXXXXXXX',
-    contactType: 'customer service'
+    telephone: '+91-97379-90335',
+    contactType: 'customer service',
+    areaServed: 'IN',
+    availableLanguage: 'English, Hindi, Gujarati'
+  },
+  sameAs: [
+    'https://www.facebook.com/shubhamtours',
+    'https://www.instagram.com/shubhamtours',
+    'https://twitter.com/shubhamtoursIN'
+  ],
+  areaServed: {
+    '@type': 'Country',
+    name: 'India'
+  },
+  serviceArea: {
+    '@type': 'Country',
+    name: 'India'
+  },
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Tour Packages',
+    itemListElement: [
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'TouristTrip',
+          name: 'Ladakh Adventure Tour',
+          description: 'Experience the breathtaking landscapes of Ladakh'
+        }
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'TouristTrip',
+          name: 'Manali Getaway Tour',
+          description: 'Discover the beauty of Manali'
+        }
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'TouristTrip',
+          name: 'Kerala Backwaters Tour',
+          description: 'Explore the serene backwaters of Kerala'
+        }
+      }
+    ]
+  },
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '4.8',
+    reviewCount: '150',
+    bestRating: '5',
+    worstRating: '1'
+  },
+  foundingDate: '2010',
+  founder: {
+    '@type': 'Person',
+    name: 'Jayendra Patel'
   }
 };
 
